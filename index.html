@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sturq // tty</title>
-<meta name="theme-color" content="#0a0e08">
+<meta name="theme-color" content="#0a0604">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="green">
+<body>
   <div class="crt">
     <div class="screen">
       <div class="screen-glare"></div>
@@ -36,7 +36,7 @@
 
     const MAX_INPUT = 200;
     const MAX_HISTORY = 100;
-    const ALLOWED_THEMES = ['green', 'amber', 'blue', 'white'];
+    const ALLOWED_THEMES = ['ember', 'green', 'amber', 'blue', 'white'];
 
     const $term       = document.getElementById('term');
     const $output     = document.getElementById('output');
@@ -106,7 +106,7 @@
         '  uptime        how long since boot',
         '  neofetch      stylized system info',
         '  history       command history',
-        '  theme <name>  green | amber | blue | white',
+        '  theme <name>  ember | green | amber | blue | white',
         '  clear         clear screen',
         '  banner        re-show the boot banner',
         '  exit          (you can\'t, sorry)',

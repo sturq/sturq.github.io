@@ -1,14 +1,28 @@
 /* ===== CRT terminal ===== */
 :root {
-  --bg-deep:   #050805;
-  --bg:        #0a0e08;
-  --bg-screen: #0c130c;
+  --bg-deep:   #0a0604;
+  --bg:        #100805;
+  --bg-screen: #150b08;
+  --fg:        #d97757;
+  --fg-dim:    #8c4a32;
+  --fg-bright: #f0a489;
+  --shadow:    #d97757;
+}
+
+body[data-theme="ember"] {
+  --fg:        #d97757;
+  --fg-dim:    #8c4a32;
+  --fg-bright: #f0a489;
+  --shadow:    #d97757;
+  --bg-screen: #150b08;
+}
+body[data-theme="green"] {
   --fg:        #33ff66;
   --fg-dim:    #1f9b3d;
   --fg-bright: #b8ffc4;
   --shadow:    #00ff66;
+  --bg-screen: #0c130c;
 }
-
 body[data-theme="amber"] {
   --fg:        #ffb454;
   --fg-dim:    #a06800;
@@ -51,7 +65,7 @@ body {
   justify-content: center;
   padding: 24px;
   background:
-    radial-gradient(circle at 50% 50%, #0e120c 0%, #060805 100%);
+    radial-gradient(circle at 50% 50%, #150d08 0%, #08050a 100%);
 }
 
 /* hidden input that captures keys */
@@ -96,7 +110,7 @@ body {
   box-shadow:
     inset 0 0 80px rgba(0, 0, 0, 0.8),
     inset 0 0 4px rgba(255,255,255,0.04),
-    0 0 60px rgba(51, 255, 102, 0.06);
+    0 0 60px rgba(217, 119, 87, 0.08);
   overflow: hidden;
   isolation: isolate;
 }
@@ -138,7 +152,7 @@ body {
   font-feature-settings: "ss01";
   text-shadow:
     0 0 4px var(--shadow),
-    0 0 12px rgba(51, 255, 102, 0.35);
+    0 0 12px rgba(217, 119, 87, 0.35);
   outline: none;
 }
 .term::-webkit-scrollbar { width: 8px; }
@@ -219,7 +233,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 7;
-  background: rgba(51, 255, 102, 0.025);
+  background: rgba(217, 119, 87, 0.025);
   animation: flicker 0.16s steps(2) infinite;
   border-radius: 14px;
   mix-blend-mode: screen;
