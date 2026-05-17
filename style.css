@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0e0e10;
+  color: #e8e8e8;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
