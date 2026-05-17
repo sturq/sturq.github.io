@@ -152,8 +152,9 @@ main {
 }
 
 @keyframes card-in {
-  0%   { opacity: 0; transform: scale(0.92) translateY(20px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+  0%   { transform: scale(0.94) translateY(16px); }
+  60%  { transform: scale(1.01) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); }
 }
 
 .card-ring {
@@ -255,8 +256,8 @@ main {
 }
 
 @keyframes chip-in {
-  0%   { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0%   { transform: translateY(12px); }
+  100% { transform: translateY(0); }
 }
 
 .chip {
