@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<div class="tinybar">
+  <div class="tinybar-inner">
+    <a>Install Steam</a>
+    <div class="tinybar-right">
+      <span class="account-pulldown">sturq <span class="caret">&#9662;</span></span>
+      <span class="sep">|</span>
+      <a>your store <span class="caret">&#9662;</span></a>
+      <span class="sep">|</span>
+      <a>language <span class="caret">&#9662;</span></a>
+    </div>
+  </div>
+</div>
+
 <header class="topbar">
   <div class="topbar-inner">
     <div class="logo">STEAM<sup>&reg;</sup></div>
@@ -17,9 +30,9 @@
       <a>ABOUT</a>
       <a>SUPPORT</a>
     </nav>
-    <div class="account">
-      <span class="account-name">sturq</span>
-      <span class="caret">&#9662;</span>
+    <div class="search">
+      <input type="text" placeholder="search">
+      <button>&#128269;</button>
     </div>
   </div>
 </header>
@@ -30,37 +43,49 @@
     <a>Friends</a>
     <a>Games</a>
     <a>Groups</a>
-    <a>Inventory</a>
+    <a>Content</a>
     <a>Badges</a>
+    <a>Inventory</a>
   </div>
 </div>
 
 <main class="profile-page">
   <div class="profile-header">
     <div class="profile-header-bg"></div>
+    <div class="profile-header-overlay"></div>
+
     <div class="profile-header-content">
       <div class="avatar-block">
-        <div class="avatar-frame">
-          <div class="avatar"></div>
+        <div class="avatar-frame online">
+          <div class="avatar">
+            <span class="avatar-letter">s</span>
+          </div>
         </div>
         <div class="online-status">Currently Online</div>
       </div>
+
       <div class="profile-info">
         <div class="persona-name">sturq</div>
         <div class="profile-flag">
           <span class="flag"></span>
           <span class="location">Somewhere</span>
         </div>
-        <div class="profile-badge">
-          <div class="badge-icon"></div>
-          <div class="badge-info">
-            <div class="level-label">Level</div>
-            <div class="level-num">42</div>
+        <div class="profile-real">
+          <div class="years-badge">
+            <div class="years-num">10</div>
+            <div class="years-label">Years of Service</div>
           </div>
         </div>
       </div>
+
       <div class="profile-actions">
-        <a class="btn-add">Add Friend</a>
+        <div class="level-block">
+          <div class="level-ring">
+            <div class="level-ring-inner">42</div>
+          </div>
+          <div class="level-label">Level</div>
+        </div>
+        <a class="btn-add">+ Add Friend</a>
         <a class="btn-secondary">More &#9662;</a>
       </div>
     </div>
@@ -68,105 +93,172 @@
 
   <div class="profile-body">
     <div class="profile-left">
+
       <div class="showcase">
-        <div class="showcase-title">Screenshot Showcase</div>
+        <div class="showcase-header">
+          <div class="showcase-title">Screenshot Showcase</div>
+          <div class="showcase-sub">Some Game</div>
+        </div>
         <div class="showcase-img"></div>
-        <div class="showcase-caption">A screenshot from a game.</div>
+        <div class="showcase-meta">
+          <div class="showcase-caption">A screenshot from a game.</div>
+          <div class="showcase-stats">
+            <span>&#10084; 142</span>
+            <span>&#128172; 8</span>
+          </div>
+        </div>
       </div>
 
       <div class="showcase">
-        <div class="showcase-title">Favorite Game</div>
+        <div class="showcase-header">
+          <div class="showcase-title">Favorite Game</div>
+        </div>
         <div class="fav-game">
           <div class="fav-game-img"></div>
           <div class="fav-game-info">
             <div class="fav-game-name">Some Game</div>
             <div class="fav-game-hours">1,337 hrs on record</div>
             <div class="fav-game-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="fav-game-ach">
+              <span>Achievement Progress</span>
+              <span class="ach-count">38 of 42</span>
+            </div>
+            <div class="ach-bar"><div class="ach-bar-fill"></div></div>
           </div>
         </div>
       </div>
 
       <div class="showcase">
-        <div class="showcase-title">Recent Activity</div>
-        <div class="recent-hours">42 hrs past 2 weeks</div>
+        <div class="showcase-header">
+          <div class="showcase-title">Recent Activity</div>
+          <div class="showcase-sub">42 hrs past 2 weeks</div>
+        </div>
         <div class="recent-game">
           <div class="recent-img"></div>
           <div class="recent-info">
             <div class="recent-name">Another Game</div>
-            <div class="recent-stat">12.4 hrs last two weeks</div>
-            <div class="recent-stat muted">Last played on May 16</div>
+            <div class="recent-stat">12.4 hrs last two weeks / 287 hrs on record</div>
+            <div class="recent-stat muted">last played on May 16</div>
+            <div class="recent-ach">
+              <div class="ach-bar small"><div class="ach-bar-fill" style="width:62%"></div></div>
+              <span class="ach-text">21 of 34 achievements</span>
+            </div>
           </div>
         </div>
         <div class="recent-game">
-          <div class="recent-img"></div>
+          <div class="recent-img alt"></div>
           <div class="recent-info">
             <div class="recent-name">Yet Another Game</div>
-            <div class="recent-stat">7.1 hrs last two weeks</div>
-            <div class="recent-stat muted">Last played on May 14</div>
+            <div class="recent-stat">7.1 hrs last two weeks / 92 hrs on record</div>
+            <div class="recent-stat muted">last played on May 14</div>
+            <div class="recent-ach">
+              <div class="ach-bar small"><div class="ach-bar-fill" style="width:34%"></div></div>
+              <span class="ach-text">9 of 26 achievements</span>
+            </div>
           </div>
         </div>
+        <a class="view-all">View All Activity</a>
       </div>
     </div>
 
     <aside class="profile-right">
+
       <div class="side-block">
-        <div class="side-title">Badges <span class="side-count">23</span></div>
+        <div class="side-title-bar">
+          <div class="side-title">Badges</div>
+          <div class="side-count">23</div>
+        </div>
         <div class="badge-grid">
-          <div class="mini-badge"></div>
-          <div class="mini-badge"></div>
-          <div class="mini-badge"></div>
-          <div class="mini-badge"></div>
-          <div class="mini-badge"></div>
-          <div class="mini-badge"></div>
+          <div class="mini-badge b1"></div>
+          <div class="mini-badge b2"></div>
+          <div class="mini-badge b3"></div>
+          <div class="mini-badge b4"></div>
+          <div class="mini-badge b5"></div>
+          <div class="mini-badge b6"></div>
         </div>
-        <a class="view-all">View all badges</a>
+        <a class="view-all-small">View all badges</a>
       </div>
 
       <div class="side-block">
-        <div class="side-title">Games <span class="side-count">312</span></div>
-        <div class="side-row"><span>Played past 2 weeks</span><span>5</span></div>
-        <a class="view-all">View all games</a>
+        <div class="side-title-bar">
+          <div class="side-title">Games</div>
+          <div class="side-count">312</div>
+        </div>
+        <div class="side-row"><span>Played past 2 weeks</span><span class="num">5</span></div>
+        <a class="view-all-small">View all games</a>
       </div>
 
       <div class="side-block">
-        <div class="side-title">Inventory</div>
-        <div class="side-row"><span>Items owned</span><span>148</span></div>
-        <div class="side-row"><span>Trades made</span><span>21</span></div>
-        <div class="side-row"><span>Market transactions</span><span>67</span></div>
+        <div class="side-title-bar">
+          <div class="side-title">Inventory</div>
+        </div>
+        <div class="side-row"><span>Items owned</span><span class="num">148</span></div>
+        <div class="side-row"><span>Trades made</span><span class="num">21</span></div>
+        <div class="side-row"><span>Market transactions</span><span class="num">67</span></div>
+        <a class="view-all-small">View inventory</a>
       </div>
 
       <div class="side-block">
-        <div class="side-title">Groups <span class="side-count">4</span></div>
+        <div class="side-title-bar">
+          <div class="side-title">Screenshots</div>
+          <div class="side-count">47</div>
+        </div>
+        <div class="screenshot-grid">
+          <div class="mini-shot"></div>
+          <div class="mini-shot"></div>
+          <div class="mini-shot"></div>
+        </div>
+        <a class="view-all-small">View all screenshots</a>
+      </div>
+
+      <div class="side-block">
+        <div class="side-title-bar">
+          <div class="side-title">Groups</div>
+          <div class="side-count">4</div>
+        </div>
         <div class="group-row">
-          <div class="group-icon"></div>
-          <span>Some Group</span>
+          <div class="group-icon g1"></div>
+          <div class="group-info">
+            <div class="group-name">Some Group</div>
+            <div class="group-meta">1,204 Members</div>
+          </div>
         </div>
         <div class="group-row">
-          <div class="group-icon"></div>
-          <span>Another Group</span>
+          <div class="group-icon g2"></div>
+          <div class="group-info">
+            <div class="group-name">Another Group</div>
+            <div class="group-meta">876 Members</div>
+          </div>
         </div>
+        <a class="view-all-small">View all groups</a>
       </div>
 
       <div class="side-block">
-        <div class="side-title">Friends <span class="side-count">87</span></div>
-        <div class="friend-row">
-          <div class="friend-avatar online"></div>
-          <div class="friend-name">friend_one</div>
+        <div class="side-title-bar">
+          <div class="side-title">Friends</div>
+          <div class="side-count">87</div>
         </div>
-        <div class="friend-row">
-          <div class="friend-avatar online"></div>
-          <div class="friend-name">friend_two</div>
+        <div class="friend-grid">
+          <div class="friend-cell">
+            <div class="friend-avatar online"></div>
+            <div class="friend-name online">friend_one</div>
+          </div>
+          <div class="friend-cell">
+            <div class="friend-avatar online"></div>
+            <div class="friend-name online">friend_two</div>
+          </div>
+          <div class="friend-cell">
+            <div class="friend-avatar offline"></div>
+            <div class="friend-name">friend_three</div>
+          </div>
+          <div class="friend-cell">
+            <div class="friend-avatar offline"></div>
+            <div class="friend-name">friend_four</div>
+          </div>
         </div>
-        <div class="friend-row">
-          <div class="friend-avatar offline"></div>
-          <div class="friend-name">friend_three</div>
-        </div>
-        <div class="friend-row">
-          <div class="friend-avatar offline"></div>
-          <div class="friend-name">friend_four</div>
-        </div>
-        <a class="view-all">View all friends</a>
+        <a class="view-all-small">View all friends</a>
       </div>
+
     </aside>
   </div>
 </main>
@@ -174,7 +266,11 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">STEAM<sup>&reg;</sup></div>
-    <div class="footer-text">&copy; Valve Corporation. All rights reserved. All trademarks are property of their respective owners.</div>
+    <div class="footer-text">
+      &copy; Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.
+      <br>
+      <a>Privacy Policy</a> &nbsp;|&nbsp; <a>Legal</a> &nbsp;|&nbsp; <a>Steam Subscriber Agreement</a> &nbsp;|&nbsp; <a>Refunds</a>
+    </div>
   </div>
 </footer>
 
