@@ -258,27 +258,36 @@ body {
 
 /* ===== mobile ===== */
 @media (max-width: 720px) {
-  body { padding: 12px; }
+  body {
+    padding: 20px 14px;
+    align-items: center;
+    justify-content: center;
+  }
   .crt {
-    padding: 10px;
-    border-radius: 16px;
-    height: calc(100vh - 24px);
+    width: 100%;
+    padding: 14px;
+    border-radius: 18px;
+    height: min(720px, calc(100dvh - 40px));
     box-shadow:
       0 0 0 1px #2a2d28,
       0 0 0 4px #15170f,
       0 0 0 5px #2a2d28,
       0 16px 40px rgba(0,0,0,0.7);
   }
-  .screen { border-radius: 10px; }
-  .scanlines, .vignette, .flicker { border-radius: 10px; }
-  .term { padding: 14px 14px 22px; font-size: 18px; }
+  .screen { border-radius: 12px; }
+  .scanlines, .vignette, .flicker { border-radius: 12px; }
+  .term { padding: 14px 14px 24px; font-size: 17px; }
   .bezel-title { font-size: 8px; bottom: 3px; }
-  html, body { font-size: 18px; }
+  html, body { font-size: 17px; }
 }
 
 @media (max-width: 380px) {
-  html, body { font-size: 16px; }
-  .term { padding: 10px 10px 18px; font-size: 16px; }
+  body { padding: 14px 10px; }
+  html, body { font-size: 15px; }
+  .crt { padding: 10px; border-radius: 14px; }
+  .screen { border-radius: 9px; }
+  .scanlines, .vignette, .flicker { border-radius: 9px; }
+  .term { padding: 10px 10px 18px; font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

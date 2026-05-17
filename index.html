@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sturq // tty</title>
+<title>sturq</title>
 <meta name="theme-color" content="#0a0604">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
   <div class="crt">
     <div class="screen">
       <div class="screen-glare"></div>
-      <div class="bezel-title">sturq-os v1.0 — tty1</div>
+      <div class="bezel-title">tty1</div>
 
       <div class="term" id="term" tabindex="0">
         <div class="output" id="output" aria-live="polite"></div>
@@ -148,11 +148,11 @@
       neofetch: () => writeLines([
         '        ▄▀▀▀▀▄        sturq@web',
         '       █  ◉ ◉ █       ──────────',
-        '       █   ▼  █       OS:     sturq-os 1.0 (web)',
-        '        ▀▄▄▄▄▀        Host:   github pages',
-        '       /█▓▓▓█\\        Kernel: javascript v2026',
-        '      / █▓▓▓█ \\       Shell:  /bin/fake-sh',
-        '     ▀▀▀     ▀▀▀      Uptime: ' + Math.floor((performance.now()||0)/1000) + 's',
+        '       █   ▼  █       Host:   github pages',
+        '        ▀▄▄▄▄▀        Kernel: javascript v2026',
+        '       /█▓▓▓█\\        Shell:  /bin/fake-sh',
+        '      / █▓▓▓█ \\       Uptime: ' + Math.floor((performance.now()||0)/1000) + 's',
+        '     ▀▀▀     ▀▀▀',
         '',
         '  ████ ████ ████ ████ ████ ████',
       ]),
@@ -283,24 +283,25 @@
     /* ---- boot sequence (safe, no user data) ---- */
     const BANNER_WIDE = [
       '',
-      '  ███████╗████████╗██╗   ██╗██████╗  ██████╗',
-      '  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔═══██╗',
-      '  ███████╗   ██║   ██║   ██║██████╔╝██║   ██║',
-      '  ╚════██║   ██║   ██║   ██║██╔══██╗██║▄▄ ██║',
-      '  ███████║   ██║   ╚██████╔╝██║  ██║╚██████╔╝',
-      '  ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚══▀▀═╝',
+      '   ____  _____ _   _ ____   ___  ',
+      '  / ___||_   _| | | |  _ \\ / _ \\ ',
+      '  \\___ \\  | | | | | | |_) | | | |',
+      '   ___) | | | | |_| |  _ <| |_| |',
+      '  |____/  |_|  \\___/|_| \\_\\\\__\\_\\',
       '',
-      '         sturq-os 1.0  //  type `help`',
+      '         welcome // type `help`',
       '',
     ];
 
     const BANNER_NARROW = [
       '',
-      '  ┌─┐┌┬┐┬ ┬┬─┐┌─┐',
-      '  └─┐ │ │ │├┬┘│─┤',
-      '  └─┘ ┴ └─┘┴└─└─┘',
+      '  ███ ██ ██ █ ██  ███',
+      '  █    █  █ █ █ █ █ █',
+      '  ███  █  █ █ ██  █ █',
+      '    █  █  ███ █ █ █ █',
+      '  ███  █   █  █ █  ██',
       '',
-      '  sturq-os 1.0',
+      '  welcome',
       '  type `help`',
       '',
     ];
