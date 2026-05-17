@@ -3,152 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sturq</title>
-<meta name="theme-color" content="#2e3440">
+<title>sturq // tty</title>
+<meta name="theme-color" content="#0a0e08">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200..700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="bubbles" aria-hidden="true">
-    <span class="bubble b1"></span>
-    <span class="bubble b2"></span>
-    <span class="bubble b3"></span>
-    <span class="bubble b4"></span>
-    <span class="bubble b5"></span>
-    <span class="bubble b6"></span>
-    <span class="bubble b7"></span>
-    <span class="bubble b8"></span>
-    <span class="bubble b9"></span>
+<body data-theme="green">
+  <div class="crt">
+    <div class="screen">
+      <div class="screen-glare"></div>
+      <div class="bezel-title">sturq-os v1.0 — tty1</div>
+
+      <div class="term" id="term" tabindex="0">
+        <div class="output" id="output" aria-live="polite"></div>
+        <div class="prompt-line" id="promptLine">
+          <span class="prompt" id="prompt">sturq@web:~$&nbsp;</span><span class="input-wrap"><span class="input-text" id="inputText"></span><span class="caret" id="caret">█</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="flicker"></div>
   </div>
 
-  <main>
-    <div class="status-chip">
-      <span class="status-dot"></span>
-      <span>online</span>
-    </div>
-
-    <section class="card">
-      <div class="card-ring"></div>
-      <div class="card-inner">
-        <div class="card-label">handle</div>
-        <h1 class="name">sturq</h1>
-        <div class="divider">
-          <span class="divider-dot"></span>
-          <span class="divider-dot"></span>
-          <span class="divider-dot"></span>
-        </div>
-        <div class="card-sub">a person on the internet</div>
-      </div>
-    </section>
-
-    <div class="chip-row">
-      <button class="chip chip-primary">
-        <span class="chip-icon">✦</span>
-        nord
-      </button>
-      <button class="chip">
-        <span class="chip-icon">◉</span>
-        material
-      </button>
-      <button class="chip">
-        <span class="chip-icon">⟡</span>
-        2026
-      </button>
-    </div>
-  </main>
+  <input id="hiddenInput" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" aria-label="terminal input">
 
   <script>
   (function () {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
+    'use strict';
 
-    const bubbles = Array.from(document.querySelectorAll('.bubble'));
-    if (!bubbles.length) return;
+    const MAX_INPUT = 200;
+    const MAX_HISTORY = 100;
+    const ALLOWED_THEMES = ['green', 'amber', 'blue', 'white'];
 
-    const state = bubbles.map(el => {
-      const r = el.getBoundingClientRect();
-      return {
-        el,
-        cx: r.left + r.width / 2,
-        cy: r.top + r.height / 2,
-        size: r.width,
-        ox: 0, oy: 0,
-        vx: 0, vy: 0,
-      };
-    });
+    const $term       = document.getElementById('term');
+    const $output     = document.getElementById('output');
+    const $promptLine = document.getElementById('promptLine');
+    const $prompt     = document.getElementById('prompt');
+    const $inputText  = document.getElementById('inputText');
+    const $caret      = document.getElementById('caret');
+    const $hidden     = document.getElementById('hiddenInput');
 
-    let pointer = { x: -9999, y: -9999, active: false };
+    let buffer  = '';
+    let history = [];
+    let histIdx = -1;
+    let busy    = false;
 
-    const recalc = () => {
-      state.forEach(b => {
-        b.el.style.translate = '';
-        const r = b.el.getBoundingClientRect();
-        b.cx = r.left + r.width / 2;
-        b.cy = r.top + r.height / 2;
-        b.size = r.width;
-        b.el.style.translate = `${b.ox.toFixed(2)}px ${b.oy.toFixed(2)}px`;
-      });
+    /* ---- output helpers (always textContent, never innerHTML) ---- */
+    function writeLine(text, cls) {
+      const line = document.createElement('div');
+      line.className = 'line' + (cls ? ' ' + cls : '');
+      line.textContent = text == null ? '' : String(text);
+      $output.appendChild(line);
+    }
+    function writeLines(arr, cls) {
+      (arr || []).forEach(l => writeLine(l, cls));
+    }
+    function writeBlank() { writeLine(''); }
+
+    function scrollDown() {
+      $term.scrollTop = $term.scrollHeight;
+    }
+
+    /* ---- in-memory "filesystem" (static strings only) ---- */
+    const fs = {
+      'about.txt': [
+        'sturq',
+        '~~~~~',
+        'a person on the internet.',
+        'likes: making things, finding edge cases,',
+        '       slow internet, ctrl+c.',
+      ],
+      'readme.md': [
+        '# readme',
+        '',
+        'this is a fake terminal. it is safe.',
+        'no commands actually run on a server.',
+        'try: help, ls, neofetch, theme amber',
+      ],
+      'contact.txt': [
+        'github: sturq',
+        '(everything else is private)',
+      ],
+      'secrets.txt': [
+        'permission denied: nice try.',
+      ],
     };
-    window.addEventListener('resize', recalc, { passive: true });
 
-    const onMove = (x, y) => {
-      pointer.x = x; pointer.y = y; pointer.active = true;
-    };
-    window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY), { passive: true });
-    window.addEventListener('mouseleave', () => { pointer.active = false; }, { passive: true });
-    window.addEventListener('touchmove', e => {
-      const t = e.touches[0];
-      if (t) onMove(t.clientX, t.clientY);
-    }, { passive: true });
-    window.addEventListener('touchstart', e => {
-      const t = e.touches[0];
-      if (t) onMove(t.clientX, t.clientY);
-    }, { passive: true });
-    window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
+    /* ---- commands (strict whitelist) ---- */
+    const commands = {
+      help: () => writeLines([
+        'available commands:',
+        '  help          show this list',
+        '  whoami        display current user',
+        '  about         about sturq',
+        '  ls            list files',
+        '  cat <file>    print file contents',
+        '  echo <text>   print text',
+        '  date          current date and time',
+        '  uptime        how long since boot',
+        '  neofetch      stylized system info',
+        '  history       command history',
+        '  theme <name>  green | amber | blue | white',
+        '  clear         clear screen',
+        '  banner        re-show the boot banner',
+        '  exit          (you can\'t, sorry)',
+      ]),
 
-    const tick = () => {
-      state.forEach(b => {
-        const dx = (b.cx + b.ox) - pointer.x;
-        const dy = (b.cy + b.oy) - pointer.y;
-        const dist = Math.hypot(dx, dy);
-        const radius = b.size * 0.9 + 100;
+      whoami: () => writeLine('sturq'),
 
-        let pushX = 0, pushY = 0;
-        if (pointer.active && dist < radius && dist > 0.01) {
-          const force = (1 - dist / radius);
-          const strength = force * force * 110;
-          pushX = (dx / dist) * strength;
-          pushY = (dy / dist) * strength;
+      about: () => writeLines(fs['about.txt']),
+
+      ls: () => writeLine(Object.keys(fs).join('  ')),
+
+      cat: (args) => {
+        const name = (args[0] || '').trim();
+        if (!name) return writeLine('usage: cat <file>');
+        if (Object.prototype.hasOwnProperty.call(fs, name)) {
+          writeLines(fs[name]);
+        } else {
+          writeLine('cat: ' + name + ': No such file or directory');
         }
+      },
 
-        b.vx += (pushX - b.ox) * 0.07;
-        b.vy += (pushY - b.oy) * 0.07;
-        b.vx *= 0.85;
-        b.vy *= 0.85;
-        b.ox += b.vx;
-        b.oy += b.vy;
+      echo: (args) => writeLine(args.join(' ')),
 
-        b.el.style.translate = `${b.ox.toFixed(2)}px ${b.oy.toFixed(2)}px`;
-      });
-      requestAnimationFrame(tick);
+      date: () => writeLine(new Date().toString()),
+
+      uptime: () => {
+        const s = Math.floor((performance.now() || 0) / 1000);
+        const h = Math.floor(s / 3600);
+        const m = Math.floor((s % 3600) / 60);
+        const sec = s % 60;
+        writeLine('up ' + h + 'h ' + m + 'm ' + sec + 's, 1 user, load avg 0.42, 0.31, 0.27');
+      },
+
+      history: () => {
+        if (!history.length) return writeLine('(empty)');
+        history.forEach((h, i) => writeLine('  ' + String(i + 1).padStart(3, ' ') + '  ' + h));
+      },
+
+      neofetch: () => writeLines([
+        '        ▄▀▀▀▀▄        sturq@web',
+        '       █  ◉ ◉ █       ──────────',
+        '       █   ▼  █       OS:     sturq-os 1.0 (web)',
+        '        ▀▄▄▄▄▀        Host:   github pages',
+        '       /█▓▓▓█\\        Kernel: javascript v2026',
+        '      / █▓▓▓█ \\       Shell:  /bin/fake-sh',
+        '     ▀▀▀     ▀▀▀      Uptime: ' + Math.floor((performance.now()||0)/1000) + 's',
+        '',
+        '  ████ ████ ████ ████ ████ ████',
+      ]),
+
+      theme: (args) => {
+        const name = (args[0] || '').trim().toLowerCase();
+        if (!name) return writeLine('usage: theme <' + ALLOWED_THEMES.join('|') + '>');
+        if (ALLOWED_THEMES.indexOf(name) === -1) {
+          return writeLine('theme: unknown theme: ' + name);
+        }
+        document.body.setAttribute('data-theme', name);
+        writeLine('theme set to ' + name);
+      },
+
+      clear: () => { $output.textContent = ''; },
+
+      banner: () => printBanner(),
+
+      exit: () => writeLines([
+        'you cannot leave.',
+        '(close the tab, i guess?)',
+      ]),
     };
 
-    requestAnimationFrame(() => { recalc(); tick(); });
+    /* ---- input handling ---- */
+    function setInputText(s) {
+      buffer = s.slice(0, MAX_INPUT);
+      $inputText.textContent = buffer;
+      scrollDown();
+    }
 
-    /* Chip ripple */
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', e => {
-        const rect = chip.getBoundingClientRect();
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple';
-        ripple.style.left = (e.clientX - rect.left) + 'px';
-        ripple.style.top = (e.clientY - rect.top) + 'px';
-        chip.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 700);
-      });
+    function commitLine(line) {
+      const echo = document.createElement('div');
+      echo.className = 'line echo';
+      const p = document.createElement('span');
+      p.className = 'prompt';
+      p.textContent = $prompt.textContent;
+      const t = document.createElement('span');
+      t.textContent = line;
+      echo.appendChild(p);
+      echo.appendChild(t);
+      $output.appendChild(echo);
+    }
+
+    function parse(line) {
+      const trimmed = line.trim();
+      if (!trimmed) return null;
+      const parts = trimmed.split(/\s+/);
+      const cmd  = parts[0].toLowerCase();
+      const args = parts.slice(1);
+      return { cmd, args };
+    }
+
+    function run(line) {
+      commitLine(line);
+      const parsed = parse(line);
+      if (!parsed) return;
+      if (history[history.length - 1] !== line.trim()) {
+        history.push(line.trim());
+        if (history.length > MAX_HISTORY) history.shift();
+      }
+      const fn = Object.prototype.hasOwnProperty.call(commands, parsed.cmd) ? commands[parsed.cmd] : null;
+      if (fn) {
+        try { fn(parsed.args); }
+        catch (e) { writeLine('error: ' + (e && e.message ? e.message : 'unknown')); }
+      } else {
+        writeLine(parsed.cmd + ': command not found. type "help".');
+      }
+    }
+
+    function focusHidden() {
+      if (busy) return;
+      $hidden.focus({ preventScroll: true });
+    }
+
+    $term.addEventListener('mousedown', e => {
+      e.preventDefault();
+      focusHidden();
     });
+    $term.addEventListener('touchstart', e => {
+      focusHidden();
+    }, { passive: true });
+    window.addEventListener('load', focusHidden);
+
+    $hidden.addEventListener('input', e => {
+      setInputText($hidden.value);
+    });
+
+    $hidden.addEventListener('keydown', e => {
+      if (busy) { e.preventDefault(); return; }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const line = buffer;
+        $hidden.value = '';
+        setInputText('');
+        histIdx = -1;
+        run(line);
+        scrollDown();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!history.length) return;
+        if (histIdx === -1) histIdx = history.length - 1;
+        else if (histIdx > 0) histIdx--;
+        $hidden.value = history[histIdx] || '';
+        setInputText($hidden.value);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx === -1) return;
+        if (histIdx < history.length - 1) {
+          histIdx++;
+          $hidden.value = history[histIdx];
+        } else {
+          histIdx = -1;
+          $hidden.value = '';
+        }
+        setInputText($hidden.value);
+      } else if (e.key === 'l' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        commands.clear();
+      } else if (e.key === 'c' && e.ctrlKey) {
+        e.preventDefault();
+        commitLine(buffer + '^C');
+        $hidden.value = '';
+        setInputText('');
+      }
+    });
+
+    /* ---- boot sequence (safe, no user data) ---- */
+    function printBanner() {
+      writeLines([
+        '',
+        '  ███████╗████████╗██╗   ██╗██████╗  ██████╗',
+        '  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔═══██╗',
+        '  ███████╗   ██║   ██║   ██║██████╔╝██║   ██║',
+        '  ╚════██║   ██║   ██║   ██║██╔══██╗██║▄▄ ██║',
+        '  ███████║   ██║   ╚██████╔╝██║  ██║╚██████╔╝',
+        '  ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚══▀▀═╝',
+        '',
+        '         sturq-os 1.0  //  type `help`',
+        '',
+      ]);
+    }
+
+    async function boot() {
+      busy = true;
+      const seq = [
+        ['[ ok ] starting kernel...', 220],
+        ['[ ok ] mounting / read-only (it\'s static, after all)', 240],
+        ['[ ok ] loading /etc/aesthetics', 220],
+        ['[ ok ] enabling phosphor.glow', 200],
+        ['[ ok ] starting tty1', 220],
+        ['', 120],
+      ];
+      for (const [text, delay] of seq) {
+        writeLine(text, 'boot');
+        scrollDown();
+        await sleep(delay);
+      }
+      printBanner();
+      busy = false;
+      scrollDown();
+    }
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    boot();
   })();
   </script>
 </body>
