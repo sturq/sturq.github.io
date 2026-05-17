@@ -64,7 +64,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(40px);
-  opacity: 0.55;
+  opacity: 0.38;
   will-change: translate, border-radius;
   animation: morph 16s ease-in-out infinite;
 }
@@ -152,20 +152,14 @@ main {
   letter-spacing: -0.04em;
   line-height: 1;
   color: #eceff4;
-  background: linear-gradient(135deg, #eceff4 0%, #88c0d0 50%, #81a1c1 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 50px rgba(136, 192, 208, 0.2);
   position: relative;
+  filter: drop-shadow(0 0 24px rgba(136, 192, 208, 0.35));
 }
 
 .name::after {
   content: "_";
-  position: absolute;
   margin-left: 4px;
   color: #88c0d0;
-  -webkit-text-fill-color: #88c0d0;
   animation: cursor-blink 1.1s steps(2, end) infinite;
 }
 
