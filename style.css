@@ -137,12 +137,13 @@ a:hover { color: #fff; }
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.02) 0%, transparent 4%),
-    radial-gradient(circle at 65% 75%, rgba(255,255,255,0.02) 0%, transparent 4%),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 80px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 40px);
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.18) 0 1px, transparent 1px 100px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0 1px, transparent 1px 48px),
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.015) 0%, transparent 1.5%),
+    radial-gradient(circle at 80% 60%, rgba(255,255,255,0.015) 0%, transparent 1.5%),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,0.015) 0%, transparent 1.5%);
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .profile-bg-overlay {
   position: relative;
@@ -226,25 +227,21 @@ a:hover { color: #fff; }
 }
 .level-hex {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: conic-gradient(#a4d007 0deg 252deg, rgba(255,255,255,0.08) 252deg 360deg);
+  border-radius: 50%;
+  padding: 3px;
 }
 .level-hex::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: #a4d007;
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-}
-.level-hex::after {
-  content: "";
-  position: absolute;
-  inset: 2px;
-  background: #1b0e2a;
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  inset: 3px;
+  background: transparent;
+  border-radius: 50%;
 }
 .level-num {
   color: #a4d007;
@@ -252,6 +249,13 @@ a:hover { color: #fff; }
   font-weight: 400;
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(20, 8, 30, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .years-badge {
@@ -311,9 +315,14 @@ a:hover { color: #fff; }
 /* Item showcase */
 .item-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr) 1.5fr;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr;
   gap: 6px;
   padding: 14px;
+}
+.item-grid .item-count {
+  grid-column: 5 / 7;
+  grid-row: 2;
 }
 .item {
   aspect-ratio: 1;
