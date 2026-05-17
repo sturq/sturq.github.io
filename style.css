@@ -15,7 +15,7 @@ a { color: #66c0f4; text-decoration: none; cursor: pointer; }
 a:hover { color: #fff; }
 
 .container {
-  max-width: 1100px;
+  max-width: 940px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -44,34 +44,33 @@ a:hover { color: #fff; }
   gap: 14px;
 }
 .steam-circle {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, #2a3f5a 0%, #1b2838 60%),
-    #1b2838;
-  border: 2px solid #c7d5e0;
+    radial-gradient(circle at 35% 30%, #2c3e50 0%, #1c2733 70%, #0e131a 100%);
+  border: 1px solid #4a5563;
   position: relative;
-}
-.steam-circle::before, .steam-circle::after {
-  content: "";
-  position: absolute;
-  border: 2px solid #c7d5e0;
-  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .steam-circle::before {
+  content: "";
+  position: absolute;
   inset: 6px;
-  border-color: #c7d5e0;
+  border: 2px solid #c7d5e0;
   border-right-color: transparent;
+  border-radius: 50%;
   transform: rotate(-45deg);
 }
 .steam-circle::after {
-  width: 7px; height: 7px;
+  content: "";
+  position: absolute;
+  width: 6px; height: 6px;
   background: #c7d5e0;
-  border: none;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  box-shadow: 0 0 0 2px #1c2733;
 }
 .logo {
   color: #c7d5e0;
@@ -133,8 +132,8 @@ a:hover { color: #fff; }
 /* ===== Profile background (Cosmic theme purple) ===== */
 .profile-bg {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(96, 36, 96, 0.45) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 30%, rgba(60, 20, 100, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 50%, rgba(96, 36, 96, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(70, 20, 110, 0.45) 0%, transparent 60%),
     linear-gradient(135deg, #1b1024 0%, #2a1535 25%, #1b0e2a 50%, #261540 75%, #1a0d28 100%);
   background-color: #1b0e24;
   position: relative;
@@ -144,11 +143,27 @@ a:hover { color: #fff; }
   position: absolute;
   inset: 0;
   background-image:
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.18) 0 1px, transparent 1px 100px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0 1px, transparent 1px 48px),
-    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.015) 0%, transparent 1.5%),
-    radial-gradient(circle at 80% 60%, rgba(255,255,255,0.015) 0%, transparent 1.5%),
-    radial-gradient(circle at 30% 80%, rgba(255,255,255,0.015) 0%, transparent 1.5%);
+    /* mortar lines between bricks */
+    repeating-linear-gradient(0deg,
+      transparent 0 38px,
+      rgba(0,0,0,0.35) 38px 42px),
+    repeating-linear-gradient(90deg,
+      transparent 0 78px,
+      rgba(0,0,0,0.28) 78px 82px);
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+.profile-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 25% 15%, rgba(120, 60, 130, 0.06) 0%, transparent 18%),
+    radial-gradient(circle at 75% 60%, rgba(120, 60, 130, 0.06) 0%, transparent 18%),
+    radial-gradient(circle at 50% 90%, rgba(120, 60, 130, 0.06) 0%, transparent 18%),
+    radial-gradient(circle at 8% 75%, rgba(60, 30, 70, 0.4) 0%, transparent 22%),
+    radial-gradient(circle at 92% 25%, rgba(60, 30, 70, 0.4) 0%, transparent 22%);
   pointer-events: none;
   opacity: 0.7;
 }
@@ -166,9 +181,9 @@ a:hover { color: #fff; }
 }
 
 .avatar-wrap {
-  width: 184px;
-  height: 184px;
-  padding: 5px;
+  width: 162px;
+  height: 162px;
+  padding: 3px;
   background: linear-gradient(135deg, #898989 0%, #545454 100%);
   flex-shrink: 0;
   position: relative;
@@ -186,7 +201,7 @@ a:hover { color: #fff; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 120px;
+  font-size: 100px;
   font-weight: 200;
   color: rgba(220, 235, 250, 0.85);
   text-shadow: 0 0 12px rgba(0,0,0,0.5);
@@ -343,6 +358,8 @@ a:hover { color: #fff; }
 .item.i6 { background: linear-gradient(135deg, #66c0f4, #1a5070); border-color: #c97cc9; }
 .item.i7 { background: linear-gradient(135deg, #66c0f4, #1a5070); border-color: #c97cc9; }
 .item.i8 { background: linear-gradient(135deg, #d4af37, #6b4818); border-color: #ffa500; }
+.item.i9 { background: linear-gradient(135deg, #66c0f4, #1a5070); border-color: #c97cc9; }
+.item.i10 { background: linear-gradient(135deg, #66c0f4, #1a5070); border-color: #66c0f4; }
 .item-count {
   display: flex;
   flex-direction: column;
@@ -355,23 +372,23 @@ a:hover { color: #fff; }
 /* Steam Replay 2022 banner */
 .replay-banner {
   background:
-    linear-gradient(135deg, rgba(60, 80, 200, 0.4), rgba(40, 30, 100, 0.4)),
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 10px, transparent 10px 20px);
-  background-color: #1b2c5a;
-  padding: 20px;
+    linear-gradient(135deg, rgba(80, 30, 120, 0.7), rgba(30, 10, 60, 0.8)),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 12px, transparent 12px 24px);
+  background-color: #2a1245;
+  padding: 18px 22px;
   display: grid;
   grid-template-columns: auto auto 1fr;
-  gap: 30px;
+  gap: 36px;
   align-items: center;
 }
 .replay-left { text-align: left; }
-.replay-big { color: #fff; font-size: 48px; font-weight: 300; line-height: 1; }
-.replay-big-label { color: #c7d5e0; font-size: 14px; margin-top: 4px; }
+.replay-big { color: #fff; font-size: 64px; font-weight: 300; line-height: 0.95; }
+.replay-big-label { color: #c7d5e0; font-size: 13px; margin-top: 6px; }
 
-.replay-stats { display: flex; gap: 24px; }
+.replay-stats { display: flex; gap: 28px; flex-direction: column; }
 .rstat { text-align: left; }
-.rstat-num { color: #fff; font-size: 22px; font-weight: 400; }
-.rstat-label { color: #c7d5e0; font-size: 12px; }
+.rstat-num { color: #fff; font-size: 26px; font-weight: 400; line-height: 1; }
+.rstat-label { color: #c7d5e0; font-size: 12px; margin-top: 2px; }
 
 .replay-games { display: flex; gap: 6px; justify-content: flex-end; }
 .rg {
