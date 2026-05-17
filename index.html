@@ -6,244 +6,126 @@
 <title>sturq</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header class="topbar">
-  <div class="container topbar-inner">
-    <div class="hamburger">&#9776;</div>
-    <div class="logo-wrap">
-      <div class="steam-circle"></div>
-      <div class="logo">STURQ</div>
-    </div>
-    <nav class="mainnav">
-      <a>STORE</a>
-      <a class="active">COMMUNITY</a>
-      <a>ABOUT</a>
-      <a>SUPPORT</a>
-    </nav>
-    <div class="topbar-right">
-      <a class="install-btn"><span class="install-icon">&#11123;</span> Install Steam</a>
-      <span class="signin-link">sign in</span>
-      <span class="sep">|</span>
-      <span class="lang-link">language <span class="caret">&#9662;</span></span>
-    </div>
+  <div class="bubbles" aria-hidden="true">
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+    <span class="bubble b4"></span>
+    <span class="bubble b5"></span>
+    <span class="bubble b6"></span>
+    <span class="bubble b7"></span>
+    <span class="bubble b8"></span>
   </div>
-</header>
 
-<div class="profile-bg">
-  <div class="profile-bg-overlay">
-    <div class="container">
+  <div class="bg-grid"></div>
 
-      <div class="profile-header">
-        <div class="avatar-wrap">
-          <div class="avatar-inner"><span class="avatar-letter">s</span></div>
-        </div>
-        <div class="header-center">
-          <div class="persona-row">
-            <span class="persona-name">sturq</span>
-            <span class="name-history">&#9662;</span>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="level-row">
-            <span class="level-label">Level</span>
-            <span class="level-hex"><span class="level-num">42</span></span>
-          </div>
-          <div class="years-badge">
-            <div class="years-icon">11</div>
-            <div class="years-text">
-              <div class="years-name">Years of Service</div>
-              <div class="years-xp">550 XP</div>
-            </div>
-          </div>
-        </div>
+  <main>
+    <div class="brackets-left">&lt;</div>
+
+    <div class="name-wrap">
+      <div class="kicker">~/</div>
+      <h1 class="name">sturq</h1>
+      <div class="line"></div>
+      <div class="dots">
+        <span class="dot d1"></span>
+        <span class="dot d2"></span>
+        <span class="dot d3"></span>
+        <span class="dot d4"></span>
       </div>
-
-      <div class="content-grid">
-
-        <div class="leftcol">
-
-          <section class="showcase">
-            <div class="showcase-head">Item Showcase</div>
-            <div class="showcase-body item-grid">
-              <div class="item i1"></div>
-              <div class="item i2"></div>
-              <div class="item i3"></div>
-              <div class="item i4"></div>
-              <div class="item i5"></div>
-              <div class="item i6"></div>
-              <div class="item i7"></div>
-              <div class="item i8"></div>
-              <div class="item i9"></div>
-              <div class="item i10"></div>
-              <div class="item-count">
-                <div class="item-count-num">2,007</div>
-                <div class="item-count-label">Items Owned</div>
-              </div>
-            </div>
-          </section>
-
-          <section class="showcase">
-            <div class="showcase-head dim">Steam Replay 2022</div>
-            <div class="replay-banner">
-              <div class="replay-left">
-                <div class="replay-big">340</div>
-                <div class="replay-big-label">Games Played</div>
-              </div>
-              <div class="replay-stats">
-                <div class="rstat"><div class="rstat-num">2,483</div><div class="rstat-label">Sessions</div></div>
-                <div class="rstat"><div class="rstat-num">7,868</div><div class="rstat-label">Achievements</div></div>
-                <div class="rstat"><div class="rstat-num">76</div><div class="rstat-label">New Games</div></div>
-              </div>
-              <div class="replay-games">
-                <div class="rg rg1"><span>18%</span></div>
-                <div class="rg rg2"><span>14%</span></div>
-                <div class="rg rg3"><span>12%</span></div>
-                <div class="rg rg4"><span>7%</span></div>
-                <div class="rg rg5"><span>4%</span></div>
-              </div>
-            </div>
-          </section>
-
-          <section class="showcase">
-            <div class="showcase-head">Favorite Game</div>
-            <div class="showcase-body fav-game">
-              <div class="fav-top">
-                <div class="capsule"><span>GAME</span></div>
-                <div class="fav-name">Some Game</div>
-              </div>
-              <div class="fav-stats-row">
-                <div class="fav-stat"><div class="fav-stat-num">554</div><div class="fav-stat-label">Hours played</div></div>
-                <div class="fav-stat"><div class="fav-stat-num">1</div><div class="fav-stat-label">Achievements</div></div>
-              </div>
-              <div class="fav-divider"></div>
-              <div class="ach-section">
-                <div class="ach-row">
-                  <div class="ach-icon"></div>
-                  <div class="ach-text">
-                    <div class="ach-name">Elite Crewman</div>
-                    <div class="ach-xp">100 XP</div>
-                  </div>
-                </div>
-                <div class="ach-progress">
-                  <div class="ach-progress-head">
-                    <span>Achievement Progress</span>
-                    <span class="ach-progress-meta">1 of 1</span>
-                  </div>
-                  <div class="ach-bar"><div class="ach-bar-fill" style="width:100%"></div></div>
-                  <div class="ach-mini-icon"></div>
-                </div>
-              </div>
-              <div class="fav-footer">
-                <span>&#128295; Workshop Submissions 5</span>
-                <span>&#128247; Screenshot 1</span>
-              </div>
-            </div>
-          </section>
-
-          <section class="showcase">
-            <div class="showcase-head dim">Favorite Guide</div>
-            <div class="fav-guide">
-              <div class="guide-img"></div>
-              <div class="guide-meta">
-                <div class="guide-by">Created by -</div>
-                <div class="guide-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>2 ratings</span></div>
-              </div>
-            </div>
-          </section>
-
-          <section class="showcase">
-            <div class="showcase-head head-split">
-              <span>Recent Activity</span>
-              <span class="ct">42 hrs past 2 weeks</span>
-            </div>
-            <div class="showcase-body">
-              <div class="recent">
-                <div class="recent-capsule c1"></div>
-                <div class="recent-info">
-                  <div class="recent-name"><a>Another Game</a></div>
-                  <div class="recent-detail">12.4 hrs last two weeks / 287 hrs on record</div>
-                  <div class="recent-detail muted">last played on May 16</div>
-                </div>
-              </div>
-              <div class="recent">
-                <div class="recent-capsule c2"></div>
-                <div class="recent-info">
-                  <div class="recent-name"><a>Yet Another Game</a></div>
-                  <div class="recent-detail">7.1 hrs last two weeks / 92 hrs on record</div>
-                  <div class="recent-detail muted">last played on May 14</div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        </div>
-
-        <aside class="rightcol">
-
-          <div class="status-block">
-            <div class="status-online">Currently Online</div>
-          </div>
-
-          <div class="rc-section">
-            <div class="rc-title-row">
-              <span class="rc-title">Profile Awards</span>
-              <span class="rc-count">5</span>
-            </div>
-            <div class="awards-row">
-              <div class="award a1"></div>
-              <div class="award a2"></div>
-              <div class="award a3"></div>
-              <div class="award a4"></div>
-            </div>
-          </div>
-
-          <div class="rc-section">
-            <div class="rc-title-row">
-              <span class="rc-title">Badges</span>
-              <span class="rc-count">23</span>
-            </div>
-            <div class="badges-row">
-              <div class="badge-sq b1"></div>
-              <div class="badge-sq b2"></div>
-              <div class="badge-sq b3"></div>
-              <div class="badge-sq b4"></div>
-            </div>
-          </div>
-
-          <div class="rc-section row-line"><span class="rc-title">Games</span><span class="rc-count">312</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Inventory</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Screenshots</span><span class="rc-count">47</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Videos</span><span class="rc-count">3</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Workshop Items</span><span class="rc-count">5</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Reviews</span><span class="rc-count">12</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Guides</span><span class="rc-count">4</span></div>
-          <div class="rc-section row-line"><span class="rc-title">Artwork</span><span class="rc-count">2</span></div>
-
-        </aside>
-
-      </div>
-
     </div>
-  </div>
-</div>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-logo-wrap">
-      <div class="footer-steam-circle"></div>
-      <div class="footer-logo">STURQ</div>
-    </div>
-    <div class="footer-text">
-      Personal fan-styled page. Not affiliated with or endorsed by Valve Corporation.
-      <br>
-      <a>Privacy</a> &nbsp;|&nbsp; <a>About</a> &nbsp;|&nbsp; <a>Source</a>
-    </div>
-  </div>
-</footer>
+    <div class="brackets-right">/&gt;</div>
+  </main>
 
+  <footer class="foot">
+    <span class="foot-item">nord</span>
+    <span class="foot-sep">·</span>
+    <span class="foot-item">2026</span>
+  </footer>
+
+  <script>
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const bubbles = Array.from(document.querySelectorAll('.bubble'));
+    if (!bubbles.length) return;
+
+    const state = bubbles.map(el => {
+      const r = el.getBoundingClientRect();
+      return {
+        el,
+        cx: r.left + r.width / 2,
+        cy: r.top + r.height / 2,
+        size: r.width,
+        ox: 0, oy: 0,
+        vx: 0, vy: 0,
+      };
+    });
+
+    let pointer = { x: -9999, y: -9999, active: false };
+
+    const recalc = () => {
+      state.forEach(b => {
+        b.el.style.transform = '';
+        const r = b.el.getBoundingClientRect();
+        b.cx = r.left + r.width / 2;
+        b.cy = r.top + r.height / 2;
+        b.size = r.width;
+      });
+    };
+    window.addEventListener('resize', recalc, { passive: true });
+
+    const onMove = (x, y) => {
+      pointer.x = x; pointer.y = y; pointer.active = true;
+    };
+    window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY), { passive: true });
+    window.addEventListener('mouseleave', () => { pointer.active = false; }, { passive: true });
+    window.addEventListener('touchmove', e => {
+      const t = e.touches[0];
+      if (t) onMove(t.clientX, t.clientY);
+    }, { passive: true });
+    window.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      if (t) onMove(t.clientX, t.clientY);
+    }, { passive: true });
+    window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
+
+    const tick = () => {
+      state.forEach(b => {
+        const targetX = pointer.active ? b.cx + b.ox : b.cx;
+        const targetY = pointer.active ? b.cy + b.oy : b.cy;
+        const dx = targetX - pointer.x;
+        const dy = targetY - pointer.y;
+        const dist = Math.hypot(dx, dy);
+        const radius = b.size * 0.9 + 80;
+
+        let pushX = 0, pushY = 0;
+        if (pointer.active && dist < radius && dist > 0.01) {
+          const force = (1 - dist / radius);
+          const strength = force * force * 90;
+          pushX = (dx / dist) * strength;
+          pushY = (dy / dist) * strength;
+        }
+
+        b.vx += (pushX - b.ox) * 0.08;
+        b.vy += (pushY - b.oy) * 0.08;
+        b.vx *= 0.82;
+        b.vy *= 0.82;
+        b.ox += b.vx;
+        b.oy += b.vy;
+
+        b.el.style.translate = `${b.ox.toFixed(2)}px ${b.oy.toFixed(2)}px`;
+      });
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(() => { recalc(); tick(); });
+  })();
+  </script>
 </body>
 </html>
