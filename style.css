@@ -63,20 +63,20 @@ body {
 .bubble {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(32px);
   opacity: 0.38;
   will-change: translate, border-radius;
   animation: morph 16s ease-in-out infinite;
 }
 
-.b1 { width: 320px; height: 320px; background: #88c0d0; top: 12%; left: 8%;  animation-duration: 18s; animation-delay: -2s; }
-.b2 { width: 260px; height: 260px; background: #81a1c1; top: 60%; left: 70%; animation-duration: 22s; animation-delay: -4s; }
-.b3 { width: 200px; height: 200px; background: #5e81ac; top: 70%; left: 18%; animation-duration: 19s; animation-delay: -1s; }
-.b4 { width: 240px; height: 240px; background: #b48ead; top: 18%; left: 72%; animation-duration: 20s; animation-delay: -8s; }
-.b5 { width: 180px; height: 180px; background: #a3be8c; top: 50%; left: 45%; animation-duration: 17s; animation-delay: -3s; opacity: 0.4; }
-.b6 { width: 140px; height: 140px; background: #ebcb8b; top: 86%; left: 80%; animation-duration: 24s; animation-delay: -5s; opacity: 0.35; }
-.b7 { width: 160px; height: 160px; background: #8fbcbb; top: 5%;  left: 45%; animation-duration: 21s; animation-delay: -7s; }
-.b8 { width: 120px; height: 120px; background: #d08770; top: 78%; left: 5%;  animation-duration: 23s; animation-delay: -9s; opacity: 0.35; }
+.b1 { width: 180px; height: 180px; background: #88c0d0; top: 14%; left: 10%;  animation-duration: 18s; animation-delay: -2s; }
+.b2 { width: 160px; height: 160px; background: #81a1c1; top: 64%; left: 78%; animation-duration: 22s; animation-delay: -4s; }
+.b3 { width: 130px; height: 130px; background: #5e81ac; top: 76%; left: 20%; animation-duration: 19s; animation-delay: -1s; }
+.b4 { width: 150px; height: 150px; background: #b48ead; top: 18%; left: 78%; animation-duration: 20s; animation-delay: -8s; }
+.b5 { width: 110px; height: 110px; background: #a3be8c; top: 52%; left: 8%;  animation-duration: 17s; animation-delay: -3s; opacity: 0.28; }
+.b6 { width: 90px;  height: 90px;  background: #ebcb8b; top: 84%; left: 60%; animation-duration: 24s; animation-delay: -5s; opacity: 0.26; }
+.b7 { width: 110px; height: 110px; background: #8fbcbb; top: 8%;  left: 50%; animation-duration: 21s; animation-delay: -7s; }
+.b8 { width: 90px;  height: 90px;  background: #d08770; top: 30%; left: 35%; animation-duration: 23s; animation-delay: -9s; opacity: 0.26; }
 
 @keyframes morph {
   0%, 100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
@@ -147,13 +147,15 @@ main {
 
 .name {
   font-family: "Inter", sans-serif;
-  font-size: clamp(64px, 13vw, 144px);
-  font-weight: 200;
+  font-size: clamp(72px, 14vw, 160px);
+  font-weight: 300;
   letter-spacing: -0.04em;
   line-height: 1;
   color: #eceff4;
   position: relative;
-  filter: drop-shadow(0 0 24px rgba(136, 192, 208, 0.35));
+  text-shadow:
+    0 0 1px rgba(236, 239, 244, 0.4),
+    0 0 30px rgba(136, 192, 208, 0.25);
 }
 
 .name::after {
