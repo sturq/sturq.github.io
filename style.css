@@ -129,63 +129,87 @@ a:hover { color: #fff; }
 .sep { color: #3d4450; }
 .caret { font-size: 8px; color: #67c1f5; }
 
-/* ===== Profile background (Cosmic theme purple) ===== */
-.profile-bg {
+/* ===== Cosmic theme background (page-wide brick + purple) ===== */
+body {
   background:
     radial-gradient(ellipse at 20% 50%, rgba(96, 36, 96, 0.35) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 30%, rgba(70, 20, 110, 0.45) 0%, transparent 60%),
     linear-gradient(135deg, #1b1024 0%, #2a1535 25%, #1b0e2a 50%, #261540 75%, #1a0d28 100%);
   background-color: #1b0e24;
+}
+.profile-bg {
   position: relative;
 }
-.profile-bg::before {
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 0;
   background-image:
-    /* brick stagger offset pattern */
     repeating-linear-gradient(90deg,
       rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 60px,
-      rgba(0,0,0,0.45) 60px,
-      rgba(0,0,0,0.45) 64px,
-      rgba(0,0,0,0) 64px,
-      rgba(0,0,0,0) 124px,
-      rgba(0,0,0,0.45) 124px,
-      rgba(0,0,0,0.45) 128px),
+      rgba(0,0,0,0) 78px,
+      rgba(0,0,0,0.5) 78px,
+      rgba(0,0,0,0.5) 82px,
+      rgba(0,0,0,0) 82px,
+      rgba(0,0,0,0) 160px,
+      rgba(0,0,0,0.5) 160px,
+      rgba(0,0,0,0.5) 164px),
     repeating-linear-gradient(0deg,
       rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 32px,
-      rgba(0,0,0,0.55) 32px,
-      rgba(0,0,0,0.55) 36px);
-  background-size: 128px 72px, 100% 72px;
+      rgba(0,0,0,0) 38px,
+      rgba(0,0,0,0.6) 38px,
+      rgba(0,0,0,0.6) 42px);
+  background-size: 164px 80px, 100% 80px;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.55;
   mix-blend-mode: multiply;
 }
-.profile-bg::after {
+body::after {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 0;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(120, 50, 130, 0.18) 0%, transparent 35%),
-    radial-gradient(circle at 10% 80%, rgba(60, 25, 80, 0.5) 0%, transparent 30%),
-    radial-gradient(circle at 90% 20%, rgba(60, 25, 80, 0.5) 0%, transparent 30%);
+    radial-gradient(circle at 50% 30%, rgba(120, 50, 130, 0.15) 0%, transparent 35%),
+    radial-gradient(circle at 10% 80%, rgba(60, 25, 80, 0.45) 0%, transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(60, 25, 80, 0.45) 0%, transparent 30%);
   pointer-events: none;
   opacity: 0.6;
 }
+.topbar, .profile-bg, .footer { position: relative; z-index: 1; }
 .profile-bg-overlay {
   position: relative;
   padding-bottom: 40px;
+  z-index: 1;
 }
 
-/* ===== Profile header ===== */
+/* ===== Profile header panel ===== */
 .profile-header {
   display: flex;
   gap: 32px;
-  padding: 48px 0 36px;
+  padding: 28px 32px;
+  margin-top: 24px;
   align-items: flex-start;
+  background:
+    linear-gradient(to bottom, rgba(60, 30, 80, 0.5) 0%, rgba(30, 15, 50, 0.85) 100%);
+  border-radius: 3px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 2px 8px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
 }
+.profile-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(100, 50, 130, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(60, 30, 90, 0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+.profile-header > * { position: relative; z-index: 1; }
 
 .avatar-wrap {
   width: 162px;
@@ -312,11 +336,18 @@ a:hover { color: #fff; }
 .years-name { color: #fff; font-size: 13px; }
 .years-xp { color: #8f98a0; font-size: 11px; }
 
-/* ===== Content grid ===== */
+/* ===== Content grid (dark panel) ===== */
 .content-grid {
   display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 24px;
+  grid-template-columns: 1fr 240px;
+  gap: 22px;
+  margin-top: 22px;
+  padding: 20px 22px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 3px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.025),
+    0 2px 8px rgba(0,0,0,0.5);
 }
 
 /* ===== Showcase blocks (left) ===== */
