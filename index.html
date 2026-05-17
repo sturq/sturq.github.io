@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sturq</title>
+<meta name="theme-color" content="#2e3440">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200..700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,33 +20,44 @@
     <span class="bubble b6"></span>
     <span class="bubble b7"></span>
     <span class="bubble b8"></span>
+    <span class="bubble b9"></span>
   </div>
 
-  <div class="bg-grid"></div>
-
   <main>
-    <div class="brackets-left">&lt;</div>
-
-    <div class="name-wrap">
-      <div class="kicker">~/</div>
-      <h1 class="name">sturq</h1>
-      <div class="line"></div>
-      <div class="dots">
-        <span class="dot d1"></span>
-        <span class="dot d2"></span>
-        <span class="dot d3"></span>
-        <span class="dot d4"></span>
-      </div>
+    <div class="status-chip">
+      <span class="status-dot"></span>
+      <span>online</span>
     </div>
 
-    <div class="brackets-right">/&gt;</div>
-  </main>
+    <section class="card">
+      <div class="card-ring"></div>
+      <div class="card-inner">
+        <div class="card-label">handle</div>
+        <h1 class="name">sturq</h1>
+        <div class="divider">
+          <span class="divider-dot"></span>
+          <span class="divider-dot"></span>
+          <span class="divider-dot"></span>
+        </div>
+        <div class="card-sub">a person on the internet</div>
+      </div>
+    </section>
 
-  <footer class="foot">
-    <span class="foot-item">nord</span>
-    <span class="foot-sep">·</span>
-    <span class="foot-item">2026</span>
-  </footer>
+    <div class="chip-row">
+      <button class="chip chip-primary">
+        <span class="chip-icon">✦</span>
+        nord
+      </button>
+      <button class="chip">
+        <span class="chip-icon">◉</span>
+        material
+      </button>
+      <button class="chip">
+        <span class="chip-icon">⟡</span>
+        2026
+      </button>
+    </div>
+  </main>
 
   <script>
   (function () {
@@ -71,11 +83,12 @@
 
     const recalc = () => {
       state.forEach(b => {
-        b.el.style.transform = '';
+        b.el.style.translate = '';
         const r = b.el.getBoundingClientRect();
         b.cx = r.left + r.width / 2;
         b.cy = r.top + r.height / 2;
         b.size = r.width;
+        b.el.style.translate = `${b.ox.toFixed(2)}px ${b.oy.toFixed(2)}px`;
       });
     };
     window.addEventListener('resize', recalc, { passive: true });
@@ -97,25 +110,23 @@
 
     const tick = () => {
       state.forEach(b => {
-        const targetX = pointer.active ? b.cx + b.ox : b.cx;
-        const targetY = pointer.active ? b.cy + b.oy : b.cy;
-        const dx = targetX - pointer.x;
-        const dy = targetY - pointer.y;
+        const dx = (b.cx + b.ox) - pointer.x;
+        const dy = (b.cy + b.oy) - pointer.y;
         const dist = Math.hypot(dx, dy);
-        const radius = b.size * 0.9 + 80;
+        const radius = b.size * 0.9 + 100;
 
         let pushX = 0, pushY = 0;
         if (pointer.active && dist < radius && dist > 0.01) {
           const force = (1 - dist / radius);
-          const strength = force * force * 90;
+          const strength = force * force * 110;
           pushX = (dx / dist) * strength;
           pushY = (dy / dist) * strength;
         }
 
-        b.vx += (pushX - b.ox) * 0.08;
-        b.vy += (pushY - b.oy) * 0.08;
-        b.vx *= 0.82;
-        b.vy *= 0.82;
+        b.vx += (pushX - b.ox) * 0.07;
+        b.vy += (pushY - b.oy) * 0.07;
+        b.vx *= 0.85;
+        b.vy *= 0.85;
         b.ox += b.vx;
         b.oy += b.vy;
 
@@ -125,6 +136,19 @@
     };
 
     requestAnimationFrame(() => { recalc(); tick(); });
+
+    /* Chip ripple */
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', e => {
+        const rect = chip.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.left = (e.clientX - rect.left) + 'px';
+        ripple.style.top = (e.clientY - rect.top) + 'px';
+        chip.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 700);
+      });
+    });
   })();
   </script>
 </body>
