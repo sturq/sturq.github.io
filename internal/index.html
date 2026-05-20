@@ -43,10 +43,12 @@
     cursor: pointer;
     transition: background 0.2s;
   }
-  .gate button:hover { background: rgba(136, 192, 208, 0.3); }
+  .gate button:hover:not(:disabled) { background: rgba(136, 192, 208, 0.3); }
+  .gate button:disabled { opacity: 0.6; cursor: wait; }
   .err { color: #bf616a; font-size: 13px; min-height: 18px; }
   #content { display: none; text-align: center; }
 </style>
+<script src="argon2.js"></script>
 </head>
 <body>
   <main>
@@ -61,23 +63,26 @@
     <div id="content"></div>
   </main>
 <script>
-const BLOB = {"salt":"O/voFI+gHxvcVHOpF7anOA==","iv":"pOS++tCmxoBKpphT","ct":"qazIElwmoaTSYbbwE4PQcRujGpp7UW0TRSOK23ASAiy8gJKwQDkHSGo4NtFALoeC4PiCWE4P+jGGEM/bB32n74C16oW+k6amn+SDvrh4m3H2GvgGgo43b8XW/oES8q5qgpIqyisvtYoI"};
+const BLOB = {"salt":"XrPqeJhiQOB8csgRiyEh+Q==","iv":"q/0HbYMq+BDayRPM","ct":"jtwSi3q3dWXBWd6Qdw2xyY3fdnqrNYTfs76Zcm77BIxugMlfB6zLV3cYtdu5JDRXM5VHI/cnqsrC9eNatceJh6IbANVHCtEmhmWFfHwLaBgGWlomkQTsrrW1XM9MLpXnCa4G7caUgw/o","kdf":"argon2id","parallelism":1,"iterations":2,"memorySize":19456,"hashLength":32};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
 async function decrypt(password) {
-  const enc = new TextEncoder();
   const salt = b64ToBytes(BLOB.salt);
   const iv = b64ToBytes(BLOB.iv);
   const ct = b64ToBytes(BLOB.ct);
-  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 600000, hash: 'SHA-256' },
-    baseKey,
-    { name: 'AES-GCM', length: 256 },
-    false,
-    ['decrypt']
-  );
+
+  const rawKey = await hashwasm.argon2id({
+    password,
+    salt,
+    parallelism: BLOB.parallelism,
+    iterations: BLOB.iterations,
+    memorySize: BLOB.memorySize,
+    hashLength: BLOB.hashLength,
+    outputType: 'binary',
+  });
+
+  const key = await crypto.subtle.importKey('raw', rawKey, { name: 'AES-GCM' }, false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
   return new TextDecoder().decode(pt);
 }

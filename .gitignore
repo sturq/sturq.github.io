@@ -1,1 +1,5 @@
 .encrypt.js
+.decrypt-test.js
+node_modules/
+package.json
+package-lock.json
