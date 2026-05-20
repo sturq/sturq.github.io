@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>internal</title>
+<meta name="theme-color" content="#2e3440">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .gate input {
+    background: rgba(76, 86, 106, 0.35);
+    border: 1px solid rgba(136, 192, 208, 0.25);
+    border-radius: 999px;
+    padding: 10px 18px;
+    color: #eceff4;
+    font-family: inherit;
+    font-size: 14px;
+    width: 220px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .gate input:focus { border-color: rgba(136, 192, 208, 0.6); }
+  .gate button {
+    background: rgba(136, 192, 208, 0.18);
+    border: 1px solid rgba(136, 192, 208, 0.4);
+    border-radius: 999px;
+    padding: 8px 22px;
+    color: #eceff4;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gate button:hover { background: rgba(136, 192, 208, 0.3); }
+  .err { color: #bf616a; font-size: 13px; min-height: 18px; }
+  #content { display: none; text-align: center; }
+</style>
+</head>
+<body>
+  <main>
+    <div id="gate">
+      <h1>internal</h1>
+      <form class="gate" id="form" autocomplete="off">
+        <input id="pw" type="password" placeholder="password" autofocus>
+        <button type="submit">enter</button>
+        <div class="err" id="err"></div>
+      </form>
+    </div>
+    <div id="content"></div>
+  </main>
+<script>
+const BLOB = {"salt":"Nvi+P9qsINDwE5F+xOJ1dg==","iv":"NAnVC6lZofxNdwbN","ct":"4tgRcjSBvMua3e5geQ3FIkX7wAWhD4AVJcFooUibqtAqiUOSW0LBj8t8QV7tuRNPPmFj6jJ/VgI36axm7fRnwjPRI0Woil7FASrRwRazJe08HIoerPbDckQzLoa68oGdcvYte+3gBPao"};
+
+const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function decrypt(password) {
+  const enc = new TextEncoder();
+  const salt = b64ToBytes(BLOB.salt);
+  const iv = b64ToBytes(BLOB.iv);
+  const ct = b64ToBytes(BLOB.ct);
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 90000000, hash: 'SHA-256' },
+    baseKey,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['decrypt']
+  );
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+  return new TextDecoder().decode(pt);
+}
+
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const pw = document.getElementById('pw').value;
+  const err = document.getElementById('err');
+  const btn = document.querySelector('.gate button');
+  const input = document.getElementById('pw');
+  err.textContent = '';
+  btn.disabled = true;
+  input.disabled = true;
+  btn.textContent = 'decrypting…';
+  try {
+    const html = await decrypt(pw);
+    document.getElementById('gate').style.display = 'none';
+    const content = document.getElementById('content');
+    content.innerHTML = html;
+    content.style.display = 'block';
+  } catch {
+    err.textContent = 'wrong password';
+    btn.disabled = false;
+    input.disabled = false;
+    btn.textContent = 'enter';
+    input.focus();
+    input.select();
+  }
+});
+</script>
+</body>
+</html>
