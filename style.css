@@ -29,44 +29,31 @@ h1 {
   line-height: 1;
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 18px;
-  font-size: 13px;
-  font-weight: 400;
-  color: #81a1c1;
-  letter-spacing: 0.02em;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #a3be8c;
-  box-shadow: 0 0 8px rgba(163, 190, 140, 0.6);
-}
-
 .links {
-  margin-top: 28px;
+  margin-top: 32px;
   display: flex;
-  gap: 18px;
+  gap: 12px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .links a {
   font-size: 14px;
-  color: #88c0d0;
+  font-weight: 400;
+  color: #d8dee9;
   text-decoration: none;
-  letter-spacing: 0.02em;
-  padding: 6px 14px;
-  border: 1px solid rgba(136, 192, 208, 0.25);
+  letter-spacing: 0.01em;
+  padding: 8px 18px;
+  background: rgba(76, 86, 106, 0.35);
+  border: 1px solid rgba(136, 192, 208, 0.15);
   border-radius: 999px;
-  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(8px);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .links a:hover {
-  background: rgba(136, 192, 208, 0.1);
-  border-color: rgba(136, 192, 208, 0.5);
+  background: rgba(136, 192, 208, 0.18);
+  border-color: rgba(136, 192, 208, 0.55);
+  color: #eceff4;
+  transform: translateY(-1px);
 }
