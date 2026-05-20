@@ -61,7 +61,7 @@
     <div id="content"></div>
   </main>
 <script>
-const BLOB = {"salt":"eNJVK0nnO4bNEm40cqqkDA==","iv":"oRe+o3YuFdXpjvVJ","ct":"jjzm8CkIi7Z5XmIJ2R4OLEiLYpx/H4OSE6nu0YSyfYZJKjjwTqZdlq5W99Xa/xPuhSv0iBoKq8hMC8iEAOnskIjPizcF7iyCT3it7KHygaO210oSRiQHlyzLwF9gDR30mzX5pCpyGwLE"};
+const BLOB = {"salt":"Nvi+P9qsINDwE5F+xOJ1dg==","iv":"NAnVC6lZofxNdwbN","ct":"4tgRcjSBvMua3e5geQ3FIkX7wAWhD4AVJcFooUibqtAqiUOSW0LBj8t8QV7tuRNPPmFj6jJ/VgI36axm7fRnwjPRI0Woil7FASrRwRazJe08HIoerPbDckQzLoa68oGdcvYte+3gBPao"};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
@@ -72,7 +72,7 @@ async function decrypt(password) {
   const ct = b64ToBytes(BLOB.ct);
   const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
   const key = await crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 2500000, hash: 'SHA-256' },
+    { name: 'PBKDF2', salt, iterations: 90000000, hash: 'SHA-256' },
     baseKey,
     { name: 'AES-GCM', length: 256 },
     false,
