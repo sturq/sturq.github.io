@@ -63,7 +63,7 @@
     <div id="content"></div>
   </main>
 <script>
-const BLOB = {"salt":"XrPqeJhiQOB8csgRiyEh+Q==","iv":"q/0HbYMq+BDayRPM","ct":"jtwSi3q3dWXBWd6Qdw2xyY3fdnqrNYTfs76Zcm77BIxugMlfB6zLV3cYtdu5JDRXM5VHI/cnqsrC9eNatceJh6IbANVHCtEmhmWFfHwLaBgGWlomkQTsrrW1XM9MLpXnCa4G7caUgw/o","kdf":"argon2id","parallelism":1,"iterations":2,"memorySize":19456,"hashLength":32};
+const BLOB = {"salt":"knFnM8CEAFZfWXUc4VRq1Q==","iv":"C1+BDBfWj5RSzdVp","ct":"9CGHgh7TFTNeIULFh4iJcvTzzeHebi0ZDNfjglhhjzuryO/dXz8mlDMECr+3zQmdtJPpETxaJIkH0V2YY82DcNtQhMAzKxeS7Dh3eIcGTVPXCqjEHIfTo3Lf6ue6CnHl/LgyVz0IqsFc","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
@@ -87,21 +87,100 @@ async function decrypt(password) {
   return new TextDecoder().decode(pt);
 }
 
-const STORAGE_KEY = 'internal_content_v1';
+const STORAGE_KEY = 'internal_blob_v2';
+const DB_NAME = 'internal';
+const STORE = 'keys';
+const KEY_ID = 'wrap';
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => req.result.createObjectStore(STORE);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function idbGet(key) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const r = db.transaction(STORE, 'readonly').objectStore(STORE).get(key);
+    r.onsuccess = () => resolve(r.result || null);
+    r.onerror = () => reject(r.error);
+  });
+}
+async function idbPut(key, val) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const r = db.transaction(STORE, 'readwrite').objectStore(STORE).put(val, key);
+    r.onsuccess = () => resolve();
+    r.onerror = () => reject(r.error);
+  });
+}
+async function idbDel(key) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const r = db.transaction(STORE, 'readwrite').objectStore(STORE).delete(key);
+    r.onsuccess = () => resolve();
+    r.onerror = () => reject(r.error);
+  });
+}
+
+const bytesToB64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b)));
+
+async function persistContent(html) {
+  const key = await crypto.subtle.generateKey(
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt']
+  );
+  await idbPut(KEY_ID, key);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    new TextEncoder().encode(html)
+  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ iv: bytesToB64(iv), ct: bytesToB64(ct) }));
+}
+
+async function restoreContent() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return null;
+  try {
+    const { iv, ct } = JSON.parse(raw);
+    const key = await idbGet(KEY_ID);
+    if (!key) return null;
+    const pt = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: b64ToBytes(iv) },
+      key,
+      b64ToBytes(ct)
+    );
+    return new TextDecoder().decode(pt);
+  } catch {
+    return null;
+  }
+}
+
+async function clearPersisted() {
+  localStorage.removeItem(STORAGE_KEY);
+  try { await idbDel(KEY_ID); } catch {}
+}
 
 function unlock(html) {
   document.getElementById('gate').style.display = 'none';
   const content = document.getElementById('content');
   content.innerHTML = html + '<button id="logout" style="margin-top:28px;background:transparent;border:1px solid rgba(191,97,106,0.4);color:#bf616a;border-radius:999px;padding:6px 16px;font-family:inherit;font-size:13px;cursor:pointer;">lock</button>';
   content.style.display = 'block';
-  document.getElementById('logout').addEventListener('click', () => {
-    localStorage.removeItem(STORAGE_KEY);
+  document.getElementById('logout').addEventListener('click', async () => {
+    await clearPersisted();
     location.reload();
   });
 }
 
-const cached = localStorage.getItem(STORAGE_KEY);
-if (cached) unlock(cached);
+(async () => {
+  const restored = await restoreContent();
+  if (restored) unlock(restored);
+})();
 
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -115,7 +194,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   btn.textContent = 'decrypting…';
   try {
     const html = await decrypt(pw);
-    localStorage.setItem(STORAGE_KEY, html);
+    await persistContent(html);
     unlock(html);
   } catch {
     err.textContent = 'wrong password';
