@@ -1,9 +1,37 @@
+:root {
+  --bg: #2e3440;
+  --bg-grad-top: #3b4252;
+  --bg-grad-bottom: #272b34;
+  --fg: #eceff4;
+  --muted: #d8dee9;
+  --accent: #88c0d0;
+  --pill-bg: rgba(76, 86, 106, 0.35);
+  --pill-border: rgba(136, 192, 208, 0.15);
+  --pill-hover-bg: rgba(136, 192, 208, 0.18);
+  --pill-hover-border: rgba(136, 192, 208, 0.55);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #eceff4;
+    --bg-grad-top: #ffffff;
+    --bg-grad-bottom: #d8dee9;
+    --fg: #2e3440;
+    --muted: #4c566a;
+    --accent: #5e81ac;
+    --pill-bg: rgba(216, 222, 233, 0.55);
+    --pill-border: rgba(94, 129, 172, 0.2);
+    --pill-hover-bg: rgba(94, 129, 172, 0.18);
+    --pill-hover-border: rgba(94, 129, 172, 0.55);
+  }
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
   height: 100%;
-  background: #2e3440;
-  color: #eceff4;
+  background: var(--bg);
+  color: var(--fg);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,7 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse at top, #3b4252 0%, #2e3440 60%, #272b34 100%);
+    radial-gradient(ellipse at top, var(--bg-grad-top) 0%, var(--bg) 60%, var(--bg-grad-bottom) 100%);
 }
 
 main {
@@ -25,7 +53,7 @@ h1 {
   font-size: clamp(72px, 14vw, 144px);
   font-weight: 300;
   letter-spacing: -0.04em;
-  color: #eceff4;
+  color: var(--fg);
   line-height: 1;
 }
 
@@ -40,20 +68,20 @@ h1 {
 .links a {
   font-size: 14px;
   font-weight: 400;
-  color: #d8dee9;
+  color: var(--muted);
   text-decoration: none;
   letter-spacing: 0.01em;
   padding: 8px 18px;
-  background: rgba(76, 86, 106, 0.35);
-  border: 1px solid rgba(136, 192, 208, 0.15);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
   border-radius: 999px;
   backdrop-filter: blur(8px);
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .links a:hover {
-  background: rgba(136, 192, 208, 0.18);
-  border-color: rgba(136, 192, 208, 0.55);
-  color: #eceff4;
+  background: var(--pill-hover-bg);
+  border-color: var(--pill-hover-border);
+  color: var(--fg);
   transform: translateY(-1px);
 }

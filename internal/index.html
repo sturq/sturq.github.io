@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>internal</title>
-<meta name="theme-color" content="#2e3440">
+<meta name="theme-color" content="#2e3440" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eceff4" media="(prefers-color-scheme: light)">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="../style.css">
 <style>
@@ -16,11 +17,11 @@
     margin-top: 32px;
   }
   .gate input {
-    background: rgba(76, 86, 106, 0.35);
-    border: 1px solid rgba(136, 192, 208, 0.25);
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-hover-border);
     border-radius: 999px;
     padding: 10px 18px;
-    color: #eceff4;
+    color: var(--fg);
     font-family: inherit;
     font-size: 14px;
     width: 220px;
@@ -28,19 +29,19 @@
     outline: none;
     transition: border-color 0.2s;
   }
-  .gate input:focus { border-color: rgba(136, 192, 208, 0.6); }
+  .gate input:focus { border-color: var(--accent); }
   .gate button {
-    background: rgba(136, 192, 208, 0.18);
-    border: 1px solid rgba(136, 192, 208, 0.4);
+    background: var(--pill-hover-bg);
+    border: 1px solid var(--pill-hover-border);
     border-radius: 999px;
     padding: 8px 22px;
-    color: #eceff4;
+    color: var(--fg);
     font-family: inherit;
     font-size: 14px;
     cursor: pointer;
     transition: background 0.2s;
   }
-  .gate button:hover:not(:disabled) { background: rgba(136, 192, 208, 0.3); }
+  .gate button:hover:not(:disabled) { background: var(--pill-hover-border); }
   .gate button:disabled { opacity: 0.6; cursor: wait; }
   .err { color: #bf616a; font-size: 13px; min-height: 18px; }
   #content { display: none; text-align: center; }
@@ -60,7 +61,7 @@
     <div id="content"></div>
   </main>
 <script>
-const BLOB = {"salt":"knFnM8CEAFZfWXUc4VRq1Q==","iv":"C1+BDBfWj5RSzdVp","ct":"9CGHgh7TFTNeIULFh4iJcvTzzeHebi0ZDNfjglhhjzuryO/dXz8mlDMECr+3zQmdtJPpETxaJIkH0V2YY82DcNtQhMAzKxeS7Dh3eIcGTVPXCqjEHIfTo3Lf6ue6CnHl/LgyVz0IqsFc","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
+const BLOB = {"salt":"Bx5T3r0eizTbpKAZffoP/A==","iv":"3AecDIg5Fg0bMdL0","ct":"UC2t747V3aioFwK0Tt1PaDMhzYYhNt6ZdSJfOI3zUYDjZJ6kljSiMpI00nx/kE15VKI+DbUM749KkGEs8CxWbBicH0beHsBvLlApNO43zvKiBkfskpsqTRVzb65GgfnULFIXzXWvLzbDNqbcnGZW","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
