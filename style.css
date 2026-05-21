@@ -4,7 +4,7 @@ html, body {
   height: 100%;
   background: #2e3440;
   color: #eceff4;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
