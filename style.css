@@ -42,7 +42,8 @@ body {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse at top, var(--bg-grad-top) 0%, var(--bg) 60%, var(--bg-grad-bottom) 100%);
+    radial-gradient(ellipse 120% 40% at 50% 0%, var(--bg-grad-top) 0%, var(--bg) 75%);
+  background-color: var(--bg);
 }
 
 main {
@@ -50,7 +51,7 @@ main {
 }
 
 h1 {
-  font-size: clamp(72px, 14vw, 144px);
+  font-size: clamp(96px, 22vw, 144px);
   font-weight: 300;
   letter-spacing: -0.04em;
   color: var(--fg);
