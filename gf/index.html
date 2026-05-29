@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>date plan</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#fff5f7">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true">
+    <span class="dot" data-step="1">💖</span>
+    <span class="line"></span>
+    <span class="dot" data-step="2">💖</span>
+    <span class="line"></span>
+    <span class="dot" data-step="3">💖</span>
+    <span class="line"></span>
+    <span class="dot" data-step="4">💖</span>
+    <span class="line"></span>
+    <span class="dot" data-step="5">💖</span>
+  </div>
+
+  <main>
+    <!-- step 1 -->
+    <section class="step active" data-step="1">
+      <div class="emoji big">💌</div>
+      <h1>Will you go on a date with me?</h1>
+      <div class="btn-row">
+        <button class="btn primary" id="yesBtn">Yes <span>💕</span></button>
+        <button class="btn ghost" id="noBtn" type="button">No</button>
+      </div>
+    </section>
+
+    <!-- step 2 -->
+    <section class="step" data-step="2">
+      <div class="emoji big">🎉</div>
+      <h1>no way. NO WAY. <span class="hue">😳</span></h1>
+      <p class="sub">i had a whole speech prepared for if you said no</p>
+      <div class="btn-row center">
+        <button class="btn primary" data-next>okay okay! →</button>
+      </div>
+    </section>
+
+    <!-- step 3 -->
+    <section class="step" data-step="3">
+      <div class="card">
+        <div class="emoji small">🗓️ 🐾</div>
+        <h1>So... when are you free?</h1>
+        <label class="field">
+          <span>Pick a Day 💗</span>
+          <input type="date" id="dateInput" placeholder="Pick a date...">
+        </label>
+        <label class="field">
+          <span>What Time? 🥹</span>
+          <select id="timeInput">
+            <option value="" disabled selected>Select a time...</option>
+            <option>5:00 PM — early bird, i respect it</option>
+            <option>5:30 PM — golden hour energy</option>
+            <option>6:00 PM — classic move</option>
+            <option>6:30 PM — sunset incoming</option>
+            <option>7:00 PM — you're making me hungry already</option>
+            <option>7:30 PM — fashionably perfect</option>
+            <option>8:00 PM — main character timing</option>
+            <option>8:30 PM — chef's kiss</option>
+            <option>9:00 PM — night owl bestie</option>
+          </select>
+        </label>
+        <button class="btn primary block" data-next id="nextStep3">okay next →</button>
+      </div>
+    </section>
+
+    <!-- step 4 -->
+    <section class="step" data-step="4">
+      <h1>What are we feeling? <span>🍱✨</span></h1>
+      <p class="sub small">(you can pick more than one btw)</p>
+      <div class="food-grid" id="foodGrid">
+        <button type="button" class="food" data-food="Pizza"><span class="ico">🍕</span><span>Pizza</span></button>
+        <button type="button" class="food" data-food="Sushi"><span class="ico">🍣</span><span>Sushi</span></button>
+        <button type="button" class="food" data-food="Burgers"><span class="ico">🍔</span><span>Burgers</span></button>
+        <button type="button" class="food" data-food="Pasta"><span class="ico">🍝</span><span>Pasta</span></button>
+        <button type="button" class="food" data-food="Tacos"><span class="ico">🌮</span><span>Tacos</span></button>
+        <button type="button" class="food" data-food="Ramen"><span class="ico">🍜</span><span>Ramen</span></button>
+      </div>
+      <div class="btn-row center">
+        <button class="btn primary" data-next id="nextStep4" disabled>this one! →</button>
+      </div>
+    </section>
+
+    <!-- step 5 -->
+    <section class="step" data-step="5">
+      <h1>It's a date! <span>💌</span></h1>
+      <p class="sub" id="finalLine">7:00 PM it is. i'll be the one outside trying to look chill 😎</p>
+      <p class="ps"><em>p.s. normal people text. i made a website on <span class="brand">Replit</span> during lunch. for you. no big deal.</em></p>
+
+      <div class="summary">
+        <div class="row">
+          <div class="ico-box">📅</div>
+          <div>
+            <div class="label">WHEN</div>
+            <div class="value" id="sumDate">Saturday</div>
+            <div class="value-sub" id="sumTime">at 7:00 PM</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ico-box">🍽️</div>
+          <div>
+            <div class="label">FOOD</div>
+            <div class="value" id="sumFood">Burgers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row center">
+        <button class="btn primary" id="copyBtn">📋 Copy plan &amp; text me</button>
+      </div>
+      <p class="toast" id="toast">copied! 💕</p>
+    </section>
+  </main>
+
+<script src="app.js"></script>
+</body>
+</html>
