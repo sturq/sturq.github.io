@@ -93,7 +93,7 @@
     }
     sumDate.textContent = prettyDate;
 
-    const t = state.time ? state.time.split('—')[0].trim() : '7:00 PM';
+    const t = state.time ? state.time.split('—')[0].trim() : '19:00';
     sumTime.textContent = 'at ' + t;
 
     const foods = [...state.foods];
