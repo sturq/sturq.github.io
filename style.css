@@ -224,10 +224,11 @@ nav.top .links a:hover { color: var(--accent); }
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 76px;
+  width: 96px;
   height: auto;
   z-index: 40;
-  opacity: 0.85;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 20px rgba(185, 197, 238, 0.25));
   animation: mascot-bob 4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -383,5 +384,5 @@ footer {
   .bust { width: 110vw; opacity: 0.35; }
   .manifesto { padding: 80px 20px; }
   .grid { padding: 40px 20px 100px; gap: 14px; }
-  .mascot { width: 60px; bottom: 16px; right: 16px; }
+  .mascot { width: 76px; bottom: 16px; right: 16px; }
 }

@@ -111,34 +111,69 @@
 <footer>sturq · mmxxvi</footer>
 
 <!-- sleeping chibi mascot -->
-<svg class="mascot" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="mascot" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="mGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#B9C5EE"/>
-      <stop offset="100%" stop-color="#67739D"/>
-    </linearGradient>
+    <radialGradient id="hairLight" cx="0.5" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#D8DCE9"/>
+      <stop offset="100%" stop-color="#B9C5EE"/>
+    </radialGradient>
   </defs>
-  <!-- body / dress -->
-  <path d="M 25 105 Q 30 75 50 75 Q 70 75 75 105 L 78 135 L 22 135 Z"
-        fill="#2A3042" stroke="#B9C5EE" stroke-width="1.2" opacity="0.95"/>
-  <!-- arms folded -->
-  <path d="M 28 95 Q 40 105 50 102 Q 60 105 72 95"
-        stroke="#B9C5EE" stroke-width="1.2" fill="none" opacity="0.8"/>
-  <!-- hair back -->
-  <path d="M 20 50 Q 18 80 28 85 L 72 85 Q 82 80 80 50 Q 78 28 65 22 Q 50 16 35 22 Q 22 28 20 50 Z"
-        fill="#171a22" stroke="#B9C5EE" stroke-width="1.2" opacity="0.95"/>
-  <!-- head -->
-  <ellipse cx="50" cy="48" rx="22" ry="24" fill="#171a22" stroke="#B9C5EE" stroke-width="1.2"/>
-  <!-- hair front bangs -->
-  <path d="M 28 40 Q 35 28 50 30 Q 65 28 72 40 Q 68 35 58 36 Q 50 34 42 36 Q 32 35 28 40 Z"
-        fill="#B9C5EE" opacity="0.4"/>
-  <!-- closed eyes -->
-  <path d="M 38 50 Q 42 53 46 50" stroke="#B9C5EE" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  <path d="M 54 50 Q 58 53 62 50" stroke="#B9C5EE" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  <!-- mouth -->
-  <path d="M 47 60 Q 50 62 53 60" stroke="#B9C5EE" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- body / dress (small chibi body) -->
+  <path d="M 42 122 Q 45 105 60 105 Q 75 105 78 122 L 82 155 L 38 155 Z"
+        fill="#2A3042" stroke="#B9C5EE" stroke-width="0.8"/>
+  <!-- collar -->
+  <path d="M 48 108 L 60 113 L 72 108 L 70 115 L 50 115 Z"
+        fill="#171a22" stroke="#B9C5EE" stroke-width="0.6"/>
+  <!-- folded hands -->
+  <ellipse cx="60" cy="130" rx="7" ry="4" fill="#171a22" stroke="#B9C5EE" stroke-width="0.6"/>
+
+  <!-- back hair (large, frames whole head) -->
+  <path d="M 22 65 Q 18 95 30 105 L 90 105 Q 102 95 98 65 Q 96 35 82 22 Q 75 14 60 14 Q 45 14 38 22 Q 24 35 22 65 Z"
+        fill="url(#hairLight)" opacity="0.85"/>
+
+  <!-- twin tail left -->
+  <path d="M 22 60 Q 12 75 14 100 Q 16 110 22 105 Q 26 90 28 75 Z"
+        fill="url(#hairLight)" opacity="0.9"/>
+  <!-- twin tail right -->
+  <path d="M 98 60 Q 108 75 106 100 Q 104 110 98 105 Q 94 90 92 75 Z"
+        fill="url(#hairLight)" opacity="0.9"/>
+
+  <!-- head (face area, slightly darker than hair so it reads) -->
+  <ellipse cx="60" cy="60" rx="24" ry="26" fill="#E8EBF5"/>
+
+  <!-- face shadow under bangs -->
+  <ellipse cx="60" cy="48" rx="22" ry="6" fill="#B9C5EE" opacity="0.3"/>
+
+  <!-- front bangs -->
+  <path d="M 36 50 Q 42 38 50 42 Q 56 35 62 42 Q 68 35 74 42 Q 82 38 86 50
+           Q 80 47 74 50 Q 68 46 62 50 Q 56 46 50 50 Q 42 47 36 50 Z"
+        fill="url(#hairLight)"/>
+
+  <!-- side bangs -->
+  <path d="M 36 50 Q 30 65 32 78 Q 28 70 30 58 Z" fill="url(#hairLight)"/>
+  <path d="M 84 50 Q 90 65 88 78 Q 92 70 90 58 Z" fill="url(#hairLight)"/>
+
+  <!-- closed sleeping eyes -->
+  <path d="M 46 62 Q 51 66 56 62" stroke="#2A3042" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M 64 62 Q 69 66 74 62" stroke="#2A3042" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- eyelashes (tiny strokes) -->
+  <path d="M 47 60 L 46 58 M 51 61 L 51 58 M 55 60 L 56 58" stroke="#2A3042" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M 65 60 L 64 58 M 69 61 L 69 58 M 73 60 L 74 58" stroke="#2A3042" stroke-width="0.8" stroke-linecap="round"/>
+
+  <!-- blush -->
+  <ellipse cx="44" cy="72" rx="3" ry="2" fill="#EEB9D3" opacity="0.5"/>
+  <ellipse cx="76" cy="72" rx="3" ry="2" fill="#EEB9D3" opacity="0.5"/>
+
+  <!-- mouth (tiny content smile) -->
+  <path d="M 57 78 Q 60 80 63 78" stroke="#2A3042" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+  <!-- bow on right side -->
+  <path d="M 88 38 Q 95 32 100 38 Q 95 44 88 38 Z M 92 38 L 92 32 L 96 38 L 92 42 Z"
+        fill="#B9C5EE" opacity="0.9"/>
+
   <!-- floating Z -->
-  <text class="z" x="78" y="22" font-family="ui-monospace, monospace" font-size="14" fill="#B9C5EE" font-weight="bold">z</text>
+  <text class="z" x="94" y="22" font-family="ui-monospace, monospace" font-size="16" fill="#B9C5EE" font-weight="bold">z</text>
 </svg>
 
 <script src="/main.js" defer></script>
