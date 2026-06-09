@@ -171,8 +171,8 @@ nav.top .links a:hover { color: var(--accent); }
   width: 100%;
   height: auto;
   display: block;
-  opacity: 0.45;
-  filter: blur(2px) drop-shadow(0 0 80px rgba(185, 197, 238, 0.25));
+  opacity: 0.55;
+  filter: drop-shadow(0 0 80px rgba(185, 197, 238, 0.3));
   mix-blend-mode: screen;
   animation: bust-breath 60s ease-in-out infinite alternate;
   transform-origin: center;
