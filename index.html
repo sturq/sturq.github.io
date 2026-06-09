@@ -4,17 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sturq</title>
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="sturq — quiet machines for the late hours">
+<link rel="preload" href="/assets/fonts/CormorantGaramond-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/CormorantGaramond-Italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <main>
-    <h1>sturq</h1>
-    <nav class="links">
-      <a href="/repo">repo</a>
-      <a href="/blog">blog</a>
-    </nav>
-  </main>
+
+<nav class="top">
+  <a class="logo" href="/">sturq</a>
+  <div class="links">
+    <a href="https://github.com/sturq" target="_blank" rel="noopener">github ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <!-- stylized Greek bust silhouette -->
+  <div class="bust-wrap">
+  <svg class="bust" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="bustGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#B9C5EE" stop-opacity="0.95"/>
+        <stop offset="55%" stop-color="#67739D" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.2"/>
+      </linearGradient>
+      <linearGradient id="bustGrad2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#B9C5EE" stop-opacity="0.7"/>
+        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.1"/>
+      </linearGradient>
+    </defs>
+    <!-- pedestal -->
+    <path d="M 90 510 L 90 470 L 110 440 L 290 440 L 310 470 L 310 510 Z"
+          fill="url(#bustGrad2)" opacity="0.5"/>
+    <!-- shoulders / neck base -->
+    <path d="M 100 440 C 100 400, 130 380, 175 370 L 225 370 C 270 380, 300 400, 300 440 Z"
+          fill="url(#bustGrad)" opacity="0.8"/>
+    <!-- neck -->
+    <path d="M 175 380 L 175 320 C 175 305, 190 295, 205 295 L 215 295 C 220 305, 225 320, 225 340 L 225 380 Z"
+          fill="url(#bustGrad)" opacity="0.85"/>
+    <!-- head silhouette (right-facing classical profile) -->
+    <path d="M 175 320
+             C 165 290, 160 260, 165 230
+             C 168 200, 175 175, 185 160
+             C 195 145, 210 132, 230 128
+             C 252 124, 270 130, 282 145
+             C 295 162, 300 185, 297 215
+             C 295 235, 290 250, 285 260
+             L 290 270 L 286 275 L 290 285 L 280 290
+             C 275 296, 268 300, 260 302
+             C 252 305, 244 304, 236 300
+             L 232 314 L 228 316 L 225 320 Z"
+          fill="url(#bustGrad)"/>
+    <!-- hair curls (greek waves) -->
+    <path d="M 175 175
+             C 168 165, 165 150, 172 140
+             C 178 132, 188 130, 195 138
+             C 200 130, 212 128, 220 134
+             C 225 124, 240 122, 248 130
+             C 255 122, 270 124, 275 134
+             C 282 130, 292 138, 290 150
+             C 295 158, 290 170, 282 175
+             C 280 162, 270 155, 258 158
+             C 250 152, 238 154, 232 162
+             C 225 156, 213 158, 208 165
+             C 200 160, 188 164, 184 175 Z"
+          fill="#B9C5EE" opacity="0.55"/>
+    <!-- subtle eye hint -->
+    <ellipse cx="248" cy="200" rx="6" ry="2" fill="#2A3042" opacity="0.4"/>
+  </svg>
+  </div>
+
+  <h1>sturq</h1>
+  <p class="tagline">quiet machines for the late hours</p>
+  <p class="meta">mmxxvi · vienna</p>
+</section>
+
+<section class="manifesto reveal">
+  <blockquote>
+    in the silence between requests, the machine dreams of greek marble and city rain.
+    <cite>fragment · iv</cite>
+  </blockquote>
+</section>
+
+<section class="grid">
+  <a class="card reveal" href="https://github.com/sturq" target="_blank" rel="noopener">
+    <div class="label">profile</div>
+    <div class="title">github</div>
+    <div class="desc">open source · linux · agents · automation</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/sturq/ccdcam" target="_blank" rel="noopener">
+    <div class="label">project</div>
+    <div class="title">ccdcam</div>
+    <div class="desc">android camcorder with a hand-tuned ccd shader. analog ghosts on a glass plate.</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/sturq/sturqbox" target="_blank" rel="noopener">
+    <div class="label">project</div>
+    <div class="title">sturqbox</div>
+    <div class="desc">file storage that lives on discord. on-server manifest, webhook back-end, no central host.</div>
+    <div class="arrow">→</div>
+  </a>
+</section>
+
+<footer>sturq · mmxxvi</footer>
+
+<!-- sleeping chibi mascot -->
+<svg class="mascot" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="mGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B9C5EE"/>
+      <stop offset="100%" stop-color="#67739D"/>
+    </linearGradient>
+  </defs>
+  <!-- body / dress -->
+  <path d="M 25 105 Q 30 75 50 75 Q 70 75 75 105 L 78 135 L 22 135 Z"
+        fill="#2A3042" stroke="#B9C5EE" stroke-width="1.2" opacity="0.95"/>
+  <!-- arms folded -->
+  <path d="M 28 95 Q 40 105 50 102 Q 60 105 72 95"
+        stroke="#B9C5EE" stroke-width="1.2" fill="none" opacity="0.8"/>
+  <!-- hair back -->
+  <path d="M 20 50 Q 18 80 28 85 L 72 85 Q 82 80 80 50 Q 78 28 65 22 Q 50 16 35 22 Q 22 28 20 50 Z"
+        fill="#171a22" stroke="#B9C5EE" stroke-width="1.2" opacity="0.95"/>
+  <!-- head -->
+  <ellipse cx="50" cy="48" rx="22" ry="24" fill="#171a22" stroke="#B9C5EE" stroke-width="1.2"/>
+  <!-- hair front bangs -->
+  <path d="M 28 40 Q 35 28 50 30 Q 65 28 72 40 Q 68 35 58 36 Q 50 34 42 36 Q 32 35 28 40 Z"
+        fill="#B9C5EE" opacity="0.4"/>
+  <!-- closed eyes -->
+  <path d="M 38 50 Q 42 53 46 50" stroke="#B9C5EE" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <path d="M 54 50 Q 58 53 62 50" stroke="#B9C5EE" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <!-- mouth -->
+  <path d="M 47 60 Q 50 62 53 60" stroke="#B9C5EE" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <!-- floating Z -->
+  <text class="z" x="78" y="22" font-family="ui-monospace, monospace" font-size="14" fill="#B9C5EE" font-weight="bold">z</text>
+</svg>
+
+<script src="/main.js" defer></script>
 </body>
 </html>

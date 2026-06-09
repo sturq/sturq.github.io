@@ -4,62 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>internal</title>
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000">
 <meta name="robots" content="noindex,nofollow">
-<link rel="stylesheet" href="../style.css">
+<link rel="preload" href="/assets/fonts/CormorantGaramond-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
 <style>
+  .gate-wrap {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+  .gate-wrap h1 {
+    font-family: var(--display-font);
+    font-weight: 300;
+    font-size: clamp(72px, 16vw, 144px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--fg);
+    text-shadow: 0 0 50px rgba(185, 197, 238, 0.25);
+  }
   .gate {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-    margin-top: 32px;
+    gap: 16px;
+    margin-top: 36px;
   }
   .gate input {
-    background: var(--pill-bg);
-    border: 1px solid var(--pill-hover-border);
-    border-radius: 999px;
-    padding: 10px 18px;
+    background: rgba(23, 26, 34, 0.6);
+    border: 1px solid var(--accent-soft);
+    border-radius: 2px;
+    padding: 12px 18px;
     color: var(--fg);
-    font-family: inherit;
-    font-size: 14px;
-    width: 220px;
+    font-family: var(--mono-font);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    width: 240px;
     text-align: center;
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.25s, box-shadow 0.25s;
   }
-  .gate input:focus { border-color: var(--accent); }
+  .gate input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 24px var(--accent-soft);
+  }
   .gate button {
-    background: var(--pill-hover-bg);
-    border: 1px solid var(--pill-hover-border);
-    border-radius: 999px;
-    padding: 8px 22px;
-    color: var(--fg);
-    font-family: inherit;
-    font-size: 14px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    padding: 10px 28px;
+    color: var(--accent);
+    font-family: var(--mono-font);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
   }
-  .gate button:hover:not(:disabled) { background: var(--pill-hover-border); }
-  .gate button:disabled { opacity: 0.6; cursor: wait; }
-  .err { color: #bf616a; font-size: 13px; min-height: 18px; }
+  .gate button:hover:not(:disabled) {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+  .gate button:disabled { opacity: 0.5; cursor: wait; }
+  .err {
+    color: #EEB9BD;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    min-height: 18px;
+  }
   #content { display: none; text-align: center; }
+  #content #logout {
+    margin-top: 36px;
+    background: transparent;
+    border: 1px solid rgba(238, 185, 189, 0.4);
+    color: #EEB9BD;
+    border-radius: 2px;
+    padding: 8px 22px;
+    font-family: var(--mono-font);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+  #content #logout:hover {
+    background: rgba(238, 185, 189, 0.1);
+  }
 </style>
 <script src="argon2.js"></script>
 </head>
 <body>
-  <main>
-    <div id="gate">
-      <h1>internal</h1>
-      <form class="gate" id="form" autocomplete="off">
-        <input id="pw" type="password" placeholder="password" autofocus>
-        <button type="submit">enter</button>
-        <div class="err" id="err"></div>
-      </form>
-    </div>
-    <div id="content"></div>
-  </main>
+
+<nav class="top">
+  <a class="logo" href="/">sturq</a>
+  <div class="links">
+    <a href="/">← home</a>
+  </div>
+</nav>
+
+<main class="gate-wrap">
+  <div id="gate">
+    <h1>internal</h1>
+    <form class="gate" id="form" autocomplete="off">
+      <input id="pw" type="password" placeholder="password" autofocus>
+      <button type="submit">enter</button>
+      <div class="err" id="err"></div>
+    </form>
+  </div>
+  <div id="content"></div>
+</main>
+
 <script>
 const BLOB = {"salt":"Bx5T3r0eizTbpKAZffoP/A==","iv":"3AecDIg5Fg0bMdL0","ct":"UC2t747V3aioFwK0Tt1PaDMhzYYhNt6ZdSJfOI3zUYDjZJ6kljSiMpI00nx/kE15VKI+DbUM749KkGEs8CxWbBicH0beHsBvLlApNO43zvKiBkfskpsqTRVzb65GgfnULFIXzXWvLzbDNqbcnGZW","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
 
@@ -167,7 +228,7 @@ async function clearPersisted() {
 function unlock(html) {
   document.getElementById('gate').style.display = 'none';
   const content = document.getElementById('content');
-  content.innerHTML = html + '<button id="logout" style="margin-top:28px;background:transparent;border:1px solid rgba(191,97,106,0.4);color:#bf616a;border-radius:999px;padding:6px 16px;font-family:inherit;font-size:13px;cursor:pointer;">lock</button>';
+  content.innerHTML = html + '<button id="logout">lock</button>';
   content.style.display = 'block';
   document.getElementById('logout').addEventListener('click', async () => {
     await clearPersisted();
