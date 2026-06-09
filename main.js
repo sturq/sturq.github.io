@@ -1,7 +1,8 @@
-// randomize tagline (10% chance of easter-egg)
+// randomize tagline (~1/8 chance of easter-egg; ?egg=1 forces it)
 const tagline = document.querySelector('.hero .tagline');
 if (tagline) {
-  tagline.textContent = Math.random() < 0.1
+  const force = new URLSearchParams(location.search).get('egg') === '1';
+  tagline.textContent = (force || Math.random() < 0.12)
     ? "tfo? tf, no."
     : "quiet machines for the late hours";
 }
