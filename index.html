@@ -20,58 +20,93 @@
 </nav>
 
 <section class="hero">
-  <!-- stylized Greek bust silhouette -->
+  <!-- stylized Greek bust — classical profile facing right -->
   <div class="bust-wrap">
-  <svg class="bust" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <svg class="bust" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
-      <linearGradient id="bustGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#B9C5EE" stop-opacity="0.95"/>
-        <stop offset="55%" stop-color="#67739D" stop-opacity="0.6"/>
-        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.2"/>
+      <linearGradient id="bustGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#D8DCE9" stop-opacity="0.95"/>
+        <stop offset="60%" stop-color="#B9C5EE" stop-opacity="0.7"/>
+        <stop offset="100%" stop-color="#67739D" stop-opacity="0.3"/>
       </linearGradient>
-      <linearGradient id="bustGrad2" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#B9C5EE" stop-opacity="0.7"/>
-        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.1"/>
+      <linearGradient id="bustShadow" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#B9C5EE" stop-opacity="0.0"/>
+        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.7"/>
       </linearGradient>
     </defs>
-    <!-- pedestal -->
-    <path d="M 90 510 L 90 470 L 110 440 L 290 440 L 310 470 L 310 510 Z"
-          fill="url(#bustGrad2)" opacity="0.5"/>
-    <!-- shoulders / neck base -->
-    <path d="M 100 440 C 100 400, 130 380, 175 370 L 225 370 C 270 380, 300 400, 300 440 Z"
-          fill="url(#bustGrad)" opacity="0.8"/>
+
+    <!-- pedestal block -->
+    <path d="M 130 700 L 130 640 L 160 590 L 340 590 L 370 640 L 370 700 Z"
+          fill="url(#bustGrad)" opacity="0.4"/>
+    <!-- pedestal top molding -->
+    <rect x="125" y="585" width="250" height="10" fill="url(#bustGrad)" opacity="0.55"/>
+
+    <!-- chest/shoulders draped in toga (curved fall of fabric) -->
+    <path d="M 110 580 Q 130 480 200 460 L 300 460 Q 370 480 390 580 Z"
+          fill="url(#bustGrad)" opacity="0.7"/>
+    <!-- toga fold detail -->
+    <path d="M 200 470 Q 220 510 215 580 M 260 470 Q 270 520 275 580"
+          stroke="#2A3042" stroke-width="2" fill="none" opacity="0.25"/>
+
     <!-- neck -->
-    <path d="M 175 380 L 175 320 C 175 305, 190 295, 205 295 L 215 295 C 220 305, 225 320, 225 340 L 225 380 Z"
+    <path d="M 215 470 L 215 400 Q 218 380 240 378 L 270 378 Q 290 382 290 410 L 290 470 Z"
           fill="url(#bustGrad)" opacity="0.85"/>
-    <!-- head silhouette (right-facing classical profile) -->
-    <path d="M 175 320
-             C 165 290, 160 260, 165 230
-             C 168 200, 175 175, 185 160
-             C 195 145, 210 132, 230 128
-             C 252 124, 270 130, 282 145
-             C 295 162, 300 185, 297 215
-             C 295 235, 290 250, 285 260
-             L 290 270 L 286 275 L 290 285 L 280 290
-             C 275 296, 268 300, 260 302
-             C 252 305, 244 304, 236 300
-             L 232 314 L 228 316 L 225 320 Z"
+
+    <!-- head — right-facing classical profile -->
+    <!-- back of head sphere -->
+    <path d="M 180 220
+             C 170 180, 175 130, 200 100
+             C 230 70, 280 70, 310 90
+             C 340 110, 355 145, 358 195
+             C 360 235, 345 270, 320 290
+             L 330 305
+             L 322 312
+             L 332 322
+             L 320 332
+             C 312 342, 300 350, 290 358
+             L 285 380
+             L 270 380
+             L 252 378
+             L 250 360
+             Q 220 350, 200 320
+             C 185 295, 175 260, 180 220 Z"
           fill="url(#bustGrad)"/>
-    <!-- hair curls (greek waves) -->
-    <path d="M 175 175
-             C 168 165, 165 150, 172 140
-             C 178 132, 188 130, 195 138
-             C 200 130, 212 128, 220 134
-             C 225 124, 240 122, 248 130
-             C 255 122, 270 124, 275 134
-             C 282 130, 292 138, 290 150
-             C 295 158, 290 170, 282 175
-             C 280 162, 270 155, 258 158
-             C 250 152, 238 154, 232 162
-             C 225 156, 213 158, 208 165
-             C 200 160, 188 164, 184 175 Z"
-          fill="#B9C5EE" opacity="0.55"/>
-    <!-- subtle eye hint -->
-    <ellipse cx="248" cy="200" rx="6" ry="2" fill="#2A3042" opacity="0.4"/>
+
+    <!-- nose ridge (a key Greek profile element) -->
+    <path d="M 320 250 L 333 280 L 332 295 L 322 305 L 320 290 Z"
+          fill="#D8DCE9" opacity="0.4"/>
+
+    <!-- brow ridge shadow -->
+    <path d="M 295 230 Q 320 235 332 250 L 332 260 Q 320 252 298 248 Z"
+          fill="#2A3042" opacity="0.25"/>
+
+    <!-- lips hint -->
+    <path d="M 310 332 Q 318 336 322 332" stroke="#2A3042" stroke-width="2" fill="none" opacity="0.35"/>
+
+    <!-- closed eye stroke -->
+    <path d="M 295 255 Q 305 258 315 255" stroke="#2A3042" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+    <!-- jawline emphasis -->
+    <path d="M 270 380 Q 250 370 240 350" stroke="#2A3042" stroke-width="1.5" fill="none" opacity="0.25"/>
+
+    <!-- hair: classical curls (Apollo-style, swept back) -->
+    <g opacity="0.85" fill="#B9C5EE">
+      <circle cx="195" cy="120" r="14"/>
+      <circle cx="220" cy="100" r="13"/>
+      <circle cx="250" cy="90" r="14"/>
+      <circle cx="280" cy="92" r="13"/>
+      <circle cx="305" cy="100" r="14"/>
+      <circle cx="200" cy="150" r="13"/>
+      <circle cx="185" cy="180" r="12"/>
+      <circle cx="178" cy="210" r="11"/>
+      <circle cx="175" cy="240" r="10"/>
+      <circle cx="180" cy="270" r="9"/>
+    </g>
+    <!-- hair band (laurel-like) -->
+    <path d="M 180 145 Q 240 130 305 145" stroke="#D8DCE9" stroke-width="3" fill="none" opacity="0.5"/>
+
+    <!-- right side shadow gradient overlay -->
+    <rect x="280" y="80" width="100" height="320" fill="url(#bustShadow)" opacity="0.4"/>
   </svg>
   </div>
 
@@ -110,70 +145,70 @@
 
 <footer>sturq · mmxxvi</footer>
 
-<!-- sleeping chibi mascot -->
-<svg class="mascot" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <radialGradient id="hairLight" cx="0.5" cy="0.3" r="0.7">
-      <stop offset="0%" stop-color="#D8DCE9"/>
-      <stop offset="100%" stop-color="#B9C5EE"/>
-    </radialGradient>
-  </defs>
+<!-- sleeping chibi mascot — early-imageboard style -->
+<svg class="mascot" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- body / dress (small chibi body, simple) -->
+  <path d="M 50 130 Q 55 115 70 115 Q 85 115 90 130 L 95 172 L 45 172 Z"
+        fill="#2A3042" stroke="#67739D" stroke-width="0.8"/>
+  <!-- white sailor-style collar -->
+  <path d="M 56 117 L 70 124 L 84 117 L 82 128 L 58 128 Z"
+        fill="#D8DCE9"/>
+  <!-- tiny bow at collar -->
+  <path d="M 65 124 L 70 122 L 75 124 L 73 128 L 70 126 L 67 128 Z"
+        fill="#EEB9D3"/>
+  <!-- arms folded across body -->
+  <path d="M 50 130 Q 60 135 70 132 Q 80 135 90 130"
+        stroke="#67739D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-  <!-- body / dress (small chibi body) -->
-  <path d="M 42 122 Q 45 105 60 105 Q 75 105 78 122 L 82 155 L 38 155 Z"
-        fill="#2A3042" stroke="#B9C5EE" stroke-width="0.8"/>
-  <!-- collar -->
-  <path d="M 48 108 L 60 113 L 72 108 L 70 115 L 50 115 Z"
-        fill="#171a22" stroke="#B9C5EE" stroke-width="0.6"/>
-  <!-- folded hands -->
-  <ellipse cx="60" cy="130" rx="7" ry="4" fill="#171a22" stroke="#B9C5EE" stroke-width="0.6"/>
+  <!-- twin tail LEFT (clearly visible past head) -->
+  <path d="M 30 65 Q 18 90 22 120 Q 26 128 32 122 Q 36 100 40 80 Z"
+        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
+  <!-- twin tail RIGHT -->
+  <path d="M 110 65 Q 122 90 118 120 Q 114 128 108 122 Q 104 100 100 80 Z"
+        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
 
-  <!-- back hair (large, frames whole head) -->
-  <path d="M 22 65 Q 18 95 30 105 L 90 105 Q 102 95 98 65 Q 96 35 82 22 Q 75 14 60 14 Q 45 14 38 22 Q 24 35 22 65 Z"
-        fill="url(#hairLight)" opacity="0.85"/>
+  <!-- back hair shape (broad halo behind head) -->
+  <path d="M 32 70 Q 28 95 38 105 L 102 105 Q 112 95 108 70 Q 106 35 90 22 Q 70 12 50 22 Q 34 35 32 70 Z"
+        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
 
-  <!-- twin tail left -->
-  <path d="M 22 60 Q 12 75 14 100 Q 16 110 22 105 Q 26 90 28 75 Z"
-        fill="url(#hairLight)" opacity="0.9"/>
-  <!-- twin tail right -->
-  <path d="M 98 60 Q 108 75 106 100 Q 104 110 98 105 Q 94 90 92 75 Z"
-        fill="url(#hairLight)" opacity="0.9"/>
+  <!-- ribbon left tie (twin tail tie) -->
+  <path d="M 28 70 Q 22 68 22 76 Q 28 78 32 74 Z" fill="#EEB9D3"/>
+  <path d="M 22 76 Q 18 84 24 88 Q 28 82 22 76 Z" fill="#EEB9D3"/>
+  <!-- ribbon right tie -->
+  <path d="M 112 70 Q 118 68 118 76 Q 112 78 108 74 Z" fill="#EEB9D3"/>
+  <path d="M 118 76 Q 122 84 116 88 Q 112 82 118 76 Z" fill="#EEB9D3"/>
 
-  <!-- head (face area, slightly darker than hair so it reads) -->
-  <ellipse cx="60" cy="60" rx="24" ry="26" fill="#E8EBF5"/>
+  <!-- head (face area — pale, contrasts with bg) -->
+  <ellipse cx="70" cy="68" rx="27" ry="29" fill="#F2F4FA"/>
 
-  <!-- face shadow under bangs -->
-  <ellipse cx="60" cy="48" rx="22" ry="6" fill="#B9C5EE" opacity="0.3"/>
+  <!-- front bangs (clear chunks framing forehead) -->
+  <path d="M 43 55 Q 50 42 58 48 Q 64 38 70 46 Q 76 38 82 48 Q 90 42 97 55
+           Q 90 54 84 58 Q 76 53 70 58 Q 64 53 56 58 Q 50 54 43 55 Z"
+        fill="#D8DCE9"/>
 
-  <!-- front bangs -->
-  <path d="M 36 50 Q 42 38 50 42 Q 56 35 62 42 Q 68 35 74 42 Q 82 38 86 50
-           Q 80 47 74 50 Q 68 46 62 50 Q 56 46 50 50 Q 42 47 36 50 Z"
-        fill="url(#hairLight)"/>
+  <!-- side hair strands around face -->
+  <path d="M 42 60 Q 36 75 40 92 Q 36 80 38 65 Z" fill="#D8DCE9"/>
+  <path d="M 98 60 Q 104 75 100 92 Q 104 80 102 65 Z" fill="#D8DCE9"/>
 
-  <!-- side bangs -->
-  <path d="M 36 50 Q 30 65 32 78 Q 28 70 30 58 Z" fill="url(#hairLight)"/>
-  <path d="M 84 50 Q 90 65 88 78 Q 92 70 90 58 Z" fill="url(#hairLight)"/>
+  <!-- closed sleeping eyes (curved lines) -->
+  <path d="M 53 73 Q 58 77 63 73" stroke="#2A3042" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 77 73 Q 82 77 87 73" stroke="#2A3042" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- eyelashes -->
+  <path d="M 54 71 L 53 68 M 58 72 L 58 68 M 62 71 L 63 68" stroke="#2A3042" stroke-width="0.7" stroke-linecap="round"/>
+  <path d="M 78 71 L 77 68 M 82 72 L 82 68 M 86 71 L 87 68" stroke="#2A3042" stroke-width="0.7" stroke-linecap="round"/>
 
-  <!-- closed sleeping eyes -->
-  <path d="M 46 62 Q 51 66 56 62" stroke="#2A3042" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <path d="M 64 62 Q 69 66 74 62" stroke="#2A3042" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- eyelashes (tiny strokes) -->
-  <path d="M 47 60 L 46 58 M 51 61 L 51 58 M 55 60 L 56 58" stroke="#2A3042" stroke-width="0.8" stroke-linecap="round"/>
-  <path d="M 65 60 L 64 58 M 69 61 L 69 58 M 73 60 L 74 58" stroke="#2A3042" stroke-width="0.8" stroke-linecap="round"/>
+  <!-- pink blush circles -->
+  <ellipse cx="50" cy="84" rx="4" ry="2.5" fill="#EEB9D3" opacity="0.8"/>
+  <ellipse cx="90" cy="84" rx="4" ry="2.5" fill="#EEB9D3" opacity="0.8"/>
 
-  <!-- blush -->
-  <ellipse cx="44" cy="72" rx="3" ry="2" fill="#EEB9D3" opacity="0.5"/>
-  <ellipse cx="76" cy="72" rx="3" ry="2" fill="#EEB9D3" opacity="0.5"/>
+  <!-- tiny smile -->
+  <path d="M 66 90 Q 70 93 74 90" stroke="#2A3042" stroke-width="1.2" fill="none" stroke-linecap="round"/>
 
-  <!-- mouth (tiny content smile) -->
-  <path d="M 57 78 Q 60 80 63 78" stroke="#2A3042" stroke-width="1" fill="none" stroke-linecap="round"/>
-
-  <!-- bow on right side -->
-  <path d="M 88 38 Q 95 32 100 38 Q 95 44 88 38 Z M 92 38 L 92 32 L 96 38 L 92 42 Z"
-        fill="#B9C5EE" opacity="0.9"/>
-
-  <!-- floating Z -->
-  <text class="z" x="94" y="22" font-family="ui-monospace, monospace" font-size="16" fill="#B9C5EE" font-weight="bold">z</text>
+  <!-- floating Zs -->
+  <g class="z">
+    <text x="100" y="34" font-family="ui-monospace, monospace" font-size="14" fill="#B9C5EE" font-weight="bold">z</text>
+    <text x="112" y="22" font-family="ui-monospace, monospace" font-size="10" fill="#B9C5EE" font-weight="bold" opacity="0.7">z</text>
+  </g>
 </svg>
 
 <script src="/main.js" defer></script>
