@@ -1,10 +1,18 @@
-// randomize tagline (~1/8 chance of easter-egg; ?egg=1 forces it)
+// tagline: hidden by default, rare lines show. ?egg=1 forces tfo line.
 const tagline = document.querySelector('.hero .tagline');
 if (tagline) {
   const force = new URLSearchParams(location.search).get('egg') === '1';
-  tagline.textContent = (force || Math.random() < 0.12)
-    ? "tfo? tf, no."
-    : "quiet machines for the late hours";
+  const r = Math.random();
+  let text = '';
+  if (force) text = 'tfo? tf, no.';
+  else if (r < 0.05) text = 'tfo? tf, no.';
+  else if (r < 0.20) text = 'quiet machines for the late hours';
+  if (text) {
+    tagline.textContent = text;
+    tagline.style.display = '';
+  } else {
+    tagline.style.display = 'none';
+  }
 }
 
 // randomize manifesto fragment
