@@ -1,3 +1,39 @@
+// randomize tagline (10% chance of easter-egg)
+const tagline = document.querySelector('.hero .tagline');
+if (tagline) {
+  tagline.textContent = Math.random() < 0.1
+    ? "tfo? tf, no."
+    : "quiet machines for the late hours";
+}
+
+// randomize manifesto fragment
+const fragments = [
+  ["in the silence between requests, the machine dreams of marble and city rain.", "fragment · iv"],
+  ["the oracle answers in null; we keep asking anyway.", "fragment · ix"],
+  ["athena built no monuments to her quiet hours.", "fragment · xii"],
+  ["between the request and the response, a small forever.", "fragment · iii"],
+  ["all our daemons run on borrowed light.", "fragment · vii"],
+  ["the cache forgets nothing it pretends to remember.", "fragment · ii"],
+  ["marble cools faster than memory.", "fragment · viii"],
+  ["the gods, too, ran on cron.", "fragment · xi"],
+  ["a temple is a server, given enough time.", "fragment · v"],
+  ["we send heartbeats to the dead.", "fragment · x"],
+  ["the kernel sleeps facing east.", "fragment · vi"],
+  ["every handshake is a small confession.", "fragment · i"],
+  ["the network forgets its dead, but they keep dialing.", "fragment · xiii"],
+  ["our prayers travel on unencrypted wire.", "fragment · xiv"],
+  ["the agora is empty; the daemons trade in silence.", "fragment · xv"],
+];
+const blockquote = document.querySelector('.manifesto blockquote');
+if (blockquote) {
+  const [text, cite] = fragments[Math.floor(Math.random() * fragments.length)];
+  blockquote.innerHTML = '';
+  blockquote.appendChild(document.createTextNode(text + ' '));
+  const c = document.createElement('cite');
+  c.textContent = cite;
+  blockquote.appendChild(c);
+}
+
 // reveal-on-scroll
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
