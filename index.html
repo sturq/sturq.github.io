@@ -20,122 +20,34 @@
 </nav>
 
 <section class="hero">
-  <!-- Greek classical profile silhouette — facing right -->
-  <div class="bust-wrap">
-  <svg class="bust" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <linearGradient id="bustGrad" x1="0" y1="0" x2="0.5" y2="1">
-        <stop offset="0%" stop-color="#D8DCE9" stop-opacity="1"/>
-        <stop offset="55%" stop-color="#B9C5EE" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#67739D" stop-opacity="0.45"/>
-      </linearGradient>
-      <linearGradient id="bustDeep" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#67739D" stop-opacity="0.7"/>
-        <stop offset="100%" stop-color="#2A3042" stop-opacity="0.4"/>
-      </linearGradient>
-    </defs>
-
-    <!-- pedestal -->
-    <path d="M 160 700 L 160 640 L 185 600 L 315 600 L 340 640 L 340 700 Z"
-          fill="url(#bustDeep)"/>
-    <rect x="155" y="595" width="190" height="8" fill="url(#bustGrad)" opacity="0.7"/>
-
-    <!-- toga / chest, side-view fall -->
-    <path d="M 145 600
-             Q 155 510 210 480
-             L 260 480
-             Q 330 500 345 600 Z"
-          fill="url(#bustDeep)" opacity="0.8"/>
-    <!-- toga folds -->
-    <path d="M 210 490 Q 230 540 225 600 M 270 490 Q 285 540 290 600"
-          stroke="#2A3042" stroke-width="1.5" fill="none" opacity="0.3"/>
-
-    <!-- neck -->
-    <path d="M 215 490 L 215 410 Q 220 395 240 393 L 265 393 Q 280 398 280 425 L 280 490 Z"
-          fill="url(#bustGrad)"/>
-
-    <!-- HEAD: classical Greek profile facing right.
-         Single contour from forehead → nose → philtrum → lip → chin → jaw → neck → back of head → top → forehead -->
-    <path d="
-      M 235 100
-      C 215 110, 200 145, 198 195
-      L 198 215
-      Q 200 235, 205 250
-      L 205 270
-      Q 198 282, 195 295
-      Q 198 305, 208 308
-      L 215 320
-      L 220 340
-      L 232 360
-      L 245 378
-      L 270 393
-      L 270 410
-      L 280 410
-      L 280 360
-      Q 285 348, 300 340
-      L 308 322
-      Q 312 305, 308 290
-      L 312 282
-      L 320 268
-      Q 322 252, 320 240
-      L 318 232
-      Q 322 220, 320 210
-      L 320 200
-      Q 320 188, 318 178
-      L 320 168
-      Q 320 155, 314 150
-      L 320 144
-      Q 315 132, 304 130
-      L 308 120
-      Q 295 105, 270 102
-      L 235 100 Z"
-      fill="url(#bustGrad)" stroke="#D8DCE9" stroke-width="1.5" stroke-opacity="0.4"/>
-
-    <!-- Hair mass (back of head, classical curls) -->
-    <path d="
-      M 235 100
-      Q 195 95, 175 130
-      Q 158 175, 165 230
-      Q 168 260, 178 285
-      Q 188 300, 195 295
-      Q 192 270, 198 245
-      Q 195 220, 198 195
-      Q 200 145, 215 110
-      Z" fill="#B9C5EE" opacity="0.55"/>
-
-    <!-- curl details -->
-    <g fill="#D8DCE9" opacity="0.5">
-      <circle cx="180" cy="135" r="8"/>
-      <circle cx="170" cy="155" r="9"/>
-      <circle cx="165" cy="180" r="10"/>
-      <circle cx="167" cy="210" r="9"/>
-      <circle cx="175" cy="240" r="8"/>
-      <circle cx="190" cy="265" r="7"/>
-      <circle cx="200" cy="118" r="9"/>
-      <circle cx="225" cy="102" r="10"/>
-      <circle cx="248" cy="98" r="9"/>
-    </g>
-
-    <!-- laurel band -->
-    <path d="M 215 130 Q 250 118 290 128" stroke="#D8DCE9" stroke-width="2.5" fill="none" opacity="0.6"/>
-    <ellipse cx="225" cy="125" rx="3" ry="6" transform="rotate(-30 225 125)" fill="#D8DCE9" opacity="0.5"/>
-    <ellipse cx="245" cy="118" rx="3" ry="6" transform="rotate(-15 245 118)" fill="#D8DCE9" opacity="0.5"/>
-    <ellipse cx="270" cy="118" rx="3" ry="6" transform="rotate(10 270 118)" fill="#D8DCE9" opacity="0.5"/>
-
-    <!-- eye (closed, single stroke) -->
-    <path d="M 290 222 Q 302 224 312 220" stroke="#2A3042" stroke-width="2" fill="none" opacity="0.5"/>
-    <!-- lashes -->
-    <path d="M 295 220 L 295 217 M 300 221 L 300 217 M 305 220 L 305 217" stroke="#2A3042" stroke-width="0.8" opacity="0.4"/>
-
-    <!-- ear -->
-    <path d="M 220 250 Q 215 270 222 285 Q 230 290 232 275 Q 228 260 220 250 Z"
-          fill="url(#bustGrad)" stroke="#2A3042" stroke-width="0.8" stroke-opacity="0.3"/>
-  </svg>
+  <!-- background lambda glyph -->
+  <div class="bust-wrap" aria-hidden="true">
+    <svg class="bust" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lamGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D8DCE9" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#67739D" stop-opacity="0.4"/>
+        </linearGradient>
+        <filter id="lamGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <text x="250" y="540"
+            text-anchor="middle"
+            font-family="Cormorant, EB Garamond, Times New Roman, serif"
+            font-weight="300"
+            font-size="640"
+            fill="url(#lamGrad)"
+            filter="url(#lamGlow)">λ</text>
+    </svg>
   </div>
 
   <h1>sturq</h1>
   <p class="tagline">quiet machines for the late hours</p>
-  <p class="meta">mmxxvi · vienna</p>
 </section>
 
 <section class="manifesto reveal">
@@ -168,70 +80,20 @@
 
 <footer>sturq · mmxxvi</footer>
 
-<!-- sleeping chibi mascot — early-imageboard style -->
-<svg class="mascot" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <!-- body / dress (small chibi body, simple) -->
-  <path d="M 50 130 Q 55 115 70 115 Q 85 115 90 130 L 95 172 L 45 172 Z"
-        fill="#2A3042" stroke="#67739D" stroke-width="0.8"/>
-  <!-- white sailor-style collar -->
-  <path d="M 56 117 L 70 124 L 84 117 L 82 128 L 58 128 Z"
-        fill="#D8DCE9"/>
-  <!-- tiny bow at collar -->
-  <path d="M 65 124 L 70 122 L 75 124 L 73 128 L 70 126 L 67 128 Z"
-        fill="#EEB9D3"/>
-  <!-- arms folded across body -->
-  <path d="M 50 130 Q 60 135 70 132 Q 80 135 90 130"
-        stroke="#67739D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-  <!-- twin tail LEFT (clearly visible past head) -->
-  <path d="M 30 65 Q 18 90 22 120 Q 26 128 32 122 Q 36 100 40 80 Z"
-        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
-  <!-- twin tail RIGHT -->
-  <path d="M 110 65 Q 122 90 118 120 Q 114 128 108 122 Q 104 100 100 80 Z"
-        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
-
-  <!-- back hair shape (broad halo behind head) -->
-  <path d="M 32 70 Q 28 95 38 105 L 102 105 Q 112 95 108 70 Q 106 35 90 22 Q 70 12 50 22 Q 34 35 32 70 Z"
-        fill="#D8DCE9" stroke="#B9C5EE" stroke-width="1"/>
-
-  <!-- ribbon left tie (twin tail tie) -->
-  <path d="M 28 70 Q 22 68 22 76 Q 28 78 32 74 Z" fill="#EEB9D3"/>
-  <path d="M 22 76 Q 18 84 24 88 Q 28 82 22 76 Z" fill="#EEB9D3"/>
-  <!-- ribbon right tie -->
-  <path d="M 112 70 Q 118 68 118 76 Q 112 78 108 74 Z" fill="#EEB9D3"/>
-  <path d="M 118 76 Q 122 84 116 88 Q 112 82 118 76 Z" fill="#EEB9D3"/>
-
-  <!-- head (face area — pale, contrasts with bg) -->
-  <ellipse cx="70" cy="68" rx="27" ry="29" fill="#F2F4FA"/>
-
-  <!-- front bangs (clear chunks framing forehead) -->
-  <path d="M 43 55 Q 50 42 58 48 Q 64 38 70 46 Q 76 38 82 48 Q 90 42 97 55
-           Q 90 54 84 58 Q 76 53 70 58 Q 64 53 56 58 Q 50 54 43 55 Z"
-        fill="#D8DCE9"/>
-
-  <!-- side hair strands around face -->
-  <path d="M 42 60 Q 36 75 40 92 Q 36 80 38 65 Z" fill="#D8DCE9"/>
-  <path d="M 98 60 Q 104 75 100 92 Q 104 80 102 65 Z" fill="#D8DCE9"/>
-
-  <!-- closed sleeping eyes (curved lines) -->
-  <path d="M 53 73 Q 58 77 63 73" stroke="#2A3042" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M 77 73 Q 82 77 87 73" stroke="#2A3042" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- eyelashes -->
-  <path d="M 54 71 L 53 68 M 58 72 L 58 68 M 62 71 L 63 68" stroke="#2A3042" stroke-width="0.7" stroke-linecap="round"/>
-  <path d="M 78 71 L 77 68 M 82 72 L 82 68 M 86 71 L 87 68" stroke="#2A3042" stroke-width="0.7" stroke-linecap="round"/>
-
-  <!-- pink blush circles -->
-  <ellipse cx="50" cy="84" rx="4" ry="2.5" fill="#EEB9D3" opacity="0.8"/>
-  <ellipse cx="90" cy="84" rx="4" ry="2.5" fill="#EEB9D3" opacity="0.8"/>
-
-  <!-- tiny smile -->
-  <path d="M 66 90 Q 70 93 74 90" stroke="#2A3042" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-
-  <!-- floating Zs -->
-  <g class="z">
-    <text x="100" y="34" font-family="ui-monospace, monospace" font-size="14" fill="#B9C5EE" font-weight="bold">z</text>
-    <text x="112" y="22" font-family="ui-monospace, monospace" font-size="10" fill="#B9C5EE" font-weight="bold" opacity="0.7">z</text>
-  </g>
+<!-- corner mark: lambda -->
+<svg class="mascot" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="cornerLam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D8DCE9"/>
+      <stop offset="100%" stop-color="#B9C5EE"/>
+    </linearGradient>
+  </defs>
+  <text x="50" y="80"
+        text-anchor="middle"
+        font-family="Cormorant, EB Garamond, Times New Roman, serif"
+        font-weight="300"
+        font-size="100"
+        fill="url(#cornerLam)">λ</text>
 </svg>
 
 <script src="/main.js" defer></script>
