@@ -542,7 +542,7 @@
 </main>
 
 <script>
-const BLOB = {"salt":"xTrZ95bSSdFHnYxb4d0wag==","iv":"wtFw7/TXYAa0u4Cv","ct":"vmVr0iU4irPhqG21DRrXiZQZZqgWmBCdWYkEtNtGBxb9xO2HEAMgTLMV9QRE5QSwcVDt8Vo5sUPbzibXQY2T7yTfbwFecQx1NW4QMye9gubPCF4Q8PUysTHlJv4Wa/cyCVnbbbXAuIur/DUfIPOLcrm1jZlTpppTkkDLUFdA7pgeJyiSp1fUXv24dGBaQLBN2w1e7G3tZ2kGx+6K4muo4Ab6Yu2Mjfd3scN6mdYlqVXqe9yevPsCNFCYCFz2fw==","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
+const BLOB = {"salt":"6oz47NlEEdyUPQ9O0NQUCA==","iv":"KZOe3OawnSjNmwyD","ct":"7gP4tuveMItsDRPKUq0gZlpdD8mA5WgQO0tB+e/lxCpevITti+B4asaAwS7agmjF8njMAanAb9jZVKQXBqd3V8qA+5NyczAQmwjAT8DtxX0635dTigBeqfz0YAHel0qKu2S0N3mkEPxXJv+C/pjApIV60IRjphe9PY14bsm6M7fKZFVbHG+Jmb0N6WW3HaPoKuJhjrZfO1qXBoakM0N+NLJDaKCeCWlDpIr+6XoCievtU8tQ3je+I+V9PYdeAw==","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
@@ -566,7 +566,7 @@ async function decrypt(password) {
   return new TextDecoder().decode(pt);
 }
 
-const STORAGE_KEY = 'internal_blob_v3';
+const STORAGE_KEY = 'internal_blob_v4';
 const DB_NAME = 'internal';
 const STORE = 'keys';
 const KEY_ID = 'wrap';
