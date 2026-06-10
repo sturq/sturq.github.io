@@ -542,28 +542,38 @@
 </main>
 
 <script>
-const BLOB = {"salt":"6oz47NlEEdyUPQ9O0NQUCA==","iv":"KZOe3OawnSjNmwyD","ct":"7gP4tuveMItsDRPKUq0gZlpdD8mA5WgQO0tB+e/lxCpevITti+B4asaAwS7agmjF8njMAanAb9jZVKQXBqd3V8qA+5NyczAQmwjAT8DtxX0635dTigBeqfz0YAHel0qKu2S0N3mkEPxXJv+C/pjApIV60IRjphe9PY14bsm6M7fKZFVbHG+Jmb0N6WW3HaPoKuJhjrZfO1qXBoakM0N+NLJDaKCeCWlDpIr+6XoCievtU8tQ3je+I+V9PYdeAw==","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32};
+// Each blob is decrypted with its own password. First match wins.
+// Add new entries via: node .encrypt.js "PASSWORD" "<html>"  →  paste result.
+const BLOBS = [
+  {"salt":"6oz47NlEEdyUPQ9O0NQUCA==","iv":"KZOe3OawnSjNmwyD","ct":"7gP4tuveMItsDRPKUq0gZlpdD8mA5WgQO0tB+e/lxCpevITti+B4asaAwS7agmjF8njMAanAb9jZVKQXBqd3V8qA+5NyczAQmwjAT8DtxX0635dTigBeqfz0YAHel0qKu2S0N3mkEPxXJv+C/pjApIV60IRjphe9PY14bsm6M7fKZFVbHG+Jmb0N6WW3HaPoKuJhjrZfO1qXBoakM0N+NLJDaKCeCWlDpIr+6XoCievtU8tQ3je+I+V9PYdeAw==","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32}
+];
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
-async function decrypt(password) {
-  const salt = b64ToBytes(BLOB.salt);
-  const iv = b64ToBytes(BLOB.iv);
-  const ct = b64ToBytes(BLOB.ct);
-
+async function tryBlob(blob, password) {
+  const salt = b64ToBytes(blob.salt);
+  const iv = b64ToBytes(blob.iv);
+  const ct = b64ToBytes(blob.ct);
   const rawKey = await hashwasm.argon2id({
-    password,
-    salt,
-    parallelism: BLOB.parallelism,
-    iterations: BLOB.iterations,
-    memorySize: BLOB.memorySize,
-    hashLength: BLOB.hashLength,
+    password, salt,
+    parallelism: blob.parallelism,
+    iterations: blob.iterations,
+    memorySize: blob.memorySize,
+    hashLength: blob.hashLength,
     outputType: 'binary',
   });
-
   const key = await crypto.subtle.importKey('raw', rawKey, { name: 'AES-GCM' }, false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
   return new TextDecoder().decode(pt);
+}
+
+async function decrypt(password) {
+  for (const blob of BLOBS) {
+    try {
+      return await tryBlob(blob, password);
+    } catch { /* wrong password for this blob, try next */ }
+  }
+  throw new Error('no blob matched');
 }
 
 const STORAGE_KEY = 'internal_blob_v4';
