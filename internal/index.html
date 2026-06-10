@@ -545,7 +545,8 @@
 // Each blob is decrypted with its own password. First match wins.
 // Add new entries via: node .encrypt.js "PASSWORD" "<html>"  →  paste result.
 const BLOBS = [
-  {"salt":"6oz47NlEEdyUPQ9O0NQUCA==","iv":"KZOe3OawnSjNmwyD","ct":"7gP4tuveMItsDRPKUq0gZlpdD8mA5WgQO0tB+e/lxCpevITti+B4asaAwS7agmjF8njMAanAb9jZVKQXBqd3V8qA+5NyczAQmwjAT8DtxX0635dTigBeqfz0YAHel0qKu2S0N3mkEPxXJv+C/pjApIV60IRjphe9PY14bsm6M7fKZFVbHG+Jmb0N6WW3HaPoKuJhjrZfO1qXBoakM0N+NLJDaKCeCWlDpIr+6XoCievtU8tQ3je+I+V9PYdeAw==","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32}
+  {"salt":"6oz47NlEEdyUPQ9O0NQUCA==","iv":"KZOe3OawnSjNmwyD","ct":"7gP4tuveMItsDRPKUq0gZlpdD8mA5WgQO0tB+e/lxCpevITti+B4asaAwS7agmjF8njMAanAb9jZVKQXBqd3V8qA+5NyczAQmwjAT8DtxX0635dTigBeqfz0YAHel0qKu2S0N3mkEPxXJv+C/pjApIV60IRjphe9PY14bsm6M7fKZFVbHG+Jmb0N6WW3HaPoKuJhjrZfO1qXBoakM0N+NLJDaKCeCWlDpIr+6XoCievtU8tQ3je+I+V9PYdeAw==","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32},
+  {"salt":"fse8chz6dsSBh41hh2tGHg==","iv":"ZHhl7/hLWWmzX5+N","ct":"bR4Yjcta7FQn1efAs/ok2qigonxe9eWSJaHA2E0Oe+6Y4SmYXTqjlfU7bpx7rY8SRQqv9sT7TUa1+sAReNMmkywx5eewomKRmPUxkQnovDsVUwZYt0r7ijll/wVX/dEh9HF7mEnhCW5BApTN6UTau5Nb8xdg3/ghQxAGv4CqCsEmrmq4Vss9HEDtnkHVXu4lYq2gCDY87tnLn0DtlVEyiHxT7RWdxf8Wtgr2jn6J87kmQrlp1v6AVYRCL+YuMuk=","kdf":"argon2id","parallelism":1,"iterations":4,"memorySize":98304,"hashLength":32}
 ];
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
