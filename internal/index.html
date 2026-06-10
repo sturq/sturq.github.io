@@ -33,15 +33,74 @@
     transform-origin: 50% 50%;
     animation: mech-rotate 240s linear infinite;
   }
-  .internal-scene svg { width: 100%; height: 100%; display: block; }
+  .internal-zodiac {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180vmax;
+    height: 180vmax;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.22;
+    mix-blend-mode: screen;
+    transform-origin: 50% 50%;
+    animation: mech-counter 360s linear infinite;
+  }
+  .internal-bezel {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.45;
+    mix-blend-mode: screen;
+  }
+  .internal-status {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .internal-scene svg, .internal-zodiac svg,
+  .internal-bezel svg, .internal-status svg {
+    width: 100%; height: 100%; display: block;
+  }
   @keyframes mech-rotate {
     0%   { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(-360deg); }
   }
+  @keyframes mech-counter {
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes status-pulse {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 0.85; }
+  }
+  .internal-status .dot {
+    transform-origin: center;
+    animation: status-pulse 2.6s ease-in-out infinite;
+  }
+  .internal-status .dot.b { animation-delay: 0.6s; }
+  .internal-status .dot.c { animation-delay: 1.2s; }
+  .internal-status .dot.d { animation-delay: 1.8s; }
   @media (prefers-reduced-motion: reduce) {
-    .internal-scene { animation: none; }
+    .internal-scene, .internal-zodiac, .internal-status .dot { animation: none; }
   }
   #gate, #content { position: relative; z-index: 2; }
+  .seal-label {
+    margin-top: 24px;
+    font-family: var(--mono-font);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+  }
+  .seal-label::before, .seal-label::after {
+    content: "·";
+    margin: 0 10px;
+    color: var(--accent);
+  }
   .gate-wrap h1 {
     font-family: var(--display-font);
     font-weight: 300;
@@ -223,6 +282,129 @@
         <text x="576" y="572">ρ</text>
         <text x="576" y="332">υ</text>
       </g>
+
+      <!-- weathering / hairline cracks across the dial -->
+      <g stroke="#B9C5EE" stroke-width="0.5" fill="none" opacity="0.25">
+        <path d="M 380 130 Q 520 320 700 380 Q 880 420 1020 600"/>
+        <path d="M 1240 200 Q 1100 330 1050 480 Q 1020 600 1180 720"/>
+        <path d="M 560 800 Q 700 700 760 600 Q 820 500 880 430"/>
+        <path d="M 200 540 Q 360 460 500 470 Q 660 480 720 530"/>
+      </g>
+
+      <!-- rivet/peg dots at gear axes -->
+      <g fill="#B9C5EE" opacity="0.5">
+        <circle cx="280" cy="230" r="3"/>
+        <circle cx="1320" cy="240" r="3"/>
+        <circle cx="360" cy="720" r="3"/>
+        <circle cx="1280" cy="720" r="3"/>
+        <circle cx="550" cy="280" r="2"/>
+        <circle cx="1060" cy="750" r="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- counter-rotating zodiac wheel -->
+  <div class="internal-zodiac" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="#B9C5EE" opacity="0.4">
+        <circle cx="800" cy="450" r="540" stroke-width="1"/>
+        <circle cx="800" cy="450" r="520" stroke-width="0.5" stroke-dasharray="2 6"/>
+        <circle cx="800" cy="450" r="500" stroke-width="0.5"/>
+      </g>
+      <!-- 12 zodiac segment dividers -->
+      <g stroke="#B9C5EE" stroke-width="0.8" opacity="0.3">
+        <line x1="800" y1="-90" x2="800" y2="-50"/>
+        <line x1="1267" y1="180" x2="1232" y2="200"/>
+        <line x1="1267" y1="720" x2="1232" y2="700"/>
+        <line x1="800" y1="990" x2="800" y2="950"/>
+        <line x1="333" y1="720" x2="368" y2="700"/>
+        <line x1="333" y1="180" x2="368" y2="200"/>
+      </g>
+      <!-- zodiac symbols -->
+      <g font-family="Cormorant, EB Garamond, serif" font-size="34" text-anchor="middle" fill="#B9C5EE" opacity="0.7">
+        <text x="800" y="-28">♈</text>
+        <text x="1070" y="13">♉</text>
+        <text x="1267" y="206">♊</text>
+        <text x="1308" y="476">♋</text>
+        <text x="1267" y="746">♌</text>
+        <text x="1070" y="939">♍</text>
+        <text x="800" y="980">♎</text>
+        <text x="530" y="939">♏</text>
+        <text x="333" y="746">♐</text>
+        <text x="292" y="476">♑</text>
+        <text x="333" y="206">♒</text>
+        <text x="530" y="13">♓</text>
+      </g>
+      <!-- Greek scripted band (mock-inscription, looks like worn engravings) -->
+      <g font-family="Cormorant, EB Garamond, serif" font-style="italic" font-size="13" fill="#B9C5EE" opacity="0.45" letter-spacing="6">
+        <text x="800" y="450" text-anchor="middle" transform="rotate(0 800 450)">
+          <textPath href="#zodArc" startOffset="0%">ψυχη · σιωπη · μηχανη · χρονοσ · σφραγισ · μνημη · κρυπτοσ ·</textPath>
+        </text>
+      </g>
+      <defs>
+        <path id="zodArc" d="M 320 450 A 480 480 0 1 1 1280 450"/>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- static bezel: frame ornaments + cardinal markers + meander pattern -->
+  <div class="internal-bezel" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <!-- corner Greek key (meander) brackets -->
+      <g fill="none" stroke="#B9C5EE" stroke-width="1.2" opacity="0.55">
+        <!-- top-left -->
+        <path d="M 40 90 L 130 90 L 130 60 L 100 60 L 100 80 L 60 80 L 60 110 L 90 110 L 90 130 L 40 130 Z"/>
+        <!-- top-right -->
+        <path d="M 1560 90 L 1470 90 L 1470 60 L 1500 60 L 1500 80 L 1540 80 L 1540 110 L 1510 110 L 1510 130 L 1560 130 Z"/>
+        <!-- bottom-left -->
+        <path d="M 40 810 L 130 810 L 130 840 L 100 840 L 100 820 L 60 820 L 60 790 L 90 790 L 90 770 L 40 770 Z"/>
+        <!-- bottom-right -->
+        <path d="M 1560 810 L 1470 810 L 1470 840 L 1500 840 L 1500 820 L 1540 820 L 1540 790 L 1510 790 L 1510 770 L 1560 770 Z"/>
+      </g>
+
+      <!-- cardinal markers (greek letters at 4 sides) -->
+      <g font-family="Cormorant, EB Garamond, serif" font-size="24" text-anchor="middle" fill="#B9C5EE" opacity="0.8">
+        <text x="800" y="34">Β</text>
+        <text x="1576" y="458">Α</text>
+        <text x="800" y="880">Γ</text>
+        <text x="20" y="458">Δ</text>
+      </g>
+
+      <!-- vault frame brackets at sides -->
+      <g stroke="#B9C5EE" stroke-width="1" fill="none" opacity="0.35">
+        <line x1="20" y1="220" x2="20" y2="680"/>
+        <line x1="1580" y1="220" x2="1580" y2="680"/>
+        <line x1="240" y1="20" x2="1360" y2="20"/>
+        <line x1="240" y1="880" x2="1360" y2="880"/>
+      </g>
+
+      <!-- engraved bottom label -->
+      <g font-family="ui-monospace, monospace" font-size="11" text-anchor="middle" fill="#B9C5EE" opacity="0.55" letter-spacing="6">
+        <text x="800" y="860">VAULT · SEALED · IV</text>
+      </g>
+      <g font-family="ui-monospace, monospace" font-size="11" text-anchor="middle" fill="#B9C5EE" opacity="0.45" letter-spacing="6">
+        <text x="800" y="58">ΑΓΟΡΑ · ΚΡΥΠΤΟΣ</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- foreground status indicators (small pulsing) -->
+  <div class="internal-status" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <g fill="#B9C5EE">
+        <!-- 4 corner pulsing dots -->
+        <circle class="dot a" cx="150" cy="170" r="3"/>
+        <circle class="dot b" cx="1450" cy="170" r="3"/>
+        <circle class="dot c" cx="150" cy="730" r="3"/>
+        <circle class="dot d" cx="1450" cy="730" r="3"/>
+      </g>
+      <g stroke="#B9C5EE" stroke-width="0.6" fill="none" opacity="0.6">
+        <!-- corner status brackets -->
+        <path d="M 130 150 L 130 200 M 130 150 L 180 150"/>
+        <path d="M 1470 150 L 1470 200 M 1470 150 L 1420 150"/>
+        <path d="M 130 750 L 130 700 M 130 750 L 180 750"/>
+        <path d="M 1470 750 L 1470 700 M 1470 750 L 1420 750"/>
+      </g>
     </svg>
   </div>
 
@@ -233,6 +415,7 @@
       <button type="submit">enter</button>
       <div class="err" id="err"></div>
     </form>
+    <div class="seal-label">vault sealed · awaiting key</div>
   </div>
   <div id="content"></div>
 </main>
