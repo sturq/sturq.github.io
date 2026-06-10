@@ -542,7 +542,7 @@
 </main>
 
 <script>
-const BLOB = {"salt":"Bx5T3r0eizTbpKAZffoP/A==","iv":"3AecDIg5Fg0bMdL0","ct":"UC2t747V3aioFwK0Tt1PaDMhzYYhNt6ZdSJfOI3zUYDjZJ6kljSiMpI00nx/kE15VKI+DbUM749KkGEs8CxWbBicH0beHsBvLlApNO43zvKiBkfskpsqTRVzb65GgfnULFIXzXWvLzbDNqbcnGZW","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
+const BLOB = {"salt":"xTrZ95bSSdFHnYxb4d0wag==","iv":"wtFw7/TXYAa0u4Cv","ct":"vmVr0iU4irPhqG21DRrXiZQZZqgWmBCdWYkEtNtGBxb9xO2HEAMgTLMV9QRE5QSwcVDt8Vo5sUPbzibXQY2T7yTfbwFecQx1NW4QMye9gubPCF4Q8PUysTHlJv4Wa/cyCVnbbbXAuIur/DUfIPOLcrm1jZlTpppTkkDLUFdA7pgeJyiSp1fUXv24dGBaQLBN2w1e7G3tZ2kGx+6K4muo4Ab6Yu2Mjfd3scN6mdYlqVXqe9yevPsCNFCYCFz2fw==","kdf":"argon2id","parallelism":1,"iterations":3,"memorySize":65536,"hashLength":32};
 
 const b64ToBytes = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
@@ -566,7 +566,7 @@ async function decrypt(password) {
   return new TextDecoder().decode(pt);
 }
 
-const STORAGE_KEY = 'internal_blob_v2';
+const STORAGE_KEY = 'internal_blob_v3';
 const DB_NAME = 'internal';
 const STORE = 'keys';
 const KEY_ID = 'wrap';
