@@ -3,7 +3,7 @@ const tagline = document.querySelector('.hero .tagline');
 if (tagline) {
   const force = new URLSearchParams(location.search).get('egg') === '1';
   tagline.textContent = (force || Math.random() < 0.12)
-    ? "tfo? tf, no."
+    ? "tfo? more like tf, no"
     : "quiet machines for the late hours";
 }
 
