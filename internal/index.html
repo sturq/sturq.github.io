@@ -667,6 +667,43 @@ function unlock(html) {
   });
 }
 
+function triggerFileDownload(name, mime, b64data) {
+  const bin = atob(b64data);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  const blob = new Blob([bytes], { type: mime || 'application/octet-stream' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name || 'file';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+  // tiny inline indicator
+  document.getElementById('gate').style.display = 'none';
+  const content = document.getElementById('content');
+  const safeName = String(name || 'file').replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+  content.innerHTML =
+    '<h1 style="font-family:var(--display-font);font-weight:400;font-size:clamp(48px,10vw,84px);line-height:1;color:var(--fg);text-shadow:0 0 50px rgba(185,197,238,0.3);">downloaded</h1>' +
+    '<p style="margin-top:14px;font-family:var(--mono-font);font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--dim);">' + safeName + '</p>' +
+    '<button id="logout">lock</button>';
+  content.style.display = 'block';
+  document.getElementById('logout').addEventListener('click', () => location.reload());
+}
+
+// dispatch plaintext: new JSON format ({k:"h",v:...} or {k:"f",n,m,d}) or legacy plain HTML
+function dispatch(plaintext, opts) {
+  let obj = null;
+  if (plaintext.charCodeAt(0) === 123 /* '{' */) {
+    try { obj = JSON.parse(plaintext); } catch {}
+  }
+  if (obj && obj.k === 'f') {
+    triggerFileDownload(obj.n, obj.m, obj.d);
+    return; // don't persist files
+  }
+  const html = obj && obj.k === 'h' ? obj.v : plaintext;
+  if (opts && opts.persist) persistContent(html);
+  unlock(html);
+}
+
 (async () => {
   const restored = await restoreContent();
   if (restored) unlock(restored);
@@ -683,9 +720,9 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   input.disabled = true;
   btn.textContent = 'decrypting…';
   try {
-    const html = await decrypt(pw);
-    await persistContent(html);
-    unlock(html);
+    const plaintext = await decrypt(pw);
+    dispatch(plaintext, { persist: true });
+    return;
   } catch {
     err.textContent = 'wrong password';
     btn.disabled = false;
