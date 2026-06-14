@@ -19,75 +19,85 @@
     position: relative;
     overflow: hidden;
   }
-  .internal-scene {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 220vmax;
-    height: 220vmax;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-    mix-blend-mode: screen;
-    filter:
-      drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
-      drop-shadow(0 2px 6px rgba(185, 197, 238, 0.18))
-      contrast(1.05) saturate(1.1);
-    transform-origin: 50% 50%;
-    animation: mech-rotate 240s linear infinite;
-  }
-  .internal-zodiac {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 180vmax;
-    height: 180vmax;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.22;
-    mix-blend-mode: screen;
-    transform-origin: 50% 50%;
-    animation: mech-counter 360s linear infinite;
-  }
-  .internal-bezel {
+  .orbs {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 1;
-    opacity: 0.45;
-    mix-blend-mode: screen;
+    z-index: 0;
+    overflow: hidden;
   }
-  .internal-status {
+  .orb {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.18) 22%,
+        rgba(185, 197, 238, 0.32) 60%,
+        rgba(185, 197, 238, 0.55) 100%);
+    box-shadow:
+      inset 0 2px 6px rgba(255, 255, 255, 0.4),
+      inset 0 -2px 6px rgba(185, 197, 238, 0.4),
+      0 12px 40px rgba(0, 0, 0, 0.35),
+      0 2px 10px rgba(185, 197, 238, 0.2);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    opacity: 0.7;
   }
-  .internal-scene svg, .internal-zodiac svg,
-  .internal-bezel svg, .internal-status svg {
-    width: 100%; height: 100%; display: block;
+  .orb::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    left: 14%;
+    width: 42%;
+    height: 28%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.15) 60%,
+      transparent 100%);
+    transform: rotate(-22deg);
+    filter: blur(2px);
   }
-  @keyframes mech-rotate {
-    0%   { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(-360deg); }
+  .orb.a { width: 180px; height: 180px; top: 12%; left: 8%;  animation: drift-a 22s ease-in-out infinite; }
+  .orb.b { width: 110px; height: 110px; top: 68%; left: 12%; animation: drift-b 28s ease-in-out infinite; }
+  .orb.c { width: 220px; height: 220px; top: 18%; right: 10%; animation: drift-c 32s ease-in-out infinite; }
+  .orb.d { width: 90px;  height: 90px;  top: 74%; right: 16%; animation: drift-d 26s ease-in-out infinite; }
+  .orb.e { width: 60px;  height: 60px;  top: 46%; left: 18%; animation: drift-e 19s ease-in-out infinite; opacity: 0.55; }
+  .orb.f { width: 70px;  height: 70px;  top: 32%; right: 22%; animation: drift-f 24s ease-in-out infinite; opacity: 0.55; }
+  @keyframes drift-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(40px, -30px) scale(1.04); }
   }
-  @keyframes mech-counter {
-    0%   { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  @keyframes drift-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-25px, -40px) scale(1.06); }
   }
-  @keyframes status-pulse {
-    0%, 100% { opacity: 0.35; }
-    50%      { opacity: 0.85; }
+  @keyframes drift-c {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-35px, 40px) scale(0.96); }
   }
-  .internal-status .dot {
-    transform-origin: center;
-    animation: status-pulse 2.6s ease-in-out infinite;
+  @keyframes drift-d {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(30px, -25px) scale(1.05); }
   }
-  .internal-status .dot.b { animation-delay: 0.6s; }
-  .internal-status .dot.c { animation-delay: 1.2s; }
-  .internal-status .dot.d { animation-delay: 1.8s; }
+  @keyframes drift-e {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(20px, 35px); }
+  }
+  @keyframes drift-f {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-30px, 25px); }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .internal-scene, .internal-zodiac, .internal-status .dot { animation: none; }
+    .orb { animation: none !important; }
+  }
+  @media (max-width: 600px) {
+    .orb.a { width: 130px; height: 130px; }
+    .orb.b { width: 80px;  height: 80px; }
+    .orb.c { width: 150px; height: 150px; }
+    .orb.d { width: 70px;  height: 70px; }
+    .orb.e, .orb.f { display: none; }
   }
   #gate, #content { position: relative; z-index: 2; }
   .seal-label {
@@ -250,224 +260,14 @@
 
 <main class="gate-wrap">
 
-  <!-- antikythera-style mechanism background -->
-  <!-- iOS 26 liquid-glass orbital scene -->
-  <div class="internal-scene" aria-hidden="true">
-    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <radialGradient id="discBody" cx="50%" cy="50%" r="60%">
-          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.42"/>
-          <stop offset="38%"  stop-color="#FFFFFF" stop-opacity="0.14"/>
-          <stop offset="72%"  stop-color="#B9C5EE" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.55"/>
-        </radialGradient>
-        <radialGradient id="discRim" cx="50%" cy="50%" r="50%">
-          <stop offset="92%"  stop-color="#FFFFFF" stop-opacity="0"/>
-          <stop offset="98%"  stop-color="#FFFFFF" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.18"/>
-        </radialGradient>
-        <linearGradient id="discSheen" x1="0.1" y1="0" x2="0.7" y2="1">
-          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.6"/>
-          <stop offset="35%"  stop-color="#FFFFFF" stop-opacity="0.06"/>
-          <stop offset="65%"  stop-color="#FFFFFF" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.32"/>
-        </linearGradient>
-        <radialGradient id="orbBody" cx="42%" cy="38%" r="65%">
-          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.85"/>
-          <stop offset="35%"  stop-color="#FFFFFF" stop-opacity="0.3"/>
-          <stop offset="80%"  stop-color="#B9C5EE" stop-opacity="0.45"/>
-          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.7"/>
-        </radialGradient>
-      </defs>
-
-      <!-- outer glass disc -->
-      <circle cx="800" cy="450" r="430" fill="url(#discBody)"/>
-      <circle cx="800" cy="450" r="430" fill="url(#discRim)"/>
-      <circle cx="800" cy="450" r="430" fill="url(#discSheen)" opacity="0.85"/>
-
-      <!-- concentric thin rings (subtle) -->
-      <g fill="none" stroke="#FFFFFF" stroke-opacity="0.32">
-        <circle cx="800" cy="450" r="410" stroke-width="0.6"/>
-        <circle cx="800" cy="450" r="368" stroke-width="0.4" stroke-dasharray="2 8"/>
-        <circle cx="800" cy="450" r="316" stroke-width="0.5"/>
-        <circle cx="800" cy="450" r="252" stroke-width="0.4" stroke-dasharray="1 6"/>
-        <circle cx="800" cy="450" r="186" stroke-width="0.5"/>
-        <circle cx="800" cy="450" r="120" stroke-width="0.6"/>
-      </g>
-      <g fill="none" stroke="#B9C5EE" stroke-opacity="0.28">
-        <circle cx="800" cy="450" r="395" stroke-width="0.3"/>
-        <circle cx="800" cy="450" r="340" stroke-width="0.3"/>
-        <circle cx="800" cy="450" r="220" stroke-width="0.4"/>
-      </g>
-
-      <!-- 12 hour marks (clean, no chaos) -->
-      <g stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.4" stroke-linecap="round">
-        <line x1="800" y1="40"  x2="800" y2="60"/>
-        <line x1="800" y1="840" x2="800" y2="860"/>
-        <line x1="400" y1="450" x2="380" y2="450"/>
-        <line x1="1200" y1="450" x2="1220" y2="450"/>
-        <line x1="600" y1="104" x2="608" y2="123"/>
-        <line x1="1000" y1="104" x2="992" y2="123"/>
-        <line x1="600" y1="796" x2="608" y2="777"/>
-        <line x1="1000" y1="796" x2="992" y2="777"/>
-        <line x1="455" y1="248" x2="473" y2="258"/>
-        <line x1="1145" y1="248" x2="1127" y2="258"/>
-        <line x1="455" y1="652" x2="473" y2="642"/>
-        <line x1="1145" y1="652" x2="1127" y2="642"/>
-      </g>
-
-      <!-- 60 minor ticks on outer ring -->
-      <g stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="0.6">
-        <line x1="800" y1="40"  x2="800" y2="48"/>
-        <line x1="841" y1="42"  x2="840" y2="50"/>
-        <line x1="882" y1="46"  x2="881" y2="54"/>
-        <line x1="923" y1="54"  x2="921" y2="62"/>
-        <line x1="963" y1="64"  x2="961" y2="72"/>
-        <line x1="1003" y1="77" x2="1000" y2="84"/>
-        <line x1="1041" y1="93" x2="1038" y2="100"/>
-        <line x1="1079" y1="111" x2="1075" y2="118"/>
-        <line x1="1115" y1="132" x2="1110" y2="138"/>
-        <line x1="1149" y1="155" x2="1144" y2="161"/>
-        <line x1="1181" y1="181" x2="1176" y2="186"/>
-        <line x1="1212" y1="208" x2="1207" y2="213"/>
-        <line x1="1240" y1="238" x2="1235" y2="242"/>
-        <line x1="1266" y1="270" x2="1261" y2="273"/>
-        <line x1="1289" y1="304" x2="1283" y2="307"/>
-        <line x1="1308" y1="339" x2="1302" y2="341"/>
-        <line x1="1325" y1="376" x2="1318" y2="378"/>
-        <line x1="1339" y1="414" x2="1332" y2="416"/>
-        <line x1="1349" y1="453" x2="1341" y2="453"/>
-        <line x1="1349" y1="453" x2="1341" y2="453"/>
-        <line x1="1339" y1="486" x2="1332" y2="484"/>
-        <line x1="1325" y1="524" x2="1318" y2="522"/>
-        <line x1="1308" y1="561" x2="1302" y2="559"/>
-        <line x1="1289" y1="596" x2="1283" y2="593"/>
-        <line x1="1266" y1="630" x2="1261" y2="627"/>
-        <line x1="1240" y1="662" x2="1235" y2="658"/>
-        <line x1="1212" y1="692" x2="1207" y2="687"/>
-        <line x1="1181" y1="719" x2="1176" y2="714"/>
-        <line x1="1149" y1="745" x2="1144" y2="739"/>
-        <line x1="1115" y1="768" x2="1110" y2="762"/>
-        <line x1="1079" y1="789" x2="1075" y2="782"/>
-        <line x1="1041" y1="807" x2="1038" y2="800"/>
-        <line x1="1003" y1="823" x2="1000" y2="816"/>
-        <line x1="963" y1="836" x2="961" y2="828"/>
-        <line x1="923" y1="846" x2="921" y2="838"/>
-        <line x1="882" y1="854" x2="881" y2="846"/>
-        <line x1="841" y1="858" x2="840" y2="850"/>
-        <line x1="800" y1="860" x2="800" y2="852"/>
-        <line x1="759" y1="858" x2="760" y2="850"/>
-        <line x1="718" y1="854" x2="719" y2="846"/>
-        <line x1="677" y1="846" x2="679" y2="838"/>
-        <line x1="637" y1="836" x2="639" y2="828"/>
-        <line x1="597" y1="823" x2="600" y2="816"/>
-        <line x1="559" y1="807" x2="562" y2="800"/>
-        <line x1="521" y1="789" x2="525" y2="782"/>
-        <line x1="485" y1="768" x2="490" y2="762"/>
-        <line x1="451" y1="745" x2="456" y2="739"/>
-        <line x1="419" y1="719" x2="424" y2="714"/>
-        <line x1="388" y1="692" x2="393" y2="687"/>
-        <line x1="360" y1="662" x2="365" y2="658"/>
-        <line x1="334" y1="630" x2="339" y2="627"/>
-        <line x1="311" y1="596" x2="317" y2="593"/>
-        <line x1="292" y1="561" x2="298" y2="559"/>
-        <line x1="275" y1="524" x2="282" y2="522"/>
-        <line x1="261" y1="486" x2="268" y2="484"/>
-        <line x1="251" y1="453" x2="259" y2="453"/>
-        <line x1="261" y1="414" x2="268" y2="416"/>
-        <line x1="275" y1="376" x2="282" y2="378"/>
-        <line x1="292" y1="339" x2="298" y2="341"/>
-        <line x1="311" y1="304" x2="317" y2="307"/>
-        <line x1="334" y1="270" x2="339" y2="273"/>
-        <line x1="360" y1="238" x2="365" y2="242"/>
-        <line x1="388" y1="208" x2="393" y2="213"/>
-        <line x1="419" y1="181" x2="424" y2="186"/>
-        <line x1="451" y1="155" x2="456" y2="161"/>
-        <line x1="485" y1="132" x2="490" y2="138"/>
-        <line x1="521" y1="111" x2="525" y2="118"/>
-        <line x1="559" y1="93" x2="562" y2="100"/>
-        <line x1="597" y1="77" x2="600" y2="84"/>
-        <line x1="637" y1="64" x2="639" y2="72"/>
-        <line x1="677" y1="54" x2="679" y2="62"/>
-        <line x1="718" y1="46" x2="719" y2="54"/>
-        <line x1="759" y1="42" x2="760" y2="50"/>
-      </g>
-
-      <!-- roman hour numerals on the outer ring -->
-      <g font-family="Cormorant, EB Garamond, serif" font-style="italic" font-size="22" text-anchor="middle" fill="#FFFFFF" opacity="0.7" letter-spacing="2">
-        <text x="800" y="98">XII</text>
-        <text x="1010" y="158">I</text>
-        <text x="1160" y="306">II</text>
-        <text x="1218" y="458">III</text>
-        <text x="1160" y="610">IV</text>
-        <text x="1010" y="762">V</text>
-        <text x="800" y="822">VI</text>
-        <text x="590" y="762">VII</text>
-        <text x="440" y="610">VIII</text>
-        <text x="382" y="458">IX</text>
-        <text x="440" y="306">X</text>
-        <text x="590" y="158">XI</text>
-      </g>
-
-      <!-- 12 zodiac glyphs on inner ring -->
-      <g font-family="Cormorant, EB Garamond, serif" font-size="22" text-anchor="middle" fill="#B9C5EE" opacity="0.65">
-        <text x="800" y="240">♈</text>
-        <text x="912" y="272">♉</text>
-        <text x="994" y="354">♊</text>
-        <text x="1024" y="458">♋</text>
-        <text x="994" y="562">♌</text>
-        <text x="912" y="644">♍</text>
-        <text x="800" y="676">♎</text>
-        <text x="688" y="644">♏</text>
-        <text x="606" y="562">♐</text>
-        <text x="576" y="458">♑</text>
-        <text x="606" y="354">♒</text>
-        <text x="688" y="272">♓</text>
-      </g>
-
-      <!-- central glass orb -->
-      <g>
-        <circle cx="800" cy="450" r="78" fill="url(#orbBody)"/>
-        <circle cx="800" cy="450" r="78" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="0.8"/>
-        <!-- highlight crescent -->
-        <ellipse cx="778" cy="416" rx="32" ry="16" fill="#FFFFFF" opacity="0.32" transform="rotate(-30 778 416)"/>
-        <ellipse cx="778" cy="416" rx="18" ry="6" fill="#FFFFFF" opacity="0.55" transform="rotate(-30 778 416)"/>
-        <!-- subtle inner ring -->
-        <circle cx="800" cy="450" r="42" fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="0.4"/>
-        <circle cx="800" cy="450" r="14" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.6"/>
-        <circle cx="800" cy="450" r="4" fill="#FFFFFF" opacity="0.85"/>
-      </g>
-
-      <!-- faint constellation scatter -->
-      <g fill="#FFFFFF" opacity="0.55">
-        <circle cx="220" cy="180" r="1.2"/>
-        <circle cx="280" cy="120" r="1"/>
-        <circle cx="340" cy="200" r="0.9"/>
-        <circle cx="1280" cy="160" r="1.2"/>
-        <circle cx="1360" cy="220" r="1"/>
-        <circle cx="1220" cy="240" r="0.9"/>
-        <circle cx="200" cy="720" r="1"/>
-        <circle cx="280" cy="780" r="1.4"/>
-        <circle cx="360" cy="700" r="0.9"/>
-        <circle cx="1260" cy="700" r="1.1"/>
-        <circle cx="1340" cy="760" r="0.9"/>
-        <circle cx="1380" cy="680" r="1.3"/>
-        <circle cx="120" cy="450" r="1"/>
-        <circle cx="1480" cy="450" r="1.1"/>
-        <circle cx="800" cy="60"  r="0.9"/>
-        <circle cx="800" cy="840" r="0.9"/>
-      </g>
-      <g stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="0.4" fill="none">
-        <line x1="220" y1="180" x2="280" y2="120"/>
-        <line x1="280" y1="120" x2="340" y2="200"/>
-        <line x1="1280" y1="160" x2="1360" y2="220"/>
-        <line x1="1280" y1="160" x2="1220" y2="240"/>
-        <line x1="200" y1="720" x2="280" y2="780"/>
-        <line x1="280" y1="780" x2="360" y2="700"/>
-        <line x1="1260" y1="700" x2="1340" y2="760"/>
-        <line x1="1340" y1="760" x2="1380" y2="680"/>
-      </g>
-    </svg>
+  <!-- iOS 26 drifting glass orbs -->
+  <div class="orbs" aria-hidden="true">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="orb c"></div>
+    <div class="orb d"></div>
+    <div class="orb e"></div>
+    <div class="orb f"></div>
   </div>
 
 
