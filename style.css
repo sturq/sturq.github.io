@@ -448,51 +448,63 @@ footer {
     inset 0 -1px 0 rgba(255, 255, 255, 0.03);
 }
 
-/* --- agora: drifting liquid-glass constellation under the temple --- */
+/* --- agora: cluster of small drifting liquid-glass orbs under the temple --- */
 .agora {
   position: relative;
   width: 100%;
-  height: clamp(420px, 65vh, 760px);
+  height: clamp(420px, 60vh, 700px);
   overflow: hidden;
   z-index: 1;
-  margin-top: -40px;
-  mix-blend-mode: screen;
-  filter:
-    drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
-    drop-shadow(0 2px 6px rgba(185, 197, 238, 0.15))
-    contrast(1.05) saturate(1.1);
   pointer-events: none;
 }
-.agora svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.agora-orbs {
+  position: absolute;
+  inset: 0;
 }
-.agora .orb {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: orb-drift 30s ease-in-out infinite alternate;
+.agora-orbs .orb {
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.18) 22%,
+      rgba(185, 197, 238, 0.32) 60%,
+      rgba(185, 197, 238, 0.55) 100%);
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 3px rgba(185, 197, 238, 0.4),
+    0 6px 18px rgba(0, 0, 0, 0.3),
+    0 1px 6px rgba(185, 197, 238, 0.18);
+  backdrop-filter: blur(6px) saturate(150%);
+  -webkit-backdrop-filter: blur(6px) saturate(150%);
+  opacity: 0.65;
+  animation: agora-drift var(--dur, 22s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  transform: translate(0, 0);
 }
-.agora .orb-1 { animation-duration: 26s; }
-.agora .orb-2 { animation-duration: 32s; animation-direction: alternate-reverse; }
-.agora .orb-3 { animation-duration: 40s; }
-.agora .orb-4 { animation-duration: 28s; animation-direction: alternate-reverse; }
-.agora .orb-5 { animation-duration: 34s; }
-@keyframes orb-drift {
-  0%   { transform: translate(-14px, -10px); }
-  50%  { transform: translate( 10px, -4px); }
-  100% { transform: translate( 14px,  10px); }
+.agora-orbs .orb::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 14%;
+  width: 42%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 100%);
+  transform: rotate(-22deg);
+  filter: blur(1.5px);
 }
-.agora .agora-label {
-  animation: label-breath 8s ease-in-out infinite alternate;
-}
-@keyframes label-breath {
-  0%   { opacity: 0.3; }
-  100% { opacity: 0.55; }
+@keyframes agora-drift {
+  0%   { transform: translate(var(--dx0, -10px), var(--dy0, -8px)) scale(0.98); }
+  50%  { transform: translate(var(--dxm,  6px), var(--dym, -2px)) scale(1.02); }
+  100% { transform: translate(var(--dx1, 10px), var(--dy1,  8px)) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .agora .orb, .agora .agora-label { animation: none !important; }
+  .agora-orbs .orb { animation: none !important; }
 }
 
 /* --- project detail page --- */

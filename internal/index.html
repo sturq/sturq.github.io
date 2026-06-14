@@ -23,8 +23,41 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
+  }
+  .vault-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    filter:
+      drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 2px 6px rgba(185, 197, 238, 0.15))
+      contrast(1.05) saturate(1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vault-scene svg {
+    width: min(120vmin, 1400px);
+    height: auto;
+    display: block;
+  }
+  .vault-dial {
+    transform-origin: 600px 600px;
+    animation: vault-spin 120s linear infinite;
+  }
+  @keyframes vault-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (max-width: 600px) {
+    .vault-scene { opacity: 0.42; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vault-dial { animation: none !important; }
   }
   .orb {
     position: absolute;
@@ -259,6 +292,157 @@
 </nav>
 
 <main class="gate-wrap">
+
+  <!-- liquid-glass vault door scene -->
+  <div class="vault-scene" aria-hidden="true">
+    <svg viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="vaultBody" cx="35%" cy="30%" r="80%">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+          <stop offset="22%"  stop-color="#FFFFFF" stop-opacity="0.18"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.35"/>
+          <stop offset="82%"  stop-color="#404661" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#1f2333" stop-opacity="0.78"/>
+        </radialGradient>
+        <linearGradient id="rimBand" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+        </linearGradient>
+        <radialGradient id="vaultHalo" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#B9C5EE" stop-opacity="0.18"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="dialBody" cx="35%" cy="28%" r="78%">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="32%"  stop-color="#FFFFFF" stop-opacity="0.22"/>
+          <stop offset="65%"  stop-color="#B9C5EE" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#404661" stop-opacity="0.55"/>
+        </radialGradient>
+        <linearGradient id="boltGloss" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+        </linearGradient>
+        <radialGradient id="hubGloss" cx="35%" cy="28%" r="80%">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.9"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#404661" stop-opacity="0.45"/>
+        </radialGradient>
+        <filter id="vaultSoft" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="0.5"/>
+        </filter>
+      </defs>
+
+      <!-- outer halo glow -->
+      <circle cx="600" cy="600" r="580" fill="url(#vaultHalo)"/>
+
+      <!-- vault door body + rim -->
+      <g filter="url(#vaultSoft)">
+        <circle cx="600" cy="600" r="500" fill="url(#vaultBody)"/>
+        <circle cx="600" cy="600" r="500" fill="none" stroke="url(#rimBand)" stroke-width="30"/>
+        <circle cx="600" cy="600" r="485" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1"/>
+        <circle cx="600" cy="600" r="515" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="0.6"/>
+      </g>
+
+      <!-- bolt heads around the rim, 12 cardinal/intermediate positions -->
+      <g class="vault-bolts">
+        <circle cx="600"  cy="105"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="600"  cy="105"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="847"  cy="207"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="847"  cy="207"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="993"  cy="353"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="993"  cy="353"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="1095" cy="600"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="1095" cy="600"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="993"  cy="847"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="993"  cy="847"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="847"  cy="993"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="847"  cy="993"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="600"  cy="1095" r="11" fill="url(#hubGloss)"/>
+        <circle cx="600"  cy="1095" r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="353"  cy="993"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="353"  cy="993"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="207"  cy="847"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="207"  cy="847"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="105"  cy="600"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="105"  cy="600"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="207"  cy="353"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="207"  cy="353"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <circle cx="353"  cy="207"  r="11" fill="url(#hubGloss)"/>
+        <circle cx="353"  cy="207"  r="11" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+      </g>
+
+      <!-- cardinal locking bolts -->
+      <g class="vault-locking-bolts" opacity="0.7">
+        <rect x="582" y="130" width="36" height="50" rx="3" fill="url(#boltGloss)"/>
+        <rect x="582" y="130" width="36" height="2"  fill="#FFFFFF" fill-opacity="0.65"/>
+        <rect x="1020" y="582" width="50" height="36" rx="3" fill="url(#boltGloss)"/>
+        <rect x="1020" y="582" width="2"  height="36" fill="#FFFFFF" fill-opacity="0.65"/>
+        <rect x="582" y="1020" width="36" height="50" rx="3" fill="url(#boltGloss)"/>
+        <rect x="582" y="1068" width="36" height="2"  fill="#FFFFFF" fill-opacity="0.45"/>
+        <rect x="130" y="582" width="50" height="36" rx="3" fill="url(#boltGloss)"/>
+        <rect x="178" y="582" width="2"  height="36" fill="#FFFFFF" fill-opacity="0.45"/>
+      </g>
+
+      <!-- combination dial (rotates) -->
+      <g class="vault-dial">
+        <circle cx="600" cy="600" r="240" fill="url(#dialBody)" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2"/>
+        <!-- 100 fine ticks via dasharray -->
+        <circle cx="600" cy="600" r="220" fill="none"
+                stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="10"
+                stroke-dasharray="1.5 12.3"
+                transform="rotate(-90 600 600)"/>
+        <!-- 10 longer accent ticks every 10 -->
+        <circle cx="600" cy="600" r="220" fill="none"
+                stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="22"
+                stroke-dasharray="2.5 135.7"
+                transform="rotate(-90 600 600)"/>
+
+        <!-- numbers around the dial (every 10) -->
+        <g fill="#D8DCE9" font-family="Cormorant, serif" font-size="30" font-weight="400" text-anchor="middle">
+          <text x="600" y="445" dy="0.35em">0</text>
+          <text x="691" y="476" dy="0.35em">10</text>
+          <text x="754" y="549" dy="0.35em">20</text>
+          <text x="754" y="651" dy="0.35em">30</text>
+          <text x="691" y="724" dy="0.35em">40</text>
+          <text x="600" y="755" dy="0.35em">50</text>
+          <text x="509" y="724" dy="0.35em">60</text>
+          <text x="446" y="651" dy="0.35em">70</text>
+          <text x="446" y="549" dy="0.35em">80</text>
+          <text x="509" y="476" dy="0.35em">90</text>
+        </g>
+
+        <!-- inner detail ring -->
+        <circle cx="600" cy="600" r="155" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1"/>
+        <circle cx="600" cy="600" r="130" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="0.6"/>
+
+        <!-- 4 spokes from hub -->
+        <g fill="url(#boltGloss)" opacity="0.78">
+          <rect x="594" y="500" width="12" height="200"/>
+          <rect x="500" y="594" width="200" height="12"/>
+        </g>
+
+        <!-- center hub -->
+        <circle cx="600" cy="600" r="55" fill="url(#hubGloss)" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.2"/>
+        <circle cx="600" cy="600" r="40" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="0.8"/>
+        <ellipse cx="586" cy="586" rx="18" ry="11" fill="#FFFFFF" fill-opacity="0.55"/>
+        <circle cx="600" cy="600" r="6" fill="#FFFFFF" fill-opacity="0.85"/>
+      </g>
+
+      <!-- static pointer above dial -->
+      <g>
+        <polygon points="592,348 608,348 600,372" fill="#FFFFFF" fill-opacity="0.9"/>
+        <polygon points="592,348 608,348 600,372" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.5"/>
+      </g>
+
+      <!-- greek inscription -->
+      <g fill="#9CA7CE" font-family="Cormorant, serif" font-size="36" letter-spacing="22" opacity="0.5" font-weight="400">
+        <text x="600" y="1155" text-anchor="middle">ΘΗΣΑΥΡΟΣ</text>
+      </g>
+    </svg>
+  </div>
 
   <!-- iOS 26 drifting glass orbs -->
   <div class="orbs" aria-hidden="true">
