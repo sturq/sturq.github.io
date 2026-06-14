@@ -34,68 +34,109 @@
 
 <section class="hero">
 
-  <!-- atmospheric layered scene: each layer anchored to its own viewport edge → scales gracefully on any aspect ratio -->
+  <!-- liquid-glass classical scene: doric columns + pediment -->
   <div class="hero-scene" aria-hidden="true">
-    <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <linearGradient id="colBody" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="glassBody" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
-          <stop offset="20%"  stop-color="#FFFFFF" stop-opacity="0.18"/>
-          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.4"/>
-          <stop offset="80%"  stop-color="#FFFFFF" stop-opacity="0.2"/>
+          <stop offset="18%"  stop-color="#FFFFFF" stop-opacity="0.18"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.32"/>
+          <stop offset="82%"  stop-color="#FFFFFF" stop-opacity="0.20"/>
           <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
         </linearGradient>
-        <linearGradient id="colCap" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.8"/>
-          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
+        <linearGradient id="glassEdgeL" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.85"/>
+          <stop offset="40%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="glassEdgeR" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+          <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="capStone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
           <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.35"/>
         </linearGradient>
-        <filter id="colSoft" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="0.5"/>
+        <linearGradient id="pedGloss" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.8"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        </linearGradient>
+        <filter id="colBlur" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="0.6"/>
         </filter>
       </defs>
-    </svg>
 
-    <!-- left column anchored to left edge, full hero height -->
-    <svg class="hero-col left" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#colSoft)">
-        <rect x="0"  y="22" width="100" height="22" rx="2" fill="url(#colCap)"/>
-        <rect x="0"  y="22" width="100" height="2"  fill="#FFFFFF" fill-opacity="0.85"/>
-        <rect x="14" y="44" width="72"  height="912" fill="url(#colBody)"/>
-        <rect x="14" y="44" width="72"  height="1.5" fill="#FFFFFF" fill-opacity="0.7"/>
-        <line x1="32" y1="50" x2="32" y2="950" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.4"/>
-        <line x1="50" y1="50" x2="50" y2="950" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="1.4"/>
-        <line x1="68" y1="50" x2="68" y2="950" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.4"/>
-        <rect x="0"  y="956" width="100" height="22" rx="2" fill="url(#colCap)"/>
-        <rect x="0"  y="956" width="100" height="2"  fill="#FFFFFF" fill-opacity="0.6"/>
+      <!-- pediment + architrave -->
+      <g filter="url(#colBlur)">
+        <polygon points="100,130 800,40 1500,130" fill="url(#pedGloss)" opacity="0.85"/>
+        <polygon points="100,130 800,40 1500,130" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.4"/>
+        <rect x="100" y="130" width="1400" height="24" rx="3" fill="url(#pedGloss)" opacity="0.85"/>
+        <rect x="100" y="130" width="1400" height="1.2" fill="#FFFFFF" opacity="0.7"/>
+        <rect x="100" y="152.8" width="1400" height="1.2" fill="#B9C5EE" opacity="0.45"/>
       </g>
-    </svg>
 
-    <!-- right column (mirror of left via CSS scaleX) -->
-    <svg class="hero-col right" viewBox="0 0 100 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#colSoft)">
-        <rect x="0"  y="22" width="100" height="22" rx="2" fill="url(#colCap)"/>
-        <rect x="0"  y="22" width="100" height="2"  fill="#FFFFFF" fill-opacity="0.85"/>
-        <rect x="14" y="44" width="72"  height="912" fill="url(#colBody)"/>
-        <rect x="14" y="44" width="72"  height="1.5" fill="#FFFFFF" fill-opacity="0.7"/>
-        <line x1="32" y1="50" x2="32" y2="950" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.4"/>
-        <line x1="50" y1="50" x2="50" y2="950" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="1.4"/>
-        <line x1="68" y1="50" x2="68" y2="950" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.4"/>
-        <rect x="0"  y="956" width="100" height="22" rx="2" fill="url(#colCap)"/>
-        <rect x="0"  y="956" width="100" height="2"  fill="#FFFFFF" fill-opacity="0.6"/>
+      <!-- columns: body + caps + edge highlights -->
+      <g filter="url(#colBlur)">
+        <!-- col 1 -->
+        <rect x="120" y="160" width="60" height="600" rx="3" fill="url(#glassBody)"/>
+        <rect x="120" y="160" width="20" height="600" fill="url(#glassEdgeL)" opacity="0.9"/>
+        <rect x="160" y="160" width="20" height="600" fill="url(#glassEdgeR)" opacity="0.9"/>
+        <rect x="120" y="160" width="60" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="120" y="758.5" width="60" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="115" y="155" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="115" y="155" width="70" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="115" y="755" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="115" y="755" width="70" height="1.2" fill="#FFFFFF" opacity="0.55"/>
+
+        <!-- col 2 -->
+        <rect x="350" y="200" width="60" height="560" rx="3" fill="url(#glassBody)"/>
+        <rect x="350" y="200" width="20" height="560" fill="url(#glassEdgeL)" opacity="0.9"/>
+        <rect x="390" y="200" width="20" height="560" fill="url(#glassEdgeR)" opacity="0.9"/>
+        <rect x="350" y="200" width="60" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="350" y="758.5" width="60" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="345" y="195" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="345" y="195" width="70" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="345" y="755" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="345" y="755" width="70" height="1.2" fill="#FFFFFF" opacity="0.55"/>
+
+        <!-- col 3 -->
+        <rect x="1190" y="200" width="60" height="560" rx="3" fill="url(#glassBody)"/>
+        <rect x="1190" y="200" width="20" height="560" fill="url(#glassEdgeL)" opacity="0.9"/>
+        <rect x="1230" y="200" width="20" height="560" fill="url(#glassEdgeR)" opacity="0.9"/>
+        <rect x="1190" y="200" width="60" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="1190" y="758.5" width="60" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="1185" y="195" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="1185" y="195" width="70" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="1185" y="755" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="1185" y="755" width="70" height="1.2" fill="#FFFFFF" opacity="0.55"/>
+
+        <!-- col 4 -->
+        <rect x="1420" y="160" width="60" height="600" rx="3" fill="url(#glassBody)"/>
+        <rect x="1420" y="160" width="20" height="600" fill="url(#glassEdgeL)" opacity="0.9"/>
+        <rect x="1460" y="160" width="20" height="600" fill="url(#glassEdgeR)" opacity="0.9"/>
+        <rect x="1420" y="160" width="60" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="1420" y="758.5" width="60" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="1415" y="155" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="1415" y="155" width="70" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="1415" y="755" width="70" height="14" rx="3" fill="url(#capStone)"/>
+        <rect x="1415" y="755" width="70" height="1.2" fill="#FFFFFF" opacity="0.55"/>
       </g>
-    </svg>
 
-    <!-- horizon plinth: full width across the bottom -->
-    <svg class="hero-plinth" viewBox="0 0 1600 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0"  width="1600" height="6" fill="#B9C5EE" fill-opacity="0.45"/>
-      <rect x="0" y="0"  width="1600" height="1" fill="#FFFFFF" fill-opacity="0.55"/>
-      <rect x="0" y="20" width="1600" height="6" fill="#B9C5EE" fill-opacity="0.4"/>
-      <rect x="0" y="20" width="1600" height="1" fill="#FFFFFF" fill-opacity="0.45"/>
-      <rect x="0" y="40" width="1600" height="6" fill="#B9C5EE" fill-opacity="0.35"/>
-      <rect x="0" y="40" width="1600" height="1" fill="#FFFFFF" fill-opacity="0.35"/>
-      <rect x="0" y="60" width="1600" height="6" fill="#B9C5EE" fill-opacity="0.3"/>
-      <rect x="0" y="74" width="1600" height="4" fill="#B9C5EE" fill-opacity="0.25"/>
+      <!-- horizon stairs (glass plinth) -->
+      <g>
+        <rect x="0" y="780" width="1600" height="6" fill="#B9C5EE" opacity="0.45"/>
+        <rect x="0" y="780" width="1600" height="1" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="0" y="795" width="1600" height="6" fill="#B9C5EE" opacity="0.4"/>
+        <rect x="0" y="795" width="1600" height="1" fill="#FFFFFF" opacity="0.45"/>
+        <rect x="0" y="810" width="1600" height="6" fill="#B9C5EE" opacity="0.35"/>
+        <rect x="0" y="810" width="1600" height="1" fill="#FFFFFF" opacity="0.35"/>
+        <rect x="0" y="825" width="1600" height="6" fill="#B9C5EE" opacity="0.3"/>
+        <rect x="0" y="840" width="1600" height="6" fill="#B9C5EE" opacity="0.25"/>
+      </g>
     </svg>
   </div>
 

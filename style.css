@@ -187,39 +187,29 @@ nav.top .links a:hover { color: var(--accent); }
   overflow: hidden;
 }
 
-/* layered atmospheric scene — each layer anchored to its own viewport edge, scales gracefully */
+/* liquid-glass classical scene — fixed 16:9 frame, scales with viewport but never distorts */
 .hero-scene {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  /* min: 1100px keeps the temple readable on small screens (horiz overflow center-crops on mobile)
+     ideal: 100vw fills the viewport on normal landscape sizes
+     max: aspect-derived height never exceeds the hero so pediment + stairs always show */
+  width: clamp(1100px, 100vw, calc((100vh - 60px) * 16 / 9));
+  aspect-ratio: 1600 / 900;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.55;
   mix-blend-mode: screen;
   filter:
     drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
     drop-shadow(0 2px 6px rgba(185, 197, 238, 0.15))
     contrast(1.05) saturate(1.1);
 }
-
-/* twin proscenium columns flanking the lambda — anchored to viewport edges */
-.hero-col {
-  position: absolute;
-  top: 0;
-  bottom: clamp(50px, 8vh, 110px); /* clear of plinth */
-  width: clamp(58px, 8vw, 130px);
-  display: block;
-}
-.hero-col.left  { left: 0; }
-.hero-col.right { right: 0; transform: scaleX(-1); }
-
-/* horizon plinth — full width across bottom */
-.hero-plinth {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.hero-scene svg {
   width: 100%;
-  height: clamp(50px, 8vh, 110px);
+  height: 100%;
   display: block;
 }
 
@@ -227,7 +217,7 @@ nav.top .links a:hover { color: var(--accent); }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(580px, 90vw, 1500px);
+  width: min(640px, 88vw);
   height: auto;
   z-index: 1;
   pointer-events: none;
@@ -650,16 +640,10 @@ footer {
   nav.top .links { gap: 14px; }
   body { padding-top: 66px; }
   .hero { padding: 40px 20px 100px; min-height: calc(100vh - 50px); }
+  .bust-wrap { width: 108vw; }
   .bust { opacity: 0.75; }
   .manifesto { padding: 80px 20px; }
   .section-head { padding: 80px 20px 24px; }
   .grid { padding: 20px 20px 100px; gap: 14px; }
   .mascot { width: 44px; bottom: 16px; right: 16px; }
-  .hero-scene { opacity: 0.4; }
-}
-
-/* landscape phones (short viewport): tighten hero padding only */
-@media (orientation: landscape) and (max-height: 500px) {
-  .hero { padding: 24px 24px 60px; }
-  .hero-scene { opacity: 0.42; }
 }
