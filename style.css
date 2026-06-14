@@ -190,11 +190,7 @@ nav.top .links a:hover { color: var(--accent); }
 /* liquid-glass classical scene */
 .hero-scene {
   position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: clamp(420px, 72vw, 1200px);
-  transform: translateX(-50%);
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   opacity: 0.55;
@@ -642,4 +638,10 @@ footer {
   .section-head { padding: 80px 20px 24px; }
   .grid { padding: 20px 20px 100px; gap: 14px; }
   .mascot { width: 44px; bottom: 16px; right: 16px; }
+  /* shrink the temple scene on mobile so columns don't dominate */
+  .hero-scene {
+    transform: scale(0.55);
+    transform-origin: 50% 35%;
+    opacity: 0.22;
+  }
 }
