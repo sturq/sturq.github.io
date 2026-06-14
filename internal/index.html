@@ -517,10 +517,12 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   const REPEL_F = 0.28;
   const DAMP = 0.997;
   const BOUNCE = 0.88;
+  const BALL_BOUNCE = 0.94;
   const MAX_V = 3.4;
 
   function loop() {
     const W = window.innerWidth, H = window.innerHeight;
+    // cursor repel + damping + integrate
     for (const o of state) {
       const dx = o.x - mx, dy = o.y - my;
       const d = Math.hypot(dx, dy);
@@ -533,6 +535,44 @@ document.getElementById('form').addEventListener('submit', async (e) => {
       const sp = Math.hypot(o.vx, o.vy);
       if (sp > MAX_V) { o.vx = (o.vx / sp) * MAX_V; o.vy = (o.vy / sp) * MAX_V; }
       o.x += o.vx; o.y += o.vy;
+    }
+    // ball-ball elastic collisions (mass = r^2)
+    for (let i = 0; i < state.length; i++) {
+      for (let j = i + 1; j < state.length; j++) {
+        const a = state[i], b = state[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.hypot(dx, dy);
+        const minDist = a.r + b.r;
+        if (dist < minDist && dist > 0.001) {
+          const nx = dx / dist, ny = dy / dist;
+          // resolve overlap proportional to mass
+          const m1 = a.r * a.r, m2 = b.r * b.r;
+          const total = m1 + m2;
+          const overlap = minDist - dist;
+          a.x -= nx * overlap * (m2 / total);
+          a.y -= ny * overlap * (m2 / total);
+          b.x += nx * overlap * (m1 / total);
+          b.y += ny * overlap * (m1 / total);
+          // velocities along the collision normal
+          const v1n = a.vx * nx + a.vy * ny;
+          const v2n = b.vx * nx + b.vy * ny;
+          if (v2n - v1n < 0) {
+            // approaching: 1D elastic exchange along normal
+            const v1nNew = ((m1 - m2) * v1n + 2 * m2 * v2n) / total;
+            const v2nNew = ((m2 - m1) * v2n + 2 * m1 * v1n) / total;
+            a.vx += (v1nNew - v1n) * nx;
+            a.vy += (v1nNew - v1n) * ny;
+            b.vx += (v2nNew - v2n) * nx;
+            b.vy += (v2nNew - v2n) * ny;
+            // slight restitution loss
+            a.vx *= BALL_BOUNCE; a.vy *= BALL_BOUNCE;
+            b.vx *= BALL_BOUNCE; b.vy *= BALL_BOUNCE;
+          }
+        }
+      }
+    }
+    // wall bounce + render
+    for (const o of state) {
       if (o.x - o.r < 0)      { o.x = o.r;       o.vx =  Math.abs(o.vx) * BOUNCE; }
       else if (o.x + o.r > W) { o.x = W - o.r;   o.vx = -Math.abs(o.vx) * BOUNCE; }
       if (o.y - o.r < 0)      { o.y = o.r;       o.vy =  Math.abs(o.vy) * BOUNCE; }
