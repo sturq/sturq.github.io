@@ -638,10 +638,29 @@ footer {
   .section-head { padding: 80px 20px 24px; }
   .grid { padding: 20px 20px 100px; gap: 14px; }
   .mascot { width: 44px; bottom: 16px; right: 16px; }
-  /* shrink the temple scene on mobile so columns don't dominate */
+  /* portrait phones: shrink the temple so columns don't dominate */
   .hero-scene {
     transform: scale(0.55);
     transform-origin: 50% 35%;
     opacity: 0.22;
+  }
+}
+
+/* landscape phones (short viewport, any width): different treatment */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-scene {
+    transform: scale(0.75);
+    transform-origin: 50% 50%;
+    opacity: 0.18;
+  }
+  .hero { padding: 24px 24px 60px; }
+}
+
+/* tablets in portrait — slight shrink */
+@media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+  .hero-scene {
+    transform: scale(0.75);
+    transform-origin: 50% 40%;
+    opacity: 0.25;
   }
 }
