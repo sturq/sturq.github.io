@@ -36,7 +36,7 @@
 
   <!-- liquid-glass classical scene: doric columns + pediment -->
   <div class="hero-scene" aria-hidden="true">
-    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <svg class="scene-wide" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
       <defs>
         <linearGradient id="glassBody" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
@@ -136,6 +136,86 @@
         <rect x="0" y="810" width="1600" height="1" fill="#FFFFFF" opacity="0.35"/>
         <rect x="0" y="825" width="1600" height="6" fill="#B9C5EE" opacity="0.3"/>
         <rect x="0" y="840" width="1600" height="6" fill="#B9C5EE" opacity="0.25"/>
+      </g>
+    </svg>
+
+    <!-- portrait variant: 2 close-up columns + pediment, designed for tall viewports -->
+    <svg class="scene-portrait" viewBox="0 0 600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <linearGradient id="glassBodyP" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+          <stop offset="18%"  stop-color="#FFFFFF" stop-opacity="0.18"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.32"/>
+          <stop offset="82%"  stop-color="#FFFFFF" stop-opacity="0.20"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="glassEdgeLP" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.85"/>
+          <stop offset="40%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="glassEdgeRP" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+          <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="capStoneP" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+        </linearGradient>
+        <linearGradient id="pedGlossP" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.8"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        </linearGradient>
+        <filter id="colBlurP" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="0.6"/>
+        </filter>
+      </defs>
+
+      <!-- pediment + architrave -->
+      <g filter="url(#colBlurP)">
+        <polygon points="60,100 300,30 540,100" fill="url(#pedGlossP)" opacity="0.85"/>
+        <polygon points="60,100 300,30 540,100" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.4"/>
+        <rect x="50" y="100" width="500" height="24" rx="3" fill="url(#pedGlossP)" opacity="0.85"/>
+        <rect x="50" y="100" width="500" height="1.2" fill="#FFFFFF" opacity="0.7"/>
+        <rect x="50" y="122.8" width="500" height="1.2" fill="#B9C5EE" opacity="0.45"/>
+      </g>
+
+      <!-- 2 close-up columns -->
+      <g filter="url(#colBlurP)">
+        <!-- left column -->
+        <rect x="140" y="124" width="84" height="690" rx="3" fill="url(#glassBodyP)"/>
+        <rect x="140" y="124" width="28" height="690" fill="url(#glassEdgeLP)" opacity="0.9"/>
+        <rect x="196" y="124" width="28" height="690" fill="url(#glassEdgeRP)" opacity="0.9"/>
+        <rect x="140" y="124" width="84" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="140" y="812.5" width="84" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="132" y="124" width="100" height="16" rx="3" fill="url(#capStoneP)"/>
+        <rect x="132" y="124" width="100" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="132" y="812" width="100" height="16" rx="3" fill="url(#capStoneP)"/>
+        <rect x="132" y="812" width="100" height="1.2" fill="#FFFFFF" opacity="0.55"/>
+
+        <!-- right column -->
+        <rect x="376" y="124" width="84" height="690" rx="3" fill="url(#glassBodyP)"/>
+        <rect x="376" y="124" width="28" height="690" fill="url(#glassEdgeLP)" opacity="0.9"/>
+        <rect x="432" y="124" width="28" height="690" fill="url(#glassEdgeRP)" opacity="0.9"/>
+        <rect x="376" y="124" width="84" height="1.5" fill="#FFFFFF" opacity="0.75"/>
+        <rect x="376" y="812.5" width="84" height="1.5" fill="#FFFFFF" opacity="0.4"/>
+        <rect x="368" y="124" width="100" height="16" rx="3" fill="url(#capStoneP)"/>
+        <rect x="368" y="124" width="100" height="1.2" fill="#FFFFFF" opacity="0.85"/>
+        <rect x="368" y="812" width="100" height="16" rx="3" fill="url(#capStoneP)"/>
+        <rect x="368" y="812" width="100" height="1.2" fill="#FFFFFF" opacity="0.55"/>
+      </g>
+
+      <!-- plinth stairs -->
+      <g>
+        <rect x="0" y="830" width="600" height="6" fill="#B9C5EE" opacity="0.45"/>
+        <rect x="0" y="830" width="600" height="1" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="0" y="845" width="600" height="6" fill="#B9C5EE" opacity="0.4"/>
+        <rect x="0" y="845" width="600" height="1" fill="#FFFFFF" opacity="0.45"/>
+        <rect x="0" y="860" width="600" height="6" fill="#B9C5EE" opacity="0.35"/>
+        <rect x="0" y="875" width="600" height="6" fill="#B9C5EE" opacity="0.3"/>
       </g>
     </svg>
   </div>
