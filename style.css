@@ -187,33 +187,40 @@ nav.top .links a:hover { color: var(--accent); }
   overflow: hidden;
 }
 
-/* liquid-glass classical scene — art direction, composition swap per viewport */
+/* layered atmospheric scene — each layer anchored to its own viewport edge, scales gracefully */
 .hero-scene {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.6;
   mix-blend-mode: screen;
   filter:
     drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
     drop-shadow(0 2px 6px rgba(185, 197, 238, 0.15))
     contrast(1.05) saturate(1.1);
 }
-.hero-scene svg {
+
+/* twin proscenium columns flanking the lambda — anchored to viewport edges */
+.hero-col {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: clamp(50px, 8vh, 110px); /* clear of plinth */
+  width: clamp(58px, 8vw, 130px);
   display: block;
 }
-/* default (wide / landscape): show the 16:9 composition */
-.hero-scene .scene-wide { display: block; }
-.hero-scene .scene-portrait { display: none; }
-/* portrait viewports (taller than 4:5): swap in the 2:3 close-up composition */
-@media (max-aspect-ratio: 4/5) {
-  .hero-scene .scene-wide { display: none; }
-  .hero-scene .scene-portrait { display: block; }
+.hero-col.left  { left: 0; }
+.hero-col.right { right: 0; transform: scaleX(-1); }
+
+/* horizon plinth — full width across bottom */
+.hero-plinth {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(50px, 8vh, 110px);
+  display: block;
 }
 
 .bust-wrap {
