@@ -190,7 +190,11 @@ nav.top .links a:hover { color: var(--accent); }
 /* liquid-glass classical scene */
 .hero-scene {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: clamp(420px, 60vw, 820px);
+  transform: translateX(-50%);
   pointer-events: none;
   z-index: 0;
   opacity: 0.55;
@@ -210,7 +214,7 @@ nav.top .links a:hover { color: var(--accent); }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(640px, 88vw);
+  width: clamp(560px, 82vw, 1120px);
   height: auto;
   z-index: 1;
   pointer-events: none;
@@ -633,7 +637,6 @@ footer {
   nav.top .links { gap: 14px; }
   body { padding-top: 66px; }
   .hero { padding: 40px 20px 100px; min-height: calc(100vh - 50px); }
-  .bust-wrap { width: 108vw; }
   .bust { opacity: 0.75; }
   .manifesto { padding: 80px 20px; }
   .section-head { padding: 80px 20px 24px; }

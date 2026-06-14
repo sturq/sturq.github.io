@@ -474,5 +474,86 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   }
 });
 </script>
+
+<script>
+// moon-physics drifting orbs with cursor repulsion + edge bounce
+(function() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const els = Array.from(document.querySelectorAll('.orb')).filter(el => el.offsetWidth > 0);
+  if (!els.length) return;
+
+  const state = els.map(el => {
+    const rect = el.getBoundingClientRect();
+    return {
+      el,
+      r: el.offsetWidth / 2,
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+      vx: (Math.random() - 0.5) * 0.8,
+      vy: (Math.random() - 0.5) * 0.8
+    };
+  });
+
+  state.forEach(o => {
+    o.el.style.animation = 'none';
+    o.el.style.left = '0';
+    o.el.style.top = '0';
+    o.el.style.right = 'auto';
+    o.el.style.bottom = 'auto';
+    o.el.style.willChange = 'transform';
+    o.el.style.transform = 'translate3d(' + (o.x - o.r) + 'px,' + (o.y - o.r) + 'px,0)';
+  });
+
+  let mx = -9999, my = -9999;
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+  window.addEventListener('touchmove', e => {
+    if (e.touches.length) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
+  }, { passive: true });
+  window.addEventListener('touchend', () => { mx = -9999; my = -9999; });
+
+  const REPEL_R = 220;
+  const REPEL_F = 0.28;
+  const DAMP = 0.997;
+  const BOUNCE = 0.88;
+  const MAX_V = 3.4;
+
+  function loop() {
+    const W = window.innerWidth, H = window.innerHeight;
+    for (const o of state) {
+      const dx = o.x - mx, dy = o.y - my;
+      const d = Math.hypot(dx, dy);
+      if (d < REPEL_R && d > 0.001) {
+        const f = Math.pow(1 - d / REPEL_R, 1.6) * REPEL_F;
+        o.vx += (dx / d) * f;
+        o.vy += (dy / d) * f;
+      }
+      o.vx *= DAMP; o.vy *= DAMP;
+      const sp = Math.hypot(o.vx, o.vy);
+      if (sp > MAX_V) { o.vx = (o.vx / sp) * MAX_V; o.vy = (o.vy / sp) * MAX_V; }
+      o.x += o.vx; o.y += o.vy;
+      if (o.x - o.r < 0)      { o.x = o.r;       o.vx =  Math.abs(o.vx) * BOUNCE; }
+      else if (o.x + o.r > W) { o.x = W - o.r;   o.vx = -Math.abs(o.vx) * BOUNCE; }
+      if (o.y - o.r < 0)      { o.y = o.r;       o.vy =  Math.abs(o.vy) * BOUNCE; }
+      else if (o.y + o.r > H) { o.y = H - o.r;   o.vy = -Math.abs(o.vy) * BOUNCE; }
+      o.el.style.transform = 'translate3d(' + (o.x - o.r) + 'px,' + (o.y - o.r) + 'px,0)';
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  window.addEventListener('resize', () => {
+    const W = window.innerWidth, H = window.innerHeight;
+    for (const o of state) {
+      o.r = o.el.offsetWidth / 2;
+      if (o.x < o.r) o.x = o.r;
+      if (o.x > W - o.r) o.x = W - o.r;
+      if (o.y < o.r) o.y = o.r;
+      if (o.y > H - o.r) o.y = H - o.r;
+    }
+  });
+})();
+</script>
 </body>
 </html>
