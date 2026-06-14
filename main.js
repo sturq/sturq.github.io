@@ -40,26 +40,21 @@ const agoraOrbs = document.querySelector('.agora-orbs');
 if (agoraOrbs) {
   const isMobile = window.matchMedia('(max-width: 600px)').matches;
   const count = isMobile ? 18 : 32;
+  const variants = ['a','b','c','d','e','f','g','h'];
   const rand = (min, max) => Math.random() * (max - min) + min;
   for (let i = 0; i < count; i++) {
     const orb = document.createElement('div');
-    orb.className = 'orb';
+    const variant = variants[Math.floor(Math.random() * variants.length)];
+    orb.className = `orb ${variant}`;
     const size = rand(14, 56);                    // 14–56px diameter
     const top  = rand(2, 92);                     // %
-    const left = rand(-2, 100);                   // % (allow slight off-edge for organic feel)
-    const dur  = rand(16, 34);                    // seconds
-    const delay = rand(-dur, 0);                  // negative delay for staggered start
-    const dx0 = rand(-22, -4),  dy0 = rand(-18, -2);
-    const dxm = rand(-8,  10),  dym = rand(-6,  6);
-    const dx1 = rand( 4,  22),  dy1 = rand( 2,  18);
+    const left = rand(-2, 100);                   // %
+    const delay = -rand(0, 30);                   // negative delay → staggered phase
     orb.style.cssText =
       `width:${size}px;height:${size}px;` +
       `top:${top}%;left:${left}%;` +
-      `--dur:${dur}s;--delay:${delay}s;` +
-      `--dx0:${dx0}px;--dy0:${dy0}px;` +
-      `--dxm:${dxm}px;--dym:${dym}px;` +
-      `--dx1:${dx1}px;--dy1:${dy1}px;`;
-    if (size < 22) orb.style.opacity = 0.5;        // smaller orbs more atmospheric
+      `animation-delay:${delay}s;`;
+    if (size < 22) orb.style.opacity = 0.5;       // smaller orbs sit further back
     agoraOrbs.appendChild(orb);
   }
 }

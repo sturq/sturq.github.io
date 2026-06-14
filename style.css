@@ -478,9 +478,6 @@ footer {
   backdrop-filter: blur(6px) saturate(150%);
   -webkit-backdrop-filter: blur(6px) saturate(150%);
   opacity: 0.65;
-  animation: agora-drift var(--dur, 22s) ease-in-out infinite alternate;
-  animation-delay: var(--delay, 0s);
-  transform: translate(0, 0);
 }
 .agora-orbs .orb::before {
   content: "";
@@ -497,10 +494,45 @@ footer {
   transform: rotate(-22deg);
   filter: blur(1.5px);
 }
-@keyframes agora-drift {
-  0%   { transform: translate(var(--dx0, -10px), var(--dy0, -8px)) scale(0.98); }
-  50%  { transform: translate(var(--dxm,  6px), var(--dym, -2px)) scale(1.02); }
-  100% { transform: translate(var(--dx1, 10px), var(--dy1,  8px)) scale(1); }
+.agora-orbs .orb.a { animation: agora-a 22s ease-in-out infinite; }
+.agora-orbs .orb.b { animation: agora-b 28s ease-in-out infinite; }
+.agora-orbs .orb.c { animation: agora-c 32s ease-in-out infinite; }
+.agora-orbs .orb.d { animation: agora-d 26s ease-in-out infinite; }
+.agora-orbs .orb.e { animation: agora-e 19s ease-in-out infinite; }
+.agora-orbs .orb.f { animation: agora-f 24s ease-in-out infinite; }
+.agora-orbs .orb.g { animation: agora-g 30s ease-in-out infinite; }
+.agora-orbs .orb.h { animation: agora-h 17s ease-in-out infinite; }
+@keyframes agora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate( 60px, -45px) scale(1.05); }
+}
+@keyframes agora-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-45px, -55px) scale(1.06); }
+}
+@keyframes agora-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-50px,  60px) scale(0.95); }
+}
+@keyframes agora-d {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate( 55px,  40px) scale(1.04); }
+}
+@keyframes agora-e {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate( 35px,  50px); }
+}
+@keyframes agora-f {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-40px,  30px); }
+}
+@keyframes agora-g {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-30px, -38px) scale(1.05); }
+}
+@keyframes agora-h {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate( 42px,  -22px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
