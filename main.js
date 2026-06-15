@@ -46,28 +46,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-// macOS-dock magnification on the mirror dock (mouse + touch)
-const dock = document.querySelector('.dock');
-if (dock) {
-  const items = Array.from(dock.querySelectorAll('.dock-item'));
-  const maxScale = 1.75;
-  const sigma = 70;
-  const apply = (mx) => {
-    items.forEach((it) => {
-      const r = it.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const d = mx - cx;
-      const scale = 1 + (maxScale - 1) * Math.exp(-(d * d) / (2 * sigma * sigma));
-      it.style.setProperty('--scale', scale.toFixed(3));
-    });
-  };
-  const reset = () => items.forEach((it) => it.style.setProperty('--scale', 1));
-  dock.addEventListener('pointermove', (e) => apply(e.clientX));
-  dock.addEventListener('pointerdown',  (e) => apply(e.clientX));
-  dock.addEventListener('pointerleave', reset);
-  dock.addEventListener('pointercancel', reset);
-}
-
 // mouse parallax on hero bust (via CSS custom props on wrapper)
 const bustWrap = document.querySelector('.bust-wrap');
 if (bustWrap && window.matchMedia('(pointer: fine)').matches) {
