@@ -282,6 +282,79 @@ nav.top .links a:hover { color: var(--accent); }
   50%      { transform: translateY(-4px); }
 }
 
+/* --- dock (replaces the agora; sits between hero and manifesto) --- */
+.dock-section {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  padding: 96px 24px;
+}
+.dock {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 14px;
+  padding: 14px 24px;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%),
+    rgba(42, 48, 66, 0.22);
+  backdrop-filter: url(#glass-distort) blur(22px) saturate(180%) brightness(112%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%) brightness(112%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.dock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0%, transparent 35%, transparent 65%, rgba(255, 255, 255, 0.10) 100%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.dock-item {
+  --size: 38px;
+  --scale: 1;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: var(--accent);
+  text-decoration: none;
+  transform: scale(var(--scale));
+  transform-origin: bottom center;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+}
+.dock-item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: var(--accent);
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter 0.3s, color 0.25s;
+}
+.dock-item:hover svg {
+  color: var(--fg);
+  filter: drop-shadow(0 6px 18px rgba(185, 197, 238, 0.55));
+}
+
+@media (max-width: 600px) {
+  .dock-section { padding: 64px 20px; }
+  .dock { gap: 10px; padding: 10px 18px; }
+  .dock-item { --size: 32px; }
+}
+
 /* --- manifesto --- */
 .manifesto {
   position: relative;
@@ -446,97 +519,6 @@ footer {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     inset 0 -1px 0 rgba(255, 255, 255, 0.03);
-}
-
-/* --- agora: cluster of small drifting liquid-glass orbs under the temple --- */
-.agora {
-  position: relative;
-  width: 100%;
-  height: clamp(420px, 60vh, 700px);
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none;
-}
-.agora-orbs {
-  position: absolute;
-  inset: 0;
-}
-.agora-orbs .orb {
-  position: absolute;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%,
-      rgba(255, 255, 255, 0.55) 0%,
-      rgba(255, 255, 255, 0.18) 22%,
-      rgba(185, 197, 238, 0.32) 60%,
-      rgba(185, 197, 238, 0.55) 100%);
-  box-shadow:
-    inset 0 1px 3px rgba(255, 255, 255, 0.4),
-    inset 0 -1px 3px rgba(185, 197, 238, 0.4),
-    0 6px 18px rgba(0, 0, 0, 0.3),
-    0 1px 6px rgba(185, 197, 238, 0.18);
-  backdrop-filter: blur(6px) saturate(150%);
-  -webkit-backdrop-filter: blur(6px) saturate(150%);
-  opacity: 0.65;
-}
-.agora-orbs .orb::before {
-  content: "";
-  position: absolute;
-  top: 8%;
-  left: 14%;
-  width: 42%;
-  height: 28%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.15) 60%,
-    transparent 100%);
-  transform: rotate(-22deg);
-  filter: blur(1.5px);
-}
-.agora-orbs .orb.a { animation: agora-a 22s ease-in-out infinite; }
-.agora-orbs .orb.b { animation: agora-b 28s ease-in-out infinite; }
-.agora-orbs .orb.c { animation: agora-c 32s ease-in-out infinite; }
-.agora-orbs .orb.d { animation: agora-d 26s ease-in-out infinite; }
-.agora-orbs .orb.e { animation: agora-e 19s ease-in-out infinite; }
-.agora-orbs .orb.f { animation: agora-f 24s ease-in-out infinite; }
-.agora-orbs .orb.g { animation: agora-g 30s ease-in-out infinite; }
-.agora-orbs .orb.h { animation: agora-h 17s ease-in-out infinite; }
-@keyframes agora-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate( 60px, -45px) scale(1.05); }
-}
-@keyframes agora-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-45px, -55px) scale(1.06); }
-}
-@keyframes agora-c {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-50px,  60px) scale(0.95); }
-}
-@keyframes agora-d {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate( 55px,  40px) scale(1.04); }
-}
-@keyframes agora-e {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate( 35px,  50px); }
-}
-@keyframes agora-f {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(-40px,  30px); }
-}
-@keyframes agora-g {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-30px, -38px) scale(1.05); }
-}
-@keyframes agora-h {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate( 42px,  -22px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .agora-orbs .orb { animation: none !important; }
 }
 
 /* --- project detail page --- */
