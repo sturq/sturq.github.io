@@ -159,30 +159,6 @@
     <div class="desc">both modules advertised accept-encoding: gzip, deflate, br, zstd, but httpx ships only gzip/deflate decoders by default.</div>
     <div class="arrow">→</div>
   </a>
-  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/18" target="_blank" rel="noopener">
-    <div class="label">claude-code-termux · pr #18 · open</div>
-    <div class="title">install: verify the downloaded .deb against a published sha256sums</div>
-    <div class="desc">the claude binary is sha-256 verified in bootstrap.sh, but the released .deb (which runs a postinst and patches binaries) was fetched over tls only, with no integrity check, so a t…</div>
-    <div class="arrow">→</div>
-  </a>
-  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/14" target="_blank" rel="noopener">
-    <div class="label">claude-code-termux · pr #14 · open</div>
-    <div class="title">docs: troubleshooting for &quot;required file not found&quot; + stock leftover</div>
-    <div class="desc">adds a troubleshooting section for the most common breakage, claude: cannot execute: required file not found: what it means (an unpatched stock binary is being resolved), why it ha…</div>
-    <div class="arrow">→</div>
-  </a>
-  <a class="card reveal" href="https://github.com/kaifcodec/user-scanner/issues/339" target="_blank" rel="noopener">
-    <div class="label">user-scanner · issue #339 · open</div>
-    <div class="title">boot.dev module: upstream removed /v1/users/email/exists (http 404)</div>
-    <div class="desc">the bootdev module hits post https://api.boot.dev/v1/users/email/exists, which now returns 404: looking at the production nuxt bundles on www.boot.dev, there's no email-existence e…</div>
-    <div class="arrow">→</div>
-  </a>
-  <a class="card reveal" href="https://github.com/kaifcodec/user-scanner/issues/340" target="_blank" rel="noopener">
-    <div class="label">user-scanner · issue #340 · closed</div>
-    <div class="title">saashub module: registration form now protected by hcaptcha (silent 422)</div>
-    <div class="desc">the saashub module always falls through to its unexpected response body structure branch.</div>
-    <div class="arrow">→</div>
-  </a>
   <!-- contributions:end -->
 </section>
 

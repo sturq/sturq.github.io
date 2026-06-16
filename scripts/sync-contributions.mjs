@@ -17,17 +17,11 @@ function gh(kind) {
   return JSON.parse(execFileSync('gh', args, { encoding: 'utf8' }));
 }
 
-const prs = gh('prs').filter(p => !p.repository.nameWithOwner.startsWith(`${AUTHOR}/`));
-const issues = gh('issues')
-  .filter(i => !i.repository.nameWithOwner.startsWith(`${AUTHOR}/`))
-  .filter(i => i.isPullRequest === false);
+const prs = gh('prs')
+  .filter(p => !p.repository.nameWithOwner.startsWith(`${AUTHOR}/`))
+  .filter(p => p.state === 'merged');
 
-const stateRank = { merged: 0, open: 1, closed: 2 };
-const sorter = (a, b) => {
-  const r = (stateRank[a.state] ?? 3) - (stateRank[b.state] ?? 3);
-  if (r) return r;
-  return b.updatedAt.localeCompare(a.updatedAt);
-};
+const sorter = (a, b) => b.updatedAt.localeCompare(a.updatedAt);
 
 function shortDesc(body, title) {
   const fallback = title.toLowerCase();
@@ -66,10 +60,7 @@ function card(item, kind) {
   </a>`;
 }
 
-const cards = [
-  ...prs.sort(sorter).map(p => card(p, 'pr')),
-  ...issues.sort(sorter).map(i => card(i, 'issue')),
-];
+const cards = prs.sort(sorter).map(p => card(p, 'pr'));
 
 const html = readFileSync(HTML_PATH, 'utf8');
 const a = html.indexOf(START_MARKER);
