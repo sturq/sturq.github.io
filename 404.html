@@ -217,39 +217,45 @@
       <!-- simple ground line -->
       <line x1="120" y1="600" x2="680" y2="600" stroke="#B9C5EE" stroke-opacity="0.35" stroke-width="1"/>
 
+      <!-- simple broken column -->
+      <g>
+        <rect x="370" y="360" width="60" height="240" fill="url(#rGlassBody)"/>
+        <polygon points="370,360 380,346 390,354 400,338 410,352 420,344 430,360" fill="url(#rGlassBody)"/>
+        <polyline points="370,360 380,346 390,354 400,338 410,352 420,344 430,360"
+                  fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1"/>
+      </g>
+
       <!-- a few small scattered stones on the ground -->
       <g fill="#B9C5EE" opacity="0.45">
-        <ellipse cx="200" cy="601" rx="6" ry="2"/>
-        <ellipse cx="560" cy="602" rx="7" ry="2.4"/>
-        <ellipse cx="618" cy="601" rx="4" ry="1.6"/>
+        <ellipse cx="220" cy="601" rx="6" ry="2"/>
+        <ellipse cx="600" cy="602" rx="7" ry="2.4"/>
+        <ellipse cx="640" cy="601" rx="4" ry="1.6"/>
       </g>
 
-      <!-- simple grass: thin curving blades -->
-      <g class="ruin-grass" fill="none" stroke="#8fb295" stroke-opacity="0.78" stroke-width="2" stroke-linecap="round">
-        <path d="M 300 600 Q 296 555 304 510"/>
-        <path d="M 322 600 Q 326 545 320 488"/>
-        <path d="M 348 600 Q 342 540 354 472"/>
-        <path d="M 376 600 Q 380 540 372 478"/>
-        <path d="M 404 600 Q 398 530 412 460"/>
-        <path d="M 430 600 Q 436 545 426 484"/>
-        <path d="M 456 600 Q 450 545 462 496"/>
-        <path d="M 482 600 Q 488 555 478 504"/>
-        <path d="M 506 600 Q 500 562 510 524"/>
+      <!-- grass tuft at the base of the column: one wavy silhouette -->
+      <g class="ruin-grass">
+        <path d="M 300 600
+                 Q 310 580 320 600
+                 Q 332 575 344 600
+                 Q 356 582 368 600
+                 Q 380 572 392 600
+                 Q 404 580 416 600
+                 Q 428 575 440 600
+                 Q 452 582 464 600
+                 Q 476 578 488 600
+                 Q 500 585 510 600 Z"
+              fill="#8fb295" opacity="0.78"/>
       </g>
 
-      <!-- butterfly -->
+      <!-- tiny butterfly: dot + 2 small wings -->
       <g class="ruin-butterfly">
-        <ellipse cx="460" cy="380" rx="1.6" ry="6" fill="#FFFFFF" opacity="0.9"/>
+        <circle cx="460" cy="380" r="2" fill="#FFFFFF" opacity="0.92"/>
         <g class="ruin-wing-r">
-          <path d="M 462 376 Q 478 364 491 372 Q 488 384 462 380 Z" fill="url(#rWing)"/>
-          <path d="M 462 382 Q 478 391 484 401 Q 472 405 462 386 Z" fill="url(#rWing)" opacity="0.85"/>
+          <ellipse cx="466" cy="378" rx="5" ry="3" fill="#B9C5EE" opacity="0.78"/>
         </g>
         <g class="ruin-wing-l">
-          <path d="M 458 376 Q 442 364 429 372 Q 432 384 458 380 Z" fill="url(#rWing)"/>
-          <path d="M 458 382 Q 442 391 436 401 Q 448 405 458 386 Z" fill="url(#rWing)" opacity="0.85"/>
+          <ellipse cx="454" cy="378" rx="5" ry="3" fill="#B9C5EE" opacity="0.78"/>
         </g>
-        <path d="M 459 371 Q 455 364 453 360" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M 461 371 Q 465 364 467 360" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="0.7" stroke-linecap="round"/>
       </g>
     </svg>
   </div>
