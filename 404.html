@@ -41,19 +41,71 @@
     height: auto;
     display: block;
   }
-  .ruin-shard {
-    animation: shard-drift 14s ease-in-out infinite alternate;
-    transform-origin: 320px 540px;
+  .ruin-butterfly {
+    transform-origin: 540px 290px;
+    animation: butterfly-fly 19s ease-in-out infinite;
   }
-  @keyframes shard-drift {
-    0%   { transform: rotate(72deg) translate(0, 0); }
-    100% { transform: rotate(74deg) translate(2px, -4px); }
+  @keyframes butterfly-fly {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    8%   { transform: translate(-70px, -38px) rotate(-9deg); }
+    18%  { transform: translate(-160px, -22px) rotate(7deg); }
+    28%  { transform: translate(-250px, 30px) rotate(-6deg); }
+    38%  { transform: translate(-290px, 110px) rotate(10deg); }
+    48%  { transform: translate(-220px, 170px) rotate(-7deg); }
+    58%  { transform: translate(-100px, 200px) rotate(8deg); }
+    68%  { transform: translate(20px, 170px) rotate(-9deg); }
+    78%  { transform: translate(110px, 110px) rotate(6deg); }
+    88%  { transform: translate(80px, 30px) rotate(-8deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  .ruin-wing-l, .ruin-wing-r {
+    transform-origin: 540px 290px;
+    animation: wing-flap 0.18s ease-in-out infinite;
+  }
+  @keyframes wing-flap {
+    0%, 100% { transform: scaleX(1); }
+    50%      { transform: scaleX(0.32); }
+  }
+  .ruin-plant {
+    transform-origin: 384px 296px;
+    animation: plant-sway 7s ease-in-out infinite;
+  }
+  @keyframes plant-sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50%      { transform: rotate(3.5deg); }
+  }
+  .ruin-ants {
+    animation: ants-march 24s linear infinite;
+  }
+  @keyframes ants-march {
+    0%   { transform: translateX(-60px); }
+    100% { transform: translateX(720px); }
+  }
+  .ruin-beetle {
+    transform-origin: 350px 488px;
+    animation: beetle-crawl 38s ease-in-out infinite;
+  }
+  @keyframes beetle-crawl {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    20%  { transform: translate(48px, -38px) rotate(8deg); }
+    40%  { transform: translate(78px, -88px) rotate(-4deg); }
+    60%  { transform: translate(20px, -130px) rotate(12deg); }
+    80%  { transform: translate(-38px, -90px) rotate(-6deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  .ruin-snail {
+    animation: snail-crawl 95s linear infinite;
+  }
+  @keyframes snail-crawl {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(140px); }
   }
   @media (max-width: 600px) {
-    .ruin-scene { opacity: 0.4; }
+    .ruin-scene { opacity: 0.42; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ruin-shard { animation: none !important; }
+    .ruin-butterfly, .ruin-wing-l, .ruin-wing-r,
+    .ruin-plant, .ruin-ants, .ruin-beetle, .ruin-snail { animation: none !important; }
   }
   .lost-stack { position: relative; z-index: 2; max-width: 640px; }
   .lost h1 {
@@ -169,42 +221,28 @@
           <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
           <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.35"/>
         </linearGradient>
+        <linearGradient id="rLeaf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#b8d0b3" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#6e8a73" stop-opacity="0.65"/>
+        </linearGradient>
+        <linearGradient id="rStem" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#a5bfa0" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#7d9c7c" stop-opacity="0.85"/>
+        </linearGradient>
+        <radialGradient id="rWing" cx="40%" cy="35%" r="70%">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.95"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.18"/>
+        </radialGradient>
+        <radialGradient id="rShell" cx="38%" cy="32%" r="80%">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="55%"  stop-color="#B9C5EE" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#404661" stop-opacity="0.55"/>
+        </radialGradient>
         <filter id="rBlur" x="-10%" y="-10%" width="120%" height="120%">
           <feGaussianBlur stdDeviation="0.6"/>
         </filter>
       </defs>
-
-      <!-- lower (intact) section of the column: standing on stairs -->
-      <g filter="url(#rBlur)">
-        <!-- base capital -->
-        <rect x="315" y="540" width="170" height="18" rx="3" fill="url(#rCapStone)"/>
-        <rect x="315" y="540" width="170" height="1.4" fill="#FFFFFF" opacity="0.7"/>
-        <!-- shaft body -->
-        <rect x="340" y="300" width="120" height="240" rx="3" fill="url(#rGlassBody)"/>
-        <rect x="340" y="300" width="40"  height="240"        fill="url(#rGlassEdgeL)" opacity="0.9"/>
-        <rect x="420" y="300" width="40"  height="240"        fill="url(#rGlassEdgeR)" opacity="0.9"/>
-        <rect x="340" y="538" width="120" height="1.4" fill="#FFFFFF" opacity="0.5"/>
-        <!-- jagged break edge on top (a thin polyline acts as a fracture line) -->
-        <polygon points="340,300 360,288 388,302 410,282 432,298 446,290 460,300" fill="url(#rGlassBody)" opacity="0.85"/>
-        <polyline points="340,300 360,288 388,302 410,282 432,298 446,290 460,300"
-                  fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.2"/>
-      </g>
-
-      <!-- broken-off top piece, lying tilted to the side -->
-      <g class="ruin-shard" filter="url(#rBlur)">
-        <!-- shaft fragment (drawn rotated horizontally; CSS transforms it) -->
-        <rect x="180" y="525" width="240" height="60" rx="3" fill="url(#rGlassBody)"/>
-        <rect x="180" y="525" width="240" height="20" fill="url(#rGlassEdgeL)" opacity="0.85"/>
-        <rect x="180" y="565" width="240" height="20" fill="url(#rGlassEdgeR)" opacity="0.85"/>
-        <rect x="180" y="525" width="240" height="1.4" fill="#FFFFFF" opacity="0.65"/>
-        <!-- broken end (jagged) on the left -->
-        <polygon points="180,525 168,540 184,552 172,566 188,580 180,585" fill="url(#rGlassBody)" opacity="0.85"/>
-        <polyline points="180,525 168,540 184,552 172,566 188,580 180,585"
-                  fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.2"/>
-        <!-- capital cap on the right -->
-        <rect x="416" y="518" width="20" height="74" rx="3" fill="url(#rCapStone)"/>
-        <rect x="416" y="518" width="20" height="1.4" fill="#FFFFFF" opacity="0.7"/>
-      </g>
 
       <!-- horizon stairs / plinth -->
       <g>
@@ -218,13 +256,129 @@
         <rect x="0" y="660" width="800" height="6" fill="#B9C5EE" opacity="0.25"/>
       </g>
 
-      <!-- scattered rubble dots -->
-      <g fill="#B9C5EE" opacity="0.5">
-        <rect x="120" y="595" width="14" height="5" rx="1"/>
-        <rect x="148" y="592" width="8"  height="4" rx="1"/>
-        <rect x="640" y="597" width="18" height="5" rx="1"/>
-        <rect x="672" y="594" width="9"  height="4" rx="1"/>
-        <rect x="700" y="598" width="12" height="5" rx="1"/>
+      <!-- weathered, broken column stump on the stairs -->
+      <g filter="url(#rBlur)">
+        <!-- base capital -->
+        <rect x="280" y="570" width="210" height="22" rx="3" fill="url(#rCapStone)"/>
+        <rect x="280" y="570" width="210" height="1.4" fill="#FFFFFF" opacity="0.7"/>
+        <!-- shaft body -->
+        <rect x="305" y="310" width="160" height="262" rx="3" fill="url(#rGlassBody)"/>
+        <rect x="305" y="310" width="48"  height="262"        fill="url(#rGlassEdgeL)" opacity="0.9"/>
+        <rect x="417" y="310" width="48"  height="262"        fill="url(#rGlassEdgeR)" opacity="0.9"/>
+        <rect x="305" y="568" width="160" height="1.4" fill="#FFFFFF" opacity="0.5"/>
+        <!-- jagged broken top -->
+        <polygon points="305,310 318,278 340,302 365,266 388,300 410,272 432,298 450,282 465,310"
+                 fill="url(#rGlassBody)" opacity="0.9"/>
+        <polyline points="305,310 318,278 340,302 365,266 388,300 410,272 432,298 450,282 465,310"
+                  fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.2"/>
+        <!-- weathering: vertical cracks down the body -->
+        <polyline points="346,322 343,390 350,470 345,548" fill="none"
+                  stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.9"/>
+        <polyline points="418,318 423,380 415,460 421,552" fill="none"
+                  stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="0.8"/>
+        <!-- horizontal worn bands -->
+        <line x1="310" y1="430" x2="460" y2="432" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="0.6"/>
+        <line x1="310" y1="510" x2="460" y2="512" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="0.6"/>
+        <!-- chipped corners (pockmarks) -->
+        <ellipse cx="328" cy="402" rx="5" ry="3" fill="#404661" opacity="0.32"/>
+        <ellipse cx="438" cy="465" rx="4" ry="2.5" fill="#404661" opacity="0.28"/>
+        <ellipse cx="356" cy="538" rx="5" ry="3" fill="#404661" opacity="0.3"/>
+      </g>
+
+      <!-- ivy creeping down the right side of the stump -->
+      <g opacity="0.78">
+        <path d="M 460 318 Q 475 360 462 400 Q 450 442 466 482 Q 478 524 460 562"
+              fill="none" stroke="url(#rStem)" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="478" cy="362" rx="11" ry="6.5" transform="rotate(38 478 362)" fill="url(#rLeaf)"/>
+        <ellipse cx="448" cy="420" rx="12" ry="7"   transform="rotate(-28 448 420)" fill="url(#rLeaf)"/>
+        <ellipse cx="476" cy="472" rx="11" ry="6.5" transform="rotate(42 476 472)" fill="url(#rLeaf)"/>
+        <ellipse cx="450" cy="528" rx="11" ry="6.5" transform="rotate(-32 450 528)" fill="url(#rLeaf)"/>
+        <ellipse cx="466" cy="568" rx="10" ry="6"   transform="rotate(15 466 568)" fill="url(#rLeaf)"/>
+      </g>
+
+      <!-- small sapling growing out of the broken top -->
+      <g class="ruin-plant">
+        <!-- stem -->
+        <path d="M 385 296 Q 382 264 386 232 Q 390 200 384 172"
+              fill="none" stroke="url(#rStem)" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- leaves -->
+        <ellipse cx="370" cy="256" rx="11" ry="6"   transform="rotate(-34 370 256)" fill="url(#rLeaf)"/>
+        <ellipse cx="402" cy="232" rx="12" ry="6.5" transform="rotate(30 402 232)"  fill="url(#rLeaf)"/>
+        <ellipse cx="372" cy="206" rx="10" ry="5.5" transform="rotate(-28 372 206)" fill="url(#rLeaf)"/>
+        <ellipse cx="398" cy="186" rx="9"  ry="5"   transform="rotate(26 398 186)"  fill="url(#rLeaf)"/>
+        <!-- bud / tip -->
+        <circle cx="384" cy="172" r="3.2" fill="#b8d0b3" opacity="0.9"/>
+      </g>
+
+      <!-- moss patches on the stairs around the base -->
+      <g opacity="0.55">
+        <ellipse cx="300" cy="608" rx="36" ry="3.5" fill="#7d9c7c"/>
+        <ellipse cx="470" cy="610" rx="28" ry="3"   fill="#7d9c7c"/>
+        <ellipse cx="372" cy="624" rx="24" ry="2.6" fill="#7d9c7c" opacity="0.7"/>
+      </g>
+
+      <!-- scattered rubble dots on the stairs -->
+      <g fill="#B9C5EE" opacity="0.55">
+        <rect x="118" y="608" width="14" height="5" rx="1"/>
+        <rect x="146" y="606" width="8"  height="4" rx="1"/>
+        <rect x="595" y="611" width="18" height="5" rx="1"/>
+        <rect x="628" y="608" width="9"  height="4" rx="1"/>
+        <rect x="660" y="611" width="12" height="5" rx="1"/>
+      </g>
+
+      <!-- snail near the base of the column, on the top stair -->
+      <g class="ruin-snail" opacity="0.85">
+        <!-- body -->
+        <path d="M 555 612 Q 568 604 580 608 L 580 614 Q 568 616 555 614 Z"
+              fill="#9CA7CE" opacity="0.7"/>
+        <!-- shell -->
+        <circle cx="554" cy="606" r="10" fill="url(#rShell)" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.6"/>
+        <path d="M 554 606 m -5 0 a 5 5 0 1 1 5 5 a 3 3 0 1 1 -1 -4"
+              fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="0.8"/>
+        <!-- antennae -->
+        <line x1="582" y1="608" x2="585" y2="601" stroke="#9CA7CE" stroke-opacity="0.75" stroke-width="0.7" stroke-linecap="round"/>
+        <line x1="582" y1="610" x2="587" y2="606" stroke="#9CA7CE" stroke-opacity="0.75" stroke-width="0.7" stroke-linecap="round"/>
+      </g>
+
+      <!-- beetle crawling on the column surface -->
+      <g class="ruin-beetle" opacity="0.85">
+        <ellipse cx="350" cy="488" rx="6" ry="4" fill="#1f2333" opacity="0.85"/>
+        <line x1="350" y1="484" x2="350" y2="492" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.5"/>
+        <ellipse cx="350" cy="486.5" rx="1.5" ry="3" fill="#FFFFFF" opacity="0.32"/>
+        <circle cx="346" cy="484" r="0.9" fill="#1f2333" opacity="0.85"/>
+        <circle cx="354" cy="484" r="0.9" fill="#1f2333" opacity="0.85"/>
+        <line x1="345" y1="486" x2="341" y2="483" stroke="#1f2333" stroke-width="0.7" stroke-opacity="0.85"/>
+        <line x1="355" y1="486" x2="359" y2="483" stroke="#1f2333" stroke-width="0.7" stroke-opacity="0.85"/>
+        <line x1="345" y1="490" x2="341" y2="492" stroke="#1f2333" stroke-width="0.7" stroke-opacity="0.85"/>
+        <line x1="355" y1="490" x2="359" y2="492" stroke="#1f2333" stroke-width="0.7" stroke-opacity="0.85"/>
+      </g>
+
+      <!-- tiny ants marching on the middle stair -->
+      <g class="ruin-ants" fill="#1f2333" opacity="0.85">
+        <ellipse cx="180" cy="618" rx="2.2" ry="1.3"/>
+        <ellipse cx="192" cy="619" rx="2.2" ry="1.3"/>
+        <ellipse cx="204" cy="618" rx="2.2" ry="1.3"/>
+        <ellipse cx="218" cy="619" rx="2.2" ry="1.3"/>
+        <ellipse cx="232" cy="618" rx="2.2" ry="1.3"/>
+      </g>
+
+      <!-- butterfly hovering near the sapling -->
+      <g class="ruin-butterfly">
+        <!-- body -->
+        <ellipse cx="540" cy="290" rx="1.8" ry="7" fill="#FFFFFF" opacity="0.9"/>
+        <!-- right wings -->
+        <g class="ruin-wing-r">
+          <path d="M 542 285 Q 560 270 575 280 Q 572 294 542 290 Z" fill="url(#rWing)"/>
+          <path d="M 542 292 Q 560 302 568 314 Q 552 318 542 296 Z" fill="url(#rWing)" opacity="0.85"/>
+        </g>
+        <!-- left wings -->
+        <g class="ruin-wing-l">
+          <path d="M 540 285 Q 522 270 507 280 Q 510 294 540 290 Z" fill="url(#rWing)"/>
+          <path d="M 540 292 Q 522 302 514 314 Q 530 318 540 296 Z" fill="url(#rWing)" opacity="0.85"/>
+        </g>
+        <!-- antennae -->
+        <path d="M 539 280 Q 534 272 532 266" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="0.7" stroke-linecap="round"/>
+        <path d="M 543 280 Q 548 272 550 266" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="0.7" stroke-linecap="round"/>
       </g>
     </svg>
   </div>
