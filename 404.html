@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · sturq</title>
+<meta name="theme-color" content="#2A3042">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preload" href="/assets/fonts/CormorantGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/CormorantGaramond-Italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<style>
+  .lost {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .ruin-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    filter:
+      drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 2px 6px rgba(185, 197, 238, 0.15))
+      contrast(1.05) saturate(1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ruin-scene svg {
+    width: min(85vmin, 900px);
+    height: auto;
+    display: block;
+  }
+  .ruin-shard {
+    animation: shard-drift 14s ease-in-out infinite alternate;
+    transform-origin: 320px 540px;
+  }
+  @keyframes shard-drift {
+    0%   { transform: rotate(72deg) translate(0, 0); }
+    100% { transform: rotate(74deg) translate(2px, -4px); }
+  }
+  @media (max-width: 600px) {
+    .ruin-scene { opacity: 0.4; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ruin-shard { animation: none !important; }
+  }
+  .lost-stack { position: relative; z-index: 2; max-width: 640px; }
+  .lost h1 {
+    font-family: var(--display-font);
+    font-weight: 300;
+    font-size: clamp(120px, 28vw, 240px);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    color: var(--fg);
+    text-shadow: 0 0 60px rgba(185, 197, 238, 0.25);
+  }
+  .lost .greek {
+    margin-top: 14px;
+    font-family: var(--display-font);
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .lost .epitaph {
+    margin-top: 32px;
+    font-family: var(--display-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .lost .home {
+    margin-top: 44px;
+    display: inline-block;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05)),
+      rgba(185, 197, 238, 0.18);
+    backdrop-filter: blur(18px) saturate(180%) brightness(115%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%) brightness(115%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    padding: 12px 34px;
+    color: var(--fg);
+    font-family: var(--mono-font);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.32),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+      0 8px 22px rgba(0, 0, 0, 0.32);
+    transition: transform 0.25s, box-shadow 0.3s, background 0.3s;
+  }
+  .lost .home:hover {
+    transform: translateY(-1px);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.08)),
+      rgba(185, 197, 238, 0.32);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.42),
+      0 0 38px var(--accent-glow),
+      0 12px 28px rgba(0, 0, 0, 0.4);
+  }
+</style>
+</head>
+<body>
+
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+  <filter id="glass-distort" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise"/>
+    <feGaussianBlur in="noise" stdDeviation="1" result="softNoise"/>
+    <feDisplacementMap in="SourceGraphic" in2="softNoise" scale="55" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<nav class="top">
+  <a class="logo" href="/">
+    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="32,0 48,0 95,120 79,120 58,65 22,120 4,120 51,48" fill="currentColor"/>
+    </svg>
+    <span>sturq</span>
+  </a>
+  <div class="links">
+    <a href="/">home</a>
+    <a href="/projects/">projects</a>
+  </div>
+</nav>
+
+<main class="lost">
+
+  <!-- liquid-glass broken column / ruin scene -->
+  <div class="ruin-scene" aria-hidden="true">
+    <svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="rGlassBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+          <stop offset="18%"  stop-color="#FFFFFF" stop-opacity="0.18"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.32"/>
+          <stop offset="82%"  stop-color="#FFFFFF" stop-opacity="0.20"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="rGlassEdgeL" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.85"/>
+          <stop offset="40%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="rGlassEdgeR" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+          <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#B9C5EE" stop-opacity="0.55"/>
+        </linearGradient>
+        <linearGradient id="rCapStone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.7"/>
+          <stop offset="50%"  stop-color="#B9C5EE" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+        </linearGradient>
+        <filter id="rBlur" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="0.6"/>
+        </filter>
+      </defs>
+
+      <!-- lower (intact) section of the column: standing on stairs -->
+      <g filter="url(#rBlur)">
+        <!-- base capital -->
+        <rect x="315" y="540" width="170" height="18" rx="3" fill="url(#rCapStone)"/>
+        <rect x="315" y="540" width="170" height="1.4" fill="#FFFFFF" opacity="0.7"/>
+        <!-- shaft body -->
+        <rect x="340" y="300" width="120" height="240" rx="3" fill="url(#rGlassBody)"/>
+        <rect x="340" y="300" width="40"  height="240"        fill="url(#rGlassEdgeL)" opacity="0.9"/>
+        <rect x="420" y="300" width="40"  height="240"        fill="url(#rGlassEdgeR)" opacity="0.9"/>
+        <rect x="340" y="538" width="120" height="1.4" fill="#FFFFFF" opacity="0.5"/>
+        <!-- jagged break edge on top (a thin polyline acts as a fracture line) -->
+        <polygon points="340,300 360,288 388,302 410,282 432,298 446,290 460,300" fill="url(#rGlassBody)" opacity="0.85"/>
+        <polyline points="340,300 360,288 388,302 410,282 432,298 446,290 460,300"
+                  fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.2"/>
+      </g>
+
+      <!-- broken-off top piece, lying tilted to the side -->
+      <g class="ruin-shard" filter="url(#rBlur)">
+        <!-- shaft fragment (drawn rotated horizontally; CSS transforms it) -->
+        <rect x="180" y="525" width="240" height="60" rx="3" fill="url(#rGlassBody)"/>
+        <rect x="180" y="525" width="240" height="20" fill="url(#rGlassEdgeL)" opacity="0.85"/>
+        <rect x="180" y="565" width="240" height="20" fill="url(#rGlassEdgeR)" opacity="0.85"/>
+        <rect x="180" y="525" width="240" height="1.4" fill="#FFFFFF" opacity="0.65"/>
+        <!-- broken end (jagged) on the left -->
+        <polygon points="180,525 168,540 184,552 172,566 188,580 180,585" fill="url(#rGlassBody)" opacity="0.85"/>
+        <polyline points="180,525 168,540 184,552 172,566 188,580 180,585"
+                  fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.2"/>
+        <!-- capital cap on the right -->
+        <rect x="416" y="518" width="20" height="74" rx="3" fill="url(#rCapStone)"/>
+        <rect x="416" y="518" width="20" height="1.4" fill="#FFFFFF" opacity="0.7"/>
+      </g>
+
+      <!-- horizon stairs / plinth -->
+      <g>
+        <rect x="0" y="600" width="800" height="6" fill="#B9C5EE" opacity="0.45"/>
+        <rect x="0" y="600" width="800" height="1" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="0" y="615" width="800" height="6" fill="#B9C5EE" opacity="0.4"/>
+        <rect x="0" y="615" width="800" height="1" fill="#FFFFFF" opacity="0.45"/>
+        <rect x="0" y="630" width="800" height="6" fill="#B9C5EE" opacity="0.35"/>
+        <rect x="0" y="630" width="800" height="1" fill="#FFFFFF" opacity="0.35"/>
+        <rect x="0" y="645" width="800" height="6" fill="#B9C5EE" opacity="0.3"/>
+        <rect x="0" y="660" width="800" height="6" fill="#B9C5EE" opacity="0.25"/>
+      </g>
+
+      <!-- scattered rubble dots -->
+      <g fill="#B9C5EE" opacity="0.5">
+        <rect x="120" y="595" width="14" height="5" rx="1"/>
+        <rect x="148" y="592" width="8"  height="4" rx="1"/>
+        <rect x="640" y="597" width="18" height="5" rx="1"/>
+        <rect x="672" y="594" width="9"  height="4" rx="1"/>
+        <rect x="700" y="598" width="12" height="5" rx="1"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="lost-stack">
+    <h1>404</h1>
+    <div class="greek">ΤΑ ΕΡΕΙΠΙΑ</div>
+    <p class="epitaph">this column is missing from the colonnade.</p>
+    <a class="home" href="/">return</a>
+  </div>
+</main>
+
+<svg class="mascot" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <polygon points="32,0 48,0 95,120 79,120 58,65 22,120 4,120 51,48" fill="#B9C5EE"/>
+</svg>
+
+</body>
+</html>
