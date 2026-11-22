@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const AUTHOR = 'sturq';
-const HTML_PATH = 'projects/index.html';
+const HTML_PATH = 'index.html';
 const START_MARKER = '<!-- contributions:start -->';
 const END_MARKER = '<!-- contributions:end -->';
 

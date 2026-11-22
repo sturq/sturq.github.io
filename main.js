@@ -1,47 +1,19 @@
-// randomize tagline (~1/8 chance of easter-egg; ?egg=1 forces it)
-const tagline = document.querySelector('.hero .tagline');
-if (tagline) {
-  const force = new URLSearchParams(location.search).get('egg') === '1';
-  tagline.textContent = (force || Math.random() < 0.12)
-    ? "tfo? more like tf, no"
-    : "quiet machines for the late hours";
-}
+// counts come from the generated lists, so the daily sync never leaves a stale number
+document.querySelectorAll('[data-count]').forEach(e => e.textContent = document.querySelectorAll(e.dataset.count).length);
 
-// randomize manifesto fragment
-const fragments = [
-  ["in the silence between requests, the machine dreams of marble and city rain.", "fragment · iv"],
-  ["the oracle answers in null; we keep asking anyway.", "fragment · ix"],
-  ["athena built no monuments to her quiet hours.", "fragment · xii"],
-  ["between the request and the response, a small forever.", "fragment · iii"],
-  ["all our daemons run on borrowed light.", "fragment · vii"],
-  ["the cache forgets nothing it pretends to remember.", "fragment · ii"],
-  ["marble cools faster than memory.", "fragment · viii"],
-  ["the gods, too, ran on cron.", "fragment · xi"],
-  ["a temple is a server, given enough time.", "fragment · v"],
-  ["we send heartbeats to the dead.", "fragment · x"],
-  ["the kernel sleeps facing east.", "fragment · vi"],
-  ["every handshake is a small confession.", "fragment · i"],
-  ["the network forgets its dead, but they keep dialing.", "fragment · xiii"],
-  ["our prayers travel on unencrypted wire.", "fragment · xiv"],
-  ["the agora is empty; the daemons trade in silence.", "fragment · xv"],
-];
-const blockquote = document.querySelector('.manifesto blockquote');
-if (blockquote) {
-  const [text, cite] = fragments[Math.floor(Math.random() * fragments.length)];
-  blockquote.innerHTML = '';
-  blockquote.appendChild(document.createTextNode(text + ' '));
-  const c = document.createElement('cite');
-  c.textContent = cite;
-  blockquote.appendChild(c);
-}
+const chips = document.querySelectorAll('.chips button');
+chips.forEach(b => b.addEventListener('click', () => {
+  chips.forEach(c => c.setAttribute('aria-pressed', c === b));
+  document.querySelectorAll('.cat').forEach(c => c.hidden = b.dataset.f !== 'all' && c.dataset.cat !== b.dataset.f);
+}));
 
-// reveal-on-scroll
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+const rail = document.querySelector('.rail');
+document.querySelectorAll('.pager button').forEach(b => b.addEventListener('click', () =>
+  rail.scrollBy({ left: b.dataset.dir * rail.clientWidth * 0.8, behavior: 'smooth' })));
+
+// ponytail: footer (#contact) rarely reaches the middle band, so contact lights up only on short screens
+const nav = [...document.querySelectorAll('.bar a[href^="#"]')];
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) nav.forEach(a => a.hash === '#' + e.target.id ? a.setAttribute('aria-current', 'location') : a.removeAttribute('aria-current'));
+}), { rootMargin: '-40% 0px -55% 0px' });
+nav.forEach(a => spy.observe(document.querySelector(a.hash)));

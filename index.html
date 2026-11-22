@@ -2,92 +2,432 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>sturq</title>
-<meta name="theme-color" content="#0b0b0b">
-<meta name="description" content="sturq · quiet machines for the late hours">
-<link rel="preload" href="/assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#0D0E12">
+<meta name="description" content="sturq · android apps, windows tools, steam plugins and cs2 skins">
+<link rel="preload" href="/assets/fonts/RobotoFlex-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<nav class="top">
-  <a href="/">sturq</a>
-  <div class="links">
-    <a href="#now">now</a>
-    <a href="#about">about</a>
-    <a href="#work">work</a>
-    <a href="#contact">contact</a>
-  </div>
+<svg hidden aria-hidden="true">
+  <symbol id="cookie" viewBox="0 0 100 100"><path d="M50.0 1.0 53.4 1.9 56.4 4.2 59.1 7.2 61.5 9.9 64.0 11.5 67.0 11.8 70.5 11.4 74.5 10.8 78.4 11.0 81.5 12.5 83.5 15.3 84.4 19.1 84.5 23.1 84.6 26.6 85.5 29.5 87.5 31.7 90.6 33.6 94.0 35.7 96.8 38.3 98.3 41.5 98.0 45.0 96.2 48.4 93.7 51.5 91.5 54.4 90.4 57.1 90.5 60.1 91.6 63.5 92.9 67.3 93.4 71.1 92.4 74.5 90.0 77.0 86.4 78.5 82.5 79.3 79.0 80.0 76.4 81.4 74.5 83.8 73.2 87.1 71.7 90.8 69.6 94.1 66.8 96.0 63.3 96.4 59.6 95.2 56.1 93.3 52.9 91.7 50.0 91.0 47.1 91.7 43.9 93.3 40.4 95.2 36.7 96.4 33.2 96.0 30.4 94.1 28.3 90.8 26.8 87.1 25.5 83.8 23.6 81.4 21.0 80.0 17.5 79.3 13.6 78.5 10.0 77.0 7.6 74.5 6.6 71.1 7.1 67.3 8.4 63.5 9.5 60.1 9.6 57.1 8.5 54.4 6.3 51.5 3.8 48.4 2.0 45.0 1.7 41.5 3.2 38.3 6.0 35.7 9.4 33.6 12.5 31.7 14.5 29.5 15.4 26.6 15.5 23.1 15.6 19.1 16.5 15.3 18.5 12.5 21.6 11.0 25.5 10.8 29.5 11.4 33.0 11.8 36.0 11.5 38.5 9.9 40.9 7.2 43.6 4.2 46.6 1.9Z"/></symbol>
+</svg>
+
+<nav class="bar" aria-label="main">
+  <a class="logo" href="/" aria-label="sturq"><svg aria-hidden="true"><use href="#cookie"/></svg><span>s</span></a>
+  <a href="#projects" aria-current="location"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg></span>projects</a>
+  <a href="#patches"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M6 8.5c0 3 3 3.5 9.5 3.5"/></svg></span>patches</a>
+  <a href="#skins"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.8-.9 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/></svg></span>skins</a>
+  <a href="#contact"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg></span>contact</a>
 </nav>
 
-<header class="photo hero" style="background-image:url(/assets/img/hero.jpg)">
-  <h1>sturq</h1>
-  <p class="tagline">quiet machines for the late hours</p>
+<main class="page">
+
+<header class="head">
+  <a class="brand" href="/"><span class="logo"><svg aria-hidden="true"><use href="#cookie"/></svg><span>s</span></span>sturq</a>
 </header>
 
-<section class="block" id="now">
-  <span class="lbl">now</span>
-  <ul class="now">
-    <li class="reveal"><a href="https://github.com/sturq/peri" target="_blank" rel="noopener">
-      <span class="big">peri (android)</span>
-      <span class="meta">camera with a measured iphone look · github</span>
-    </a></li>
-    <li class="reveal"><a href="https://github.com/sturq/ccdcam" target="_blank" rel="noopener">
-      <span class="big">ccdcam (android)</span>
-      <span class="meta">camcorder look, live glsl shader · github</span>
-    </a></li>
-    <li class="reveal"><a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide" target="_blank" rel="noopener">
-      <span class="big">nfs most wanted u 21:9 (cemu)</span>
-      <span class="meta">native ultrawide graphic pack · github</span>
-    </a></li>
-    <li class="reveal"><a href="https://github.com/sturq/termux-plus-plus" target="_blank" rel="noopener">
-      <span class="big">termux++ (android)</span>
-      <span class="meta">terminal fork, no session limit, sticky scroll · github</span>
-    </a></li>
-    <li class="reveal"><a href="/projects/#skins">
-      <span class="big">cs2 skins (steam)</span>
-      <span class="meta">37 weapon finishes on the workshop</span>
-    </a></li>
-  </ul>
-</section>
+<div class="intro">
+  <section class="hero">
+    <p>open source · linux · agents · automation</p>
+    <h1>android apps, windows tools, steam plugins and cs2 skins.</h1>
+    <div class="split">
+      <a href="https://github.com/sturq" target="_blank" rel="noopener">github</a>
+      <a href="https://gitlab.com/Sturq" target="_blank" rel="noopener">gitlab</a>
+    </div>
+  </section>
+  <a class="stat" href="#projects"><b data-count="#projects .it">12</b><span>projects</span></a>
+  <a class="stat" href="#patches"><b data-count="#patches .card">7</b><span>merged prs</span></a>
+  <a class="stat alt" href="#skins"><b data-count="#skins .card">37</b><span>cs2 skins</span></a>
+</div>
 
-<section class="photo manifesto" id="about" style="background-image:url(/assets/img/marble.jpg)">
-  <span class="lbl">about</span>
-  <blockquote>
-    in the silence between requests, the machine dreams of marble and city rain.
-    <cite>fragment · iv</cite>
-  </blockquote>
-  <div class="two">
-    <p>open source · linux · agents · automation. android cameras, terminals on phones, small tools that run all night.</p>
-  </div>
-</section>
-
-<section class="block paper" id="work">
-  <span class="lbl">work (selected)</span>
-  <p class="runon reveal">
-    <a href="https://github.com/sturq/ccdcam" target="_blank" rel="noopener">ccdcam</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/peri" target="_blank" rel="noopener">peri</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/nvcam" target="_blank" rel="noopener">nvcam</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/RunavaLauncher" target="_blank" rel="noopener">runava</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/ASF-AutoIdle" target="_blank" rel="noopener">asf-autoidle</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/ASF-AutoAchievement" target="_blank" rel="noopener">asf-autoachievement</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/date-planner-tiktok" target="_blank" rel="noopener">date-planner</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/win-glazewm" target="_blank" rel="noopener">win-glazewm</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/clipilot" target="_blank" rel="noopener">clipilot</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/sturq-palette" target="_blank" rel="noopener">sturq-palette</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide" target="_blank" rel="noopener">nfs-mwu-ultrawide</a><span class="dot">·</span><wbr><a href="https://github.com/sturq/termux-plus-plus" target="_blank" rel="noopener">termux++</a> ...
-  </p>
-  <div class="two">
-    <div>
-      <span class="lbl">contributions (merged)</span>
-      <p class="runon sm"><a href="/projects/#contributions">claude-code-termux</a><span class="dot">·</span><wbr><a href="/projects/#contributions">ungoogled-chromium</a><span class="dot">·</span><wbr><a href="/projects/#contributions">user-scanner</a></p>
+<section id="projects">
+  <div class="sh">
+    <h2>projects <span data-count="#projects .it">12</span></h2>
+    <div class="chips" role="group" aria-label="filter projects">
+      <button type="button" data-f="all" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>all</button>
+      <button type="button" data-f="android" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>android</button>
+      <button type="button" data-f="steam" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>steam</button>
+      <button type="button" data-f="windows" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>windows</button>
+      <button type="button" data-f="other" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>other</button>
     </div>
   </div>
-  <a class="more" href="/projects/">all projects and patches →</a>
+
+  <div class="cats">
+    <div class="cat" data-cat="android">
+      <div class="gh"><span>android</span><span data-count="[data-cat=android] .it">5</span></div>
+      <div class="grp">
+        <a class="it" href="https://github.com/sturq/peri" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3.2L9 6h6l1.8 2.5H20V19H4z"/><circle cx="12" cy="13.2" r="3.3"/></svg></span><span class="tx"><span class="t">peri</span><span class="s">grapheneos camera fork that gives saved photos a measured iphone look.</span></span></a>
+        <a class="it" href="https://github.com/sturq/ccdcam" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="m16 10 5-3v10l-5-3z"/></svg></span><span class="tx"><span class="t">ccdcam</span><span class="s">camcorder with a hand-tuned ccd shader. analog ghosts on a glass plate.</span></span></a>
+        <a class="it" href="https://github.com/sturq/nvcam" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span><span class="tx"><span class="t">nvcam</span><span class="s">camcorder night-shot look, live glsl shader on photo and video.</span></span></a>
+        <a class="it" href="https://github.com/sturq/termux-plus-plus" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 9 3 3-3 3M12 15h5"/></svg></span><span class="tx"><span class="t">termux++</span><span class="s">termux fork without the session limit, with sticky scroll and its own icon.</span></span></a>
+        <a class="it" href="https://github.com/sturq/RunavaLauncher" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4M15.5 11.5h.01M18 13.5h.01"/></svg></span><span class="tx"><span class="t">runava</span><span class="s">runelite for android with touch controls.</span></span></a>
+      </div>
+    </div>
+
+    <div class="cat" data-cat="steam">
+      <div class="gh"><span>steam</span><span data-count="[data-cat=steam] .it">2</span></div>
+      <div class="grp">
+        <a class="it" href="https://github.com/sturq/ASF-AutoIdle" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg></span><span class="tx"><span class="t">asf-autoidle</span><span class="s">archisteamfarm plugin that idles every game on a bot in batches of 32.</span></span></a>
+        <a class="it" href="https://github.com/sturq/ASF-AutoAchievement" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg></span><span class="tx"><span class="t">asf-autoachievement</span><span class="s">archisteamfarm plugin that unlocks every available steam achievement.</span></span></a>
+      </div>
+    </div>
+
+    <div class="cat" data-cat="windows">
+      <div class="gh"><span>windows</span><span data-count="[data-cat=windows] .it">2</span></div>
+      <div class="grp">
+        <a class="it" href="https://github.com/sturq/clipilot" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M17 10h.01M7 14h10"/></svg></span><span class="tx"><span class="t">clipilot</span><span class="s">press the copilot key to summon the claude code cli. one small exe.</span></span></a>
+        <a class="it" href="https://github.com/sturq/win-glazewm" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M12 12h9"/></svg></span><span class="tx"><span class="t">win-glazewm</span><span class="s">tiling-wm setup via glazewm, mirrored from the nix sway setup.</span></span></a>
+      </div>
+    </div>
+
+    <div class="cat" data-cat="other">
+      <div class="gh"><span>other</span><span data-count="[data-cat=other] .it">3</span></div>
+      <div class="grp">
+        <a class="it" href="https://github.com/sturq/nfs-most-wanted-u-ultrawide" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="10" rx="2"/><path d="M9 20h6M12 16v4"/></svg></span><span class="tx"><span class="t">nfs-mwu-ultrawide</span><span class="s">native 21:9 graphic pack for need for speed: most wanted u on cemu.</span></span></a>
+        <a class="it" href="https://github.com/sturq/date-planner-tiktok" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="tx"><span class="t">date-planner</span><span class="s">1:1 clone of the viral tiktok it-guy date-planner page.</span></span></a>
+        <a class="it" href="https://github.com/sturq/sturq-palette" target="_blank" rel="noopener"><span class="lead"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.8-.9 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/></svg></span><span class="tx"><span class="t">sturq-palette</span><span class="s">base + lavender primary + soft pastel accents, exported for themes.</span></span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="photo short" id="contact" style="background-image:url(/assets/img/rain.jpg)">
-  <span class="lbl">contact</span>
-  <p class="runon">
-    <a href="https://github.com/sturq" target="_blank" rel="noopener">github</a><span class="dot">·</span><wbr><a href="https://gitlab.com/Sturq" target="_blank" rel="noopener">gitlab</a>
-  </p>
+<div class="duo">
+<section id="patches">
+  <div class="sh"><h2>merged upstream <span data-count="#patches .card">7</span></h2></div>
+  <div class="grp">
+  <!-- contributions:start -->
+  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/18" target="_blank" rel="noopener">
+    <div class="label">claude-code-termux · pr #18 · merged</div>
+    <div class="title">verify the downloaded .deb against its release asset digest</div>
+    <div class="desc">the claude binary is sha-256 verified in bootstrap.sh, but the released .deb — which runs a postinst that patches binaries — was fetched over tls only, with no integrity check.</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/kaifcodec/user-scanner/pull/338" target="_blank" rel="noopener">
+    <div class="label">user-scanner · pr #338 · merged</div>
+    <div class="title">fix(gumroad, girlslife): force accept-encoding: identity</div>
+    <div class="desc">both modules advertised accept-encoding: gzip, deflate, br, zstd, but httpx ships only gzip/deflate decoders by default.</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/ungoogled-software/ungoogled-chromium/pull/3828" target="_blank" rel="noopener">
+    <div class="label">ungoogled-chromium · pr #3828 · merged</div>
+    <div class="title">fix typos in comments and docstrings</div>
+    <div class="desc">fixes a handful of typos found with codespell in utils/ and devutils/ comments, docstrings, and log messages: - checkdownloadsini.py, checkpatchfiles.py: &quot;occured&quot; -&gt; &quot;occurred&quot; -…</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/14" target="_blank" rel="noopener">
+    <div class="label">claude-code-termux · pr #14 · merged</div>
+    <div class="title">docs: troubleshooting for &quot;required file not found&quot; + stock leftover</div>
+    <div class="desc">adds a troubleshooting section for the most common breakage, claude: cannot execute: required file not found: what it means (an unpatched stock binary is being resolved), why it ha…</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/13" target="_blank" rel="noopener">
+    <div class="label">claude-code-termux · pr #13 · merged</div>
+    <div class="title">bootstrap: ensure verifies the elf interpreter, not just the +x bit</div>
+    <div class="desc">ensure short-circuited on [ -x &quot;$current&quot; ], but the +x bit doesn't mean the binary can exec: a stock or half-patched binary keeps +x while its elf interpreter points at /lib/ld-li…</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/12" target="_blank" rel="noopener">
+    <div class="label">claude-code-termux · pr #12 · merged</div>
+    <div class="title">native-symlink: self-heal on update via shared link-native.sh</div>
+    <div class="desc">the ~/.local/bin/claude -&gt; launcher symlink (which satisfies claude's installmethod=native health check) is only created at install.</div>
+    <div class="arrow">→</div>
+  </a>
+  <a class="card reveal" href="https://github.com/gtbuchanan/claude-code-termux/pull/11" target="_blank" rel="noopener">
+    <div class="label">claude-code-termux · pr #11 · merged</div>
+    <div class="title">launcher: disable the self-updater via disable_autoupdater</div>
+    <div class="desc">adds a second layer behind autoupdates: false: the launcher exports disableautoupdater=1 before exec'ing claude, next to the existing tmpdir/ldpreload shaping in claude-wrapper.c.</div>
+    <div class="arrow">→</div>
+  </a>
+  <!-- contributions:end -->
+  </div>
 </section>
 
-<footer>
-  <span>sturq</span>
-  <span>type: archivo · images: generated</span>
+<section id="skins">
+  <div class="sh">
+    <h2>cs2 skins <span data-count="#skins .card">37</span></h2>
+    <div class="pager">
+      <button type="button" data-dir="-1" aria-label="previous skins"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button type="button" data-dir="1" aria-label="next skins"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="rail">
+  <!-- skins:start -->
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817062298" target="_blank" rel="noopener">
+    <div class="label">mag-7 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mag7-simurgh.webp" width="800" height="450" loading="lazy" alt="MAG-7 | Simurgh">
+    <div class="title">simurgh</div>
+    <div class="desc">a simurgh with spread golden wings and a long turquoise and red tail rises on the front panel in the style of a persian miniature, while…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817061282" target="_blank" rel="noopener">
+    <div class="label">p90 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/p90-luna-moth.webp" width="800" height="450" loading="lazy" alt="P90 | Luna Moth">
+    <div class="title">luna moth</div>
+    <div class="desc">pale green luna moths with long curling tails flutter among white moonflowers and ferns in the style of a vintage naturalist illustration…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817059699" target="_blank" rel="noopener">
+    <div class="label">famas · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/famas-peacock-plume.webp" width="800" height="450" loading="lazy" alt="FAMAS | Peacock Plume">
+    <div class="title">peacock plume</div>
+    <div class="desc">three peacock eye feathers with gold scrolls fan across the stock in the style of art nouveau, with whiplash bands of gold, teal and…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817058647" target="_blank" rel="noopener">
+    <div class="label">m249 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/m249-tiki-totem.webp" width="800" height="450" loading="lazy" alt="M249 | Tiki Totem">
+    <div class="title">tiki totem</div>
+    <div class="desc">a grinning carved tiki mask stands on the box magazine in the style of a 1950s polynesian bar, with big red hibiscus blossoms and teal…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817057470" target="_blank" rel="noopener">
+    <div class="label">usp-s · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/usps-hummingbird.webp" width="800" height="450" loading="lazy" alt="USP-S | Hummingbird">
+    <div class="title">hummingbird</div>
+    <div class="desc">ruby-throated hummingbirds hover at red trumpet-vine flowers on the slide, grip and silencer in the style of a vintage botanical print…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817056390" target="_blank" rel="noopener">
+    <div class="label">g3sg1 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/g3sg1-lapis-scarab.webp" width="800" height="450" loading="lazy" alt="G3SG1 | Lapis Scarab">
+    <div class="title">lapis scarab</div>
+    <div class="desc">a golden scarab with spread lapis and turquoise wings rises over the receiver in the style of ancient egyptian jewellery, flanked by lotus…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817055108" target="_blank" rel="noopener">
+    <div class="label">m4a1-s · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/m4a1s-milkweed.webp" width="800" height="450" loading="lazy" alt="M4A1-S | Milkweed">
+    <div class="title">milkweed</div>
+    <div class="desc">monarch butterflies on their migration settle on the rifle in the style of a botanical plate</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817054183" target="_blank" rel="noopener">
+    <div class="label">awp · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/awp-kitsune.webp" width="800" height="450" loading="lazy" alt="AWP | Kitsune">
+    <div class="title">kitsune</div>
+    <div class="desc">a white nine-tailed fox spirit leaps along the stock and receiver in the style of an ukiyo-e woodblock print, its fur traced in fine ink…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817053291" target="_blank" rel="noopener">
+    <div class="label">ak-47 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/ak47-firebird.webp" width="800" height="450" loading="lazy" alt="AK-47 | Firebird">
+    <div class="title">firebird</div>
+    <div class="desc">a golden firebird with a sweeping curled tail spreads across the receiver in the style of russian khokhloma lacquerware, surrounded by bold…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817052358" target="_blank" rel="noopener">
+    <div class="label">scar-20 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/scar20-snowy-owl.webp" width="800" height="450" loading="lazy" alt="SCAR-20 | Snowy Owl">
+    <div class="title">snowy owl</div>
+    <div class="desc">a snowy owl glides across the receiver in the style of a japanese woodblock print, its yellow eyes fixed ahead</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817051335" target="_blank" rel="noopener">
+    <div class="label">sawed-off · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/sawedoff-saddle-snake.webp" width="800" height="450" loading="lazy" alt="Sawed-Off | Saddle Snake">
+    <div class="title">saddle snake</div>
+    <div class="desc">hand-tooled western saddle leather</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817050237" target="_blank" rel="noopener">
+    <div class="label">pp-bizon · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/bizon-clockwork.webp" width="800" height="450" loading="lazy" alt="PP-Bizon | Clockwork">
+    <div class="title">clockwork</div>
+    <div class="desc">a brass gear train and an open pocket watch wrap around the helical magazine, every wheel meshing with the next, set with screws and ruby…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817049257" target="_blank" rel="noopener">
+    <div class="label">mp5-sd · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mp5sd-dart-frog.webp" width="800" height="450" loading="lazy" alt="MP5-SD | Dart Frog">
+    <div class="title">dart frog</div>
+    <div class="desc">a blue and a yellow poison dart frog sit among giant monstera leaves on the receiver, and another monstera leaf curls over the grip</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817048316" target="_blank" rel="noopener">
+    <div class="label">dual berettas · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/dualberettas-twin-muses.webp" width="800" height="450" loading="lazy" alt="Dual Berettas | Twin Muses">
+    <div class="title">twin muses</div>
+    <div class="desc">an art nouveau muse in the manner of alphonse mucha, crowned with flowers and framed by a halo and flowing hair, graces the grips of both…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817063529" target="_blank" rel="noopener">
+    <div class="label">cz75-auto · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/cz75a-tidewater.webp" width="800" height="450" loading="lazy" alt="CZ75-Auto | Tidewater">
+    <div class="title">tidewater</div>
+    <div class="desc">a great ukiyo-e wave in prussian blue, indigo and cream breaks over the grip and the frame, its claw-like foam throwing spray across the gun</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817047299" target="_blank" rel="noopener">
+    <div class="label">p2000 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/p2000-jade-dragon.webp" width="800" height="450" loading="lazy" alt="P2000 | Jade Dragon">
+    <div class="title">jade dragon</div>
+    <div class="desc">classic lacquer ware on a pistol</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817046339" target="_blank" rel="noopener">
+    <div class="label">mag-7 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mag7-nebula.webp" width="800" height="450" loading="lazy" alt="MAG-7 | Nebula">
+    <div class="title">nebula</div>
+    <div class="desc">a retro space illustration on a shotgun</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817045326" target="_blank" rel="noopener">
+    <div class="label">tec-9 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/tec9-toxic.webp" width="800" height="450" loading="lazy" alt="Tec-9 | Slime Spill">
+    <div class="title">slime spill</div>
+    <div class="desc">glossy neon green toxic slime covers the top of the tec-9 and drips down its sides, over a deep purple body full of bubbles, some of them…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817044238" target="_blank" rel="noopener">
+    <div class="label">p250 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/p250-stained-glass.webp" width="800" height="450" loading="lazy" alt="P250 | Chapel Window">
+    <div class="title">chapel window</div>
+    <div class="desc">a stained glass window on a pistol</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817043337" target="_blank" rel="noopener">
+    <div class="label">sg 553 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/sg553-kraken.webp" width="800" height="450" loading="lazy" alt="SG 553 | Tentacle Tattoo">
+    <div class="title">tentacle tattoo</div>
+    <div class="desc">a giant coral red kraken in vintage nautical tattoo style wraps its tentacles around the whole rifle, from the stock over the receiver to…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817042252" target="_blank" rel="noopener">
+    <div class="label">mp7 · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mp7-snow-leopard.webp" width="800" height="450" loading="lazy" alt="MP7 | Mountain Ghost">
+    <div class="title">mountain ghost</div>
+    <div class="desc">snow leopard fur as a hydro dip</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817041376" target="_blank" rel="noopener">
+    <div class="label">nova · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/nova-magma.webp" width="800" height="450" loading="lazy" alt="Nova | Lava Crust">
+    <div class="title">lava crust</div>
+    <div class="desc">cooled basalt cracked into plates of every size, molten orange glowing in every crack and a dark red rim where the heat bleeds into the rock</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817040473" target="_blank" rel="noopener">
+    <div class="label">mp9 · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mp9-circuit.webp" width="800" height="450" loading="lazy" alt="MP9 | Circuit">
+    <div class="title">circuit</div>
+    <div class="desc">a printed circuit board on dark green solder mask</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817039721" target="_blank" rel="noopener">
+    <div class="label">aug · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/aug-dragon-scale.webp" width="800" height="450" loading="lazy" alt="AUG | Dragon Scale">
+    <div class="title">dragon scale</div>
+    <div class="desc">overlapping pointed dragon scales in jade green, each lighter towards its tip with a thin gold rim along the free edge, laid in offset rows…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817038995" target="_blank" rel="noopener">
+    <div class="label">ump-45 · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/ump45-riptide.webp" width="800" height="450" loading="lazy" alt="UMP-45 | Riptide">
+    <div class="title">riptide</div>
+    <div class="desc">marbled surf as a hydro dip</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817077414" target="_blank" rel="noopener">
+    <div class="label">five-seven · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/fiveseven-phoenix.webp" width="800" height="450" loading="lazy" alt="Five-SeveN | Phoenix">
+    <div class="title">phoenix</div>
+    <div class="desc">a phoenix rising along the slide, its outstretched wings and head in front, long red, orange and gold tail feathers sweeping down the grip…</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817075914" target="_blank" rel="noopener">
+    <div class="label">p90 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/p90-abyss.webp" width="800" height="450" loading="lazy" alt="P90 | Midnight Zone">
+    <div class="title">midnight zone</div>
+    <div class="desc">the deep sea on deep navy</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817074849" target="_blank" rel="noopener">
+    <div class="label">galil ar · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/galilar-jungle-tiger.webp" width="800" height="450" loading="lazy" alt="Galil AR | Tiger Prowl">
+    <div class="title">tiger prowl</div>
+    <div class="desc">american traditional tattoo flash on a galil</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817037611" target="_blank" rel="noopener">
+    <div class="label">famas · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/famas-memphis.webp" width="800" height="450" loading="lazy" alt="FAMAS | Memphis">
+    <div class="title">memphis</div>
+    <div class="desc">milan 1981 on a rifle</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817036714" target="_blank" rel="noopener">
+    <div class="label">m4a4 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/m4a4-pole-position.webp" width="800" height="450" loading="lazy" alt="M4A4 | Pole Sitter">
+    <div class="title">pole sitter</div>
+    <div class="desc">a 1970s endurance racer livery on off-white</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817073516" target="_blank" rel="noopener">
+    <div class="label">m4a1-s · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/m4a1-northern-lights.webp" width="800" height="450" loading="lazy" alt="M4A1-S | Northern Lights">
+    <div class="title">northern lights</div>
+    <div class="desc">a flat vector night</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817072328" target="_blank" rel="noopener">
+    <div class="label">mac-10 · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/mac10-retro-arcade.webp" width="800" height="450" loading="lazy" alt="MAC-10 | Retro Arcade">
+    <div class="title">retro arcade</div>
+    <div class="desc">an 8-bit invader wave on the receiver</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817070933" target="_blank" rel="noopener">
+    <div class="label">usp-s · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/usp-candy-rush.webp" width="800" height="450" loading="lazy" alt="USP-S | Candy Rush">
+    <div class="title">candy rush</div>
+    <div class="desc">pop art sweets as a printed pattern</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817035142" target="_blank" rel="noopener">
+    <div class="label">desert eagle · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/deagle-sun-serpent.webp" width="800" height="450" loading="lazy" alt="Desert Eagle | Sun Serpent">
+    <div class="title">sun serpent</div>
+    <div class="desc">a feathered serpent in the style of an aztec codex painting glides along the slide, its open jaws right behind the muzzle</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817034235" target="_blank" rel="noopener">
+    <div class="label">ssg 08 · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/ssg08-topo-line.webp" width="800" height="450" loading="lazy" alt="SSG 08 | Topo Line">
+    <div class="title">topo line</div>
+    <div class="desc">a topographic map as camouflage</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817023344" target="_blank" rel="noopener">
+    <div class="label">glock-18 · hydrographic</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/glock18-acid-reef.webp" width="800" height="450" loading="lazy" alt="Glock-18 | Acid Reef">
+    <div class="title">acid reef</div>
+    <div class="desc">coral branches and spots dipped onto the glock in four loud colours, like a hydro-dip film</div>
+  </a>
+  <a class="card shot reveal" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3817033120" target="_blank" rel="noopener">
+    <div class="label">awp · custom paint job</div>
+    <div class="arrow">→</div>
+    <img src="/assets/skins/awp-moonlit-nacre.webp" width="800" height="450" loading="lazy" alt="AWP | Moonlit Nacre">
+    <div class="title">moonlit nacre</div>
+    <div class="desc">an art nouveau night on midnight blue with a pearlescent sheen</div>
+  </a>
+  <!-- skins:end -->
+  </div>
+</section>
+</div>
+
+<footer id="contact">
+  <div class="links">
+    <a href="https://github.com/sturq" target="_blank" rel="noopener">github</a>
+    <a href="https://gitlab.com/Sturq" target="_blank" rel="noopener">gitlab</a>
+  </div>
+  <span>sturq.github.io · roboto flex · material you</span>
 </footer>
+
+</main>
 
 <script src="/main.js" defer></script>
 </body>
