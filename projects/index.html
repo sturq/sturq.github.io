@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>projects · sturq</title>
-<meta name="theme-color" content="#0D0E12">
+<meta name="theme-color" content="#000000">
 <meta name="description" content="sturq · projects on github and pull requests merged upstream">
 <link rel="preload" href="/assets/fonts/RobotoFlex-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <style>
-  /* two halves: own projects left, merged upstream prs right; items and cards are styled by style.css */
+  :root { --bg: #000; --fg: #eee; --fg2: #aaa; --s2: #111; --p: #74ecd4; --pc: #242424; --sc: #242424; --tc: #242424; --on-pc: #eee; --on-sc: #eee; --on-tc: #eee; }
+  .brand, .gh { font-family: ui-monospace, monospace; }
+  .brand:hover, .it:hover .name { color: var(--p); }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 48px; }
   .halves { display: grid; gap: 32px; align-items: start; }
   @media (min-width: 840px) { .wrap { padding: 0 48px 48px; } .halves { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
